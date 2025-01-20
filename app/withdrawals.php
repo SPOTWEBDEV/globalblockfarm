@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('./config/config.php');
+include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
@@ -21,9 +21,6 @@ function formatNumber($number, $decimals = 2) {
 }
 
 
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +32,10 @@ function formatNumber($number, $decimals = 2) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>History</title>
+    <title>EMPTY PAGE BRUH</title>
+    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template" />
+    <meta name="Author" content="Spruko Technologies Private Limited" />
+    <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit." />
     <!-- Favicon -->
     <link rel="icon" href="./assets/images/brand-logos/favicon.ico" type="image/x-icon" />
     <!-- Choices JS -->
@@ -76,13 +76,13 @@ function formatNumber($number, $decimals = 2) {
             <div class="container-fluid">
                 <!-- Page Header -->
                 <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">DEPOSITS</h1>
+                    <h1 class="page-title fw-semibold fs-18 mb-0">WITHDRAWALS</h1>
                     <div class="ms-md-1 ms-0">
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    deposits
+                                    Withdrawals
                                 </li>
                             </ol>
                         </nav>
@@ -97,15 +97,16 @@ function formatNumber($number, $decimals = 2) {
                                 <tr>
                                     <th scope="col">S/N</th>
                                     <th scope="col">ACCOUNT HOLDER</th>
-                                    <th scope="col">DEPOSITED</th>
-                                    <th scope="col">METHOD USED</th> 
-                                    <th scope="col">DEPOSITED ON</th>
+                                    <th scope="col">AMOUNT</th>
+                                    <th scope="col">WITHDRAWN TO</th>
+                                    <th scope="col">CHANNEL</th>
+                                    <th scope="col">WITHDRAWN ON</th>
                                     <th scope="col">STATUS</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                $sql = mysqli_query($connection, "SELECT * FROM `deposits` WHERE `user_id` = '$id'");
+                                $sql = mysqli_query($connection, "SELECT * FROM `withdrawals` WHERE `user_id` = '$id'");
                                 if (mysqli_num_rows($sql)) {
                                     $count = 1;
                                     while ($details = mysqli_fetch_assoc($sql)) {
@@ -119,8 +120,9 @@ function formatNumber($number, $decimals = 2) {
                                                 <!-- <th scope="row">Harshrath</th> -->
                                             </td>
                                             <td><span class="badge bg-success-transparent">$<?php echo formatNumber($details['amount']) ?></span></td>
-                                            <td><?php echo $details['method'] ?></td> 
-                                            <td><?php echo $details['date_deposited'] ?></td>
+                                            <td>$<?php echo $details['wallet_addr'] ?></td>
+                                            <td><?php echo $details['method'] ?></td>
+                                            <td><?php echo $details['date_withdrawn'] ?></td>
 
                                             <td>
                                                 <?php
@@ -129,7 +131,7 @@ function formatNumber($number, $decimals = 2) {
                                                 } else if ($details['status'] == 2) {
                                                     echo '<span class="badge bg-warning-transparent ms-2">DECLINED</span>';
                                                 } else {
-                                                    echo '<span class="badge bg-warning-transparent ms-2">PEDNING</span>';
+                                                    echo '<span class="badge bg-warning-transparent ms-2">PENDING</span>';
                                                 }
                                                 ?>
                                             </td>
@@ -152,11 +154,7 @@ function formatNumber($number, $decimals = 2) {
                 <!--End::row-1 -->
             </div>
         </div>
-        <?php
-        for ($br = 0; $br < 20; $br++) {
-            echo "<br>";
-        }
-        ?>
+        
     </div>
     <div class="scrollToTop">
         <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>

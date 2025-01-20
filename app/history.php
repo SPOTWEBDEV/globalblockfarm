@@ -1,14 +1,31 @@
 <?php
 session_start();
-include('./config/config.php');
+include('../server/connection.php');
+// AUTHIFY PAGE
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
-include('controllers/withCTR.php');
 //  FOR INVESTMENT MATURITY
 include('controllers/invMTR_CTR.php');
 // Log out the mother force;
 include('controllers/logOut.php');
+$user_identity = $userDetails['id'];
+
+
+
+function formatNumber($number, $decimals = 2) {
+    // Check if the input is empty or not numeric
+    if (empty($number) || !is_numeric($number)) {
+        $number = 0;
+    }
+    
+    // Use number_format to format the number
+    return number_format((float)$number, $decimals, '.', ',');
+}
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +37,7 @@ include('controllers/logOut.php');
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>WITHDRAW</title>
+    <title>TRANSACTION PAGE </title>
     <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template" />
     <meta name="Author" content="Spruko Technologies Private Limited" />
     <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit." />
@@ -45,8 +62,6 @@ include('controllers/logOut.php');
     <link rel="stylesheet" href="./assets/libs/@simonwep/pickr/themes/nano.min.css" />
     <!-- Choices Css -->
     <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
-    <script src="controllers/jquery-3.6.0.min.js"></script>
-<script src="controllers/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -66,13 +81,13 @@ include('controllers/logOut.php');
             <div class="container-fluid">
                 <!-- Page Header -->
                 <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">WITHDRAWAL</h1>
+                    <h1 class="page-title fw-semibold fs-18 mb-0">TRANSACTION</h1>
                     <div class="ms-md-1 ms-0">
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Withdrawal
+                                    Transaction
                                 </li>
                             </ol>
                         </nav>
@@ -81,55 +96,115 @@ include('controllers/logOut.php');
                 <!-- Page Header Close -->
                 <!-- Start::row-1 -->
                 <div class="row">
-                    <div class="col-xl-6">
-                        <div class="card custom-card">
-                            <div class="card-header justify-content-between">
-                                <div class="card-title"> Withdrawal Details </div>
-                                <div class="prism-toggle">
-                                </div>
-                                <div>
-                                    <div class="mb-1">
-                                        <!-- some emtpy word or text can be here -->
-                                        <span class="fs-10 badge bg-success-transparent text-success p-1 ms-2">
-                                            <i class="ri-arrow-up-s-line align-middle me-1"></i>
-                                            $<?php echo number_format($userDetails['wallet']) ?>
-                                        </span>
-                                    </div>
-                                    <!-- <div class="fs-20 fw-semibold">$132,12933.000</div>
-                                            <small class="text-muted fw-semibold">12 BTC</small> -->
-                                </div>
-                            </div>
-                            <form method="POST" class="card-body">
-                                <select class="form-control py-3 mb-3" name="channel">
-                                    <option value="USDT(Trc20)" selected="">USDT(Trc20)</option>
-                                    <option value="BNB" >BNB</option>
-                                    <option value="Ethereum">Ethereum</option>
-                                    <option value="BTC(Bitcoin)">BTC(Bitcoin)</option>
-                                    <option value="Litecoin">Litecoin</option>
-                                </select>
+                    <div class="table-responsive">
+                        <table class="table text-nowrap table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">TRANSACTION</th>
+                                    <th scope="col">AMOUNT</th>
+                                    <th scope="col">DATE</th>
+                                    <th scope="col">STATUS</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
 
-                                <div class="form-floating mb-3">
-                                    <input type="hidden" name="from_wallet" value="2" class="form-control" id="floatingInput">
-                                    <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="amount sent">
-                                    <label for="floatingInput">Amount to Withdraw</label>
-                                </div>
+<?php
+$query_withdrawals = "SELECT 'Withdrawals' AS source_table, amount, status, date_withdrawn AS date
+                      FROM withdrawals 
+                      WHERE user_id = '$user_identity'";
+$select_withdrawals = mysqli_query($connection, $query_withdrawals);
 
-                                <div class="form-floating mt-3">
-                                    <input type="text" name="sender_addr" class="form-control" id="floatingInput" placeholder="Your Wallet Address" requried>
-                                    <label for="floatingInput">withdrawal Wallet Address</label>
-                                </div>
+if (!$select_withdrawals) {
+    die('Error: ' . mysqli_error($connection));
+}
 
-                                <div class="form-floating mt-3">
-                                    <button class="btn btn-secondary" name="make_withdrawal" type="submit" style="width: 100%">PLACE WITHDRAWAL</button>
-                                </div>
-                            </form>
-                        </div>
+$withdrawals = [];
+while ($row = mysqli_fetch_assoc($select_withdrawals)) {
+    $withdrawals[] = $row;
+}
+
+// Fetch investments
+$query_investments = "SELECT 'Investments' AS source_table, amount, status, date_invested AS date
+                      FROM investments 
+                      WHERE user_id = '$user_identity'";
+$select_investments = mysqli_query($connection, $query_investments);
+
+if (!$select_investments) {
+    die('Error: ' . mysqli_error($connection));
+}
+
+$investments = [];
+while ($row = mysqli_fetch_assoc($select_investments)) {
+    $investments[] = $row;
+}
+
+// Fetch deposits
+$query_deposits = "SELECT 'Deposits' AS source_table, amount, status, date_deposited AS date
+                   FROM deposits 
+                   WHERE user_id = '$user_identity'";
+$select_deposits = mysqli_query($connection, $query_deposits);
+
+if (!$select_deposits) {
+    die('Error: ' . mysqli_error($connection));
+}
+
+$deposits = [];
+while ($row = mysqli_fetch_assoc($select_deposits)) {
+    $deposits[] = $row;
+}
+
+// Combine results
+$results = array_merge($withdrawals, $investments, $deposits);
+
+// Sort results by date proximity to current date
+$currentDate = strtotime(date('Y-m-d')); // Get current date in Unix timestamp
+
+usort($results, function($a, $b) use ($currentDate) {
+    return strtotime($b['date']) - strtotime($a['date']);
+});
+
+// Now $results is sorted by date proximity to the current date
+
+$count = 1;
+foreach ($results as $row) { 
+    // Remove any non-numeric characters from the 'amount' field before formatting
+    $amount = floatval(preg_replace('/[^0-9.]/', '', $row['amount']));
+    ?>
+    <tr>
+        <td><?php echo $count; ?></td>
+        <td><?php echo $row['source_table']; ?></td>
+        <td><?php echo formatNumber($amount, 2); ?></td>
+        <td><?php echo $row['date']; ?></td>
+        <td>
+            <?php
+            if ($row['status'] == 0) { ?>
+                <button type="button" class="btn btn-danger text-white">Pending</button>
+            <?php } elseif ($row['status'] == 1) { ?>
+                <button type="button" class="btn btn-success text-white">Approved</button>
+            <?php } elseif ($row['status'] == 2) { ?>
+                <button type="button" class="btn btn-warning text-white">Declined</button>
+            <?php } else { ?>
+                <button type="button" class="btn btn-info text-white">null</button>
+            <?php } ?>
+        </td>
+    </tr>
+    <?php
+    $count++;
+}
+?>
+</tbody>
+
+                            
+                            
+                            
+                        </table>
                     </div>
                 </div>
-                
+                <!--End::row-1 -->
             </div>
         </div>
-
     </div>
     <div class="scrollToTop">
         <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>

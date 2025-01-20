@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('./config/config.php');
+include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
@@ -9,8 +9,6 @@ include('controllers/withCTR.php');
 include('controllers/invMTR_CTR.php');
 // Log out the mother force;
 include('controllers/logOut.php');
-
-
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +20,7 @@ include('controllers/logOut.php');
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>SECURITY</title>
+    <title>EMPTY PAGE BRUH</title>
     <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template" />
     <meta name="Author" content="Spruko Technologies Private Limited" />
     <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit." />
@@ -66,13 +64,13 @@ include('controllers/logOut.php');
             <div class="container-fluid">
                 <!-- Page Header -->
                 <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">SECURITY</h1>
+                    <h1 class="page-title fw-semibold fs-18 mb-0">DEPOSIT</h1>
                     <div class="ms-md-1 ms-0">
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Security
+                                    Deposit
                                 </li>
                             </ol>
                         </nav>
@@ -84,33 +82,48 @@ include('controllers/logOut.php');
                     <div class="col-xl-6">
                         <div class="card custom-card">
                             <div class="card-header justify-content-between">
-                                <div class="card-title"> Update Password </div>
+                                <div class="card-title"> Withdrawal Details </div>
                                 <div class="prism-toggle">
                                 </div>
+                                <div>
+                                    <div class="mb-1">
+                                        <!-- some emtpy word or text can be here -->
+                                        <span class="fs-10 badge bg-success-transparent text-success p-1 ms-2">
+                                            <i class="ri-arrow-up-s-line align-middle me-1"></i>
+                                            $<?php echo number_format($userDetails['wallet']) ?>
+                                        </span>
+                                    </div>
+                                    <!-- <div class="fs-20 fw-semibold">$132,12933.000</div>
+                                            <small class="text-muted fw-semibold">12 BTC</small> -->
+                                </div>
                             </div>
-                            <form action="./controllers/updateSecurity.php" method="POST" class="card-body">
+                            <form method="POST" class="card-body">
+ 
+                                <select class="form-control py-3 mb-3" name="channel">
+                                    <option value="BNB" selected="">BNB</option>
+                                    <option value="Ethereum">Ethereum</option>
+                                    <option value="BTC(Bitcoin)">BTC(Bitcoin)</option>
+                                    <option value="Tether Trc20">Tether Trc20</option>
+                                    <option value="Litecoin">Litecoin</option>
+                                </select>
 
                                 <div class="form-floating mb-3">
-                                    <input type="text" name="old" class="form-control" id="floatingInput" placeholder="amount sent">
-                                    <label for="floatingInput">Old Password</label>
+                                    <input type="hidden" name="from_wallet" value="1" class="form-control" id="floatingInput" placeholder="amount sent">
+                                    <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="amount sent">
+                                    <label for="floatingInput">Amount to Withdraw</label>
                                 </div>
                                 <div class="form-floating mt-3">
-                                    <input type="text" name="new" class="form-control" id="floatingInput" placeholder="Your Wallet Address">
-                                    <label for="floatingInput">New Password</label>
-                                </div>
-                                <div class="form-floating mt-3">
-                                    <input type="text" name="new_rep" class="form-control" id="floatingInput" placeholder="Your Wallet Address">
-                                    <label for="floatingInput">Repeat New Password</label>
+                                    <input type="text" name="sender_addr" class="form-control" id="floatingInput" placeholder="Your Wallet Address" required>
+                                    <label for="floatingInput">withdrawal Wallet Address</label>
                                 </div>
 
                                 <div class="form-floating mt-3">
-                                    <button class="btn btn-primary" name="upd_hash" type="submit">CHANGE ACCOUNT PASSWORD</button>
+                                    <button class="btn btn-secondary" name="make_withdrawal" type="submit" style="width: 100%">PLACE WITHDRAWAL</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
                 <?php
                 for ($br = 0; $br < 20; $br++) {
                     echo "<br>";

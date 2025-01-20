@@ -11,7 +11,7 @@
 <body>
     <?php
    
-    include('../config/config.php');
+    include('.../server/connection.php');
     
     if (isset($_POST['authUser'])) {
         $email = mysqli_real_escape_string($connection, $_POST['email']);

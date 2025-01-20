@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../config/config.php');
+include('.../server/connection.php');
 include('../controllers/userDetails.php');
 if (isset($_POST['upd_hash'])) {
     $old = $_POST['old'];

@@ -1,21 +1,46 @@
 <?php
-
 session_start();
-include('./config/config.php');
+include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
+
 //  FOR INVESTMENT MATURITY
 include('controllers/invMTR_CTR.php');
 // Log out the mother force;
 include('controllers/logOut.php');
 
-$user_identity = $userDetails['id'];
+// include('controllers/investCTR.php');
+
+
+$sql1 = mysqli_query($connection,"SELECT * FROM payment_method where network = 'Bitcoin'");
+
+ $bitcoin_wallet = mysqli_fetch_array($sql1);
+
+ $sql2 = mysqli_query($connection,"SELECT * FROM payment_method where network = 'Etheruem'");
+
+ $etheruem_wallet = mysqli_fetch_array($sql2);
+
+ $sql3 = mysqli_query($connection,"SELECT * FROM payment_method where network = 'BNB'");
+
+ $BNB_wallet = mysqli_fetch_array($sql3);
+
+ $sql4 = mysqli_query($connection,"SELECT * FROM payment_method where network = 'USDT(trc20)'");
+
+ $usdt_trc20_wallet = mysqli_fetch_array($sql4);
+
+ $sql5 = mysqli_query($connection,"SELECT * FROM payment_method where network = 'Dogecoin'");
+
+ $usdt_erc20_wallet = mysqli_fetch_array($sql5);
+
+ 
+ 
+
 
 ?>
 
-
 <!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
 <html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close">
 
 <head>
@@ -23,7 +48,7 @@ $user_identity = $userDetails['id'];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>KYC</title>
+    <title>Deposit</title>
     <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template" />
     <meta name="Author" content="Spruko Technologies Private Limited" />
     <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit." />
@@ -48,115 +73,12 @@ $user_identity = $userDetails['id'];
     <link rel="stylesheet" href="./assets/libs/@simonwep/pickr/themes/nano.min.css" />
     <!-- Choices Css -->
     <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.css">
-    <script  src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script src="./jquery-3.6.0.min.js"></script>
+    <script src="./sweetalert2.all.min.js"></script>
 </head>
 
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script>
-        function showToast(message, backgroundColor) {
-            Toastify({
-                text: message,
-                duration: 5000,
-                gravity: "top",
-                position: "center",
-                backgroundColor: backgroundColor,
-                stopOnFocus: true,
-                className: "custom-toast",
-                style: {
-                    borderRadius: "10px",
-                    boxShadow: "5px 2px 40px -14px black",
-                    color: "#fff",
-                    fontWeight: "bolder",
-                    fontFamily: "calibri"
-                }
-            }).showToast();
-        }
-    </script>
-
-
-
 <body>
-    <?php
-if (isset($_POST['kyc_btn'])) {
-    
-    $firstname = mysqli_real_escape_string($db_con, $_POST['firstname']);
-    $lastname = mysqli_real_escape_string($db_con, $_POST['lastname']);
-    $email = mysqli_real_escape_string($db_con, $_POST['email']);
-    $phonenumber = mysqli_real_escape_string($db_con, $_POST['phonenumber']);
-    $datebirth = mysqli_real_escape_string($db_con, $_POST['datebirth']);
-    $city = mysqli_real_escape_string($db_con, $_POST['city']);
-    $country = mysqli_real_escape_string($db_con, $_POST['country']);
-    $whoislogin = $_SESSION['id'];
-
-    $check = mysqli_query($db_con, "SELECT * FROM `kyc` WHERE `user_id`='$whoislogin' AND (`status`='pending' OR `status`='approved')");
-
-    if (mysqli_num_rows($check)) {
-        $message = "You already applied for KYC";
-        echo "<script>showToast('$message', 'red');</script>";
-    } else {
-       
-        $target_dir = "./uploads/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        
-        // echo  $firstname . '=>' . $lastname . '=>'. $email .'=>' . $phonenumber . '=>'  .  $datebirth . '=>' . $city . '=>' . $country . '=>' . $whoislogin; ;
-        
-           
-                            
-                 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                    && $imageFileType != "gif" ) {
-                        
-                         $message = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                         echo "<script>showToast('$message', 'red');</script>";
-                        
-                }else{
-                    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                       
-                            $image = basename( $_FILES["fileToUpload"]["name"]);
-                           echo "<script>alert('movesin');</script>";
-
-$insert = mysqli_query($db_con, "INSERT INTO `kyc`(`user_id`, `firstname`, `lastname`, `email`, `phonenumber`, `datebirth`, `drivinglincense`, `city`, `country`) VALUES ('$whoislogin','$firstname','$lastname','$email','$phonenumber','$datebirth','$image','$city','$country')");
-                            if($insert){
-                              $message = "Successfully submitted your KYC";
-                            echo "<script>showToast('$message', 'green');</script>";
-                            }else{
-                                echo "<script>alert('fnfnfn');</script>";
-                                $message = "Error Occurs .....";
-                            echo "<script>showToast('$message', 'red');</script>";
-                            }
-                        } else {
-                            $message = "Sorry, there was an error uploading your file.";
-                            echo "<script>showToast('$message', 'red');</script>";
-                        }
-                }
-        
-        
-    }
-}
-
-function showToast($message, $backgroundColor) {
-    echo '<script>
-            const customToast = Toastify({
-                text: "' . $message . '",
-                duration: 5000,
-                gravity: "top",
-                position: "center",
-                backgroundColor: "' . $backgroundColor . '",
-                stopOnFocus: false,
-                className: "custom-toast",
-                style: {
-                    borderRadius: "10px",
-                    boxShadow: "5px 2px 40px -14px black",
-                    color: "#fff",
-                    fontWeight: "bolder",
-                    fontFamily: "calibri"
-                }
-            }).showToast();
-          </script>';
-}
-
-    ?>
     <!-- Start Switcher -->
     <?php include('./includes/switcher.php') ?>
     <!-- End Switcher -->
@@ -166,20 +88,21 @@ function showToast($message, $backgroundColor) {
         <!-- /app-header -->
         <!-- Start::app-sidebar -->
         <?php include('./includes/sidebar.php') ?>
-
+        
         <!-- End::app-sidebar -->
         <!-- Start::app-content -->
+
         <div class="main-content app-content">
             <div class="container-fluid">
                 <!-- Page Header -->
                 <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">KYC</h1>
+                    <h1 class="page-title fw-semibold fs-18 mb-0">DEPOSIT</h1>
                     <div class="ms-md-1 ms-0">
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    kyc
+                                    Deposit
                                 </li>
                             </ol>
                         </nav>
@@ -187,85 +110,169 @@ function showToast($message, $backgroundColor) {
                 </div>
                 <!-- Page Header Close -->
                 <!-- Start::row-1 -->
-                <form method="POST" class="row" enctype="multipart/form-data">
+                <form action="controllers/depoCTR.php" method="POST"  enctype="multipart/form-data" class="row">
+                    <input type="hidden" name="user" value="<?php echo $id ?>">
                     <div class="col-xl-6">
-                        <div  class="card custom-card">
+                        <div class="card custom-card">
                             <div class="card-header">
-                                <div class="card-title">Personal-information</div>
+                                <div class="card-title">Select Deposit Method</div>
                             </div>
-
                             <div class="card-body">
-                                <label for="formFileSm" class="form-label">Firstname</label>
-                                <input type="text" name="firstname" class="form-control form-control-sm" id="" placeholder="john doe">
+                                <select onchange="displayAddr(this)" name="method" class="js-example-placeholder-single js-states form-control">
+                                    <option value="USDT(Trc20)" selected="">USDT(Trc20)</option>
+                                    <option value="BNB" >BNB (Bep20)</option>
+                                    <option value="Ethereum">Ethereum (Erc20)</option>
+                                    <option value="BTC(Bitcoin)">BTC(Bitcoin)</option>
+                                    <option value="Litecoin">Litecoin</option>
+                                </select>
                             </div>
-
-                            <div class="card-body">
-                                <label for="formFileSm" class="form-label">Lastname</label>
-                                <input type="text" name="lastname" class="form-control form-control-sm" id="" placeholder="john doe">
-                            </div>
-
-                            <div class="card-body">
-                                <label for="formFileSm" class="form-label">Email</label>
-                                <input type="text" name="email" class="form-control form-control-sm" id="" placeholder="johndoe@gmail.com">
-                            </div>
-
-                            <div class="card-body">
-                                <label for="formFileSm" class="form-label">Phonenumber</label>
-                                <input type="text" name="phonenumber" class="form-control form-control-sm" id="" placeholder="+413 654 765">
-                            </div>
-
-                            <div class="card-body">
-                                <label for="formFileSm" class="form-label">Date-birth</label>
-                                <input type="datetime-local" name="datebirth" class="form-control form-control-sm" id="">
-                            </div>
-
-                            <div class="card-body">
-                                <label for="formFileSm" class="form-label">Any Valid ID</label>
-                                <input type="file" name="fileToUpload" class="form-control form-control-sm" id="formFileSm">
-                            </div>
-
-
-
                         </div>
                     </div>
                     <div class="col-xl-6">
-                        <div action="./controllers/uploadPassport.php" method="POST" enctype="multipart/form-data" class="card custom-card">
-                            <div class="card-header">
-                                <div class="card-title">Address-information</div>
-                            </div>
-
+                        <div class="card custom-card">
                             <div class="card-body">
-                                <label for="formFileSm" class="form-label">City</label>
-                                <input type="text" name="city" class="form-control form-control-sm" id="" placeholder="cape-town">
+                                <div class="d-flex align-items-top justify-content-between mb-4">
+                                    <div class="flex-fill d-flex align-items-top">
+                                        <div class="me-2">
+                                            <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="fw-semibold fs-14 mb-0">Payment Address</p>
+                                            <!-- <p class="mb-0 text-muted fs-12 op-7">Elitr at gubergren sit sed.</p> -->
+                                        </div>
+                                    </div>
+                                    <div><a id="copyBtn" class="dropdown-item btn btn-primary">Copy</a>
+                                        <!-- <a href="javascript:void(0);" data-bs-toggle="dropdown" class="btn btn-icon btn-sm btn-light"><i class="ti ti-dots"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <button id="copyBtn" class="dropdown-item">COPY ADDRESS</button>
+                                            </li>
+                                        </ul> -->
+                                    </div>
+                                </div>
+                                <label for="input-label" class="form-label">Wallet Address</label>
+                                <input type="text" id="copyBoard" value="TD5MbRawgv3VfviELuAn92D9NgyKbWFwgi" class="form-control" id="input-label" placeholder="" readonly>
                             </div>
+                        </div>
+                        <script>
+                            const copyBoard = document.querySelector('#copyBoard');
+                            const copyBtn = document.querySelector('#copyBtn');
 
-                            <div class="card-body">
-                                <label for="formFileSm" class="form-label">Country</label>
-                                <input type="text" name="country" class="form-control form-control-sm" id="" placeholder="American">
+                            function displayAddr(addr) {
+                                console.log(addr.value)
+                                switch (addr.value) {
+                                    case "BNB":
+                                        copyBoard.value = '0xf2421f970Ed26c2aF52f90996c02c3FaaFBa1582'
+                                        break
+                                    case "Ethereum":
+                                        copyBoard.value = '0xf2421f970Ed26c2aF52f90996c02c3FaaFBa1582'
+                                        break
+                                    case "BTC(Bitcoin)":
+                                        copyBoard.value = 'bc1qx8xzpu8vwh4j2ktuyg8lacuxwf64d9haq4pqut'
+                                        break
+                                    case "USDT(Trc20)":
+                                        copyBoard.value = 'TD5MbRawgv3VfviELuAn92D9NgyKbWFwgi'
+                                        break
+                                    case "Litecoin":
+                                        copyBoard.value = 'ltc1qx60x8k4jgtq6a7dn3p2xcqtdaavg22mqla6n0v'
+                                        break
+                                    default:
+                                        break
+                                }
+                            }
+
+                            (function() {
+                                "use strict";
+
+                                function copyToClipboard(elem) {
+                                    var target = elem;
+
+                                    // select the content
+                                    var currentFocus = document.activeElement;
+
+                                    target.focus();
+                                    target.setSelectionRange(0, target.value.length);
+
+                                    // copy the selection
+                                    var succeed;
+
+                                    try {
+                                        succeed = document.execCommand("copy");
+                                        alert('Successfully copied wallet address');
+                                    } catch (e) {
+                                        console.warn(e);
+
+                                        succeed = false;
+                                    }
+
+                                    // Restore original focus
+                                    if (currentFocus && typeof currentFocus.focus === "function") {
+                                        currentFocus.focus();
+                                    }
+
+                                    if (succeed) {
+                                        // $(".copied").animate({ top: -25, opacity: 0 }, 700, function () {
+                                        // $(this).css({ top: 0, opacity: 1 });
+                                        // });
+
+                                        // document.querySelector('#copyButton i').innerHTML = 'copied';
+                                        setTimeout(() => {
+                                            document.querySelector('#copyBtn').innerHTML = 'Copy';
+                                        }, 800)
+                                    }
+
+                                    return succeed;
+                                }
+
+                                copyBtn.onclick = function() {
+                                    copyToClipboard(copyBoard);
+                                };
+                            })();
+                        </script>
+                    </div>
+                      
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title"> Submit Payment</div>
+                                <div class="prism-toggle">
+                                </div>
                             </div>
-
-                            <div class="card-body">
-                                <button class="btn btn-primary" name="kyc_btn" type="submit">Summit</button>
+                            <div  class="card-body">
+                                <div class="form-floating mb-2">
+                                    <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="amount sent">
+                                    <label for="floatingInput">Amount Sent</label>
+                                </div>
+                                <!--<div class="form-floating mb-3">-->
+                                <!--    <input type="file" name="snapshot" class="form-control" id="floatingInput" placeholder="amount sent">-->
+                                <!--    <label for="floatingInput">Upload Snapshot</label>-->
+                                <!--</div>-->
+                                <div class="form-floating mt-3">
+                                    <button class="btn btn-secondary" name="make_depo" type="submit">Submit</button>
+                                </div>
                             </div>
-
-
-                            <!-- <div class="card-body">
-                                    <span class="badge bg-secondary-transparent px-3 py-3">UPLOADED</span>
-                                </div> -->
-
-
-                            <!-- <div class="card-body">
-                                    <span class="badge bg-warning-transparent px-3 py-3">PENDING</span>
-                                </div> -->
-
                         </div>
                     </div>
-
                 </form>
-
                 <!--End::row-1 -->
             </div>
         </div>
+
+        <?php 
+            $brs = 0;
+            while ($brs < 17) {
+                echo '<br>';
+                $brs++;
+            }
+        ?>
+
+
+
+
+
+
+
+
 
         <!-- End::app-content -->
         <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
@@ -327,14 +334,12 @@ function showToast($message, $backgroundColor) {
                 </div>
             </div>
         </div>
-
+         
     </div>
     <div class="scrollToTop">
         <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
     </div>
-    <div id="responsive-overlay"></div>
-    <script src="./sweetalert2.all.min.js"></script>
-   
+    <div id="responsive-overlay"></div>    
 
     <script src="./assets/libs/@popperjs/core/umd/popper.min.js"></script>
     <!-- Bootstrap JS -->
@@ -358,7 +363,6 @@ function showToast($message, $backgroundColor) {
     <script src="./assets/js/custom-switcher.min.js"></script>
     <!-- Custom JS -->
     <script src="./assets/js/custom.js"></script>
-   
 </body>
 
 </html>

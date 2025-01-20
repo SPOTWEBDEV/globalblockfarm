@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('./config/config.php');
+include('../server/connection.php');
 // AUTHIFY PAGE
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;

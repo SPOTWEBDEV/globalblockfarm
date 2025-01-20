@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('./config/config.php');
+include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
@@ -20,10 +20,7 @@ include('controllers/logOut.php');
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>EMPTY PAGE BRUH</title>
-    <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template" />
-    <meta name="Author" content="Spruko Technologies Private Limited" />
-    <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit." />
+    <title>WITHDRAWAL</title>
     <!-- Favicon -->
     <link rel="icon" href="./assets/images/brand-logos/favicon.ico" type="image/x-icon" />
     <!-- Choices JS -->
@@ -90,7 +87,7 @@ include('controllers/logOut.php');
                                         <!-- some emtpy word or text can be here -->
                                         <span class="fs-10 badge bg-success-transparent text-success p-1 ms-2">
                                             <i class="ri-arrow-up-s-line align-middle me-1"></i>
-                                            $<?php echo number_format($userDetails['wallet']) ?>
+                                            $<?php echo number_format($userDetails['ref_wallet']) ?>
                                         </span>
                                     </div>
                                     <!-- <div class="fs-20 fw-semibold">$132,12933.000</div>
@@ -98,7 +95,7 @@ include('controllers/logOut.php');
                                 </div>
                             </div>
                             <form method="POST" class="card-body">
- 
+
                                 <select class="form-control py-3 mb-3" name="channel">
                                     <option value="BNB" selected="">BNB</option>
                                     <option value="Ethereum">Ethereum</option>
@@ -108,7 +105,7 @@ include('controllers/logOut.php');
                                 </select>
 
                                 <div class="form-floating mb-3">
-                                    <input type="hidden" name="from_wallet" value="1" class="form-control" id="floatingInput" placeholder="amount sent">
+                                    <input type="hidden" name="from_wallet" value="3" class="form-control" id="floatingInput" placeholder="amount sent">
                                     <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="amount sent">
                                     <label for="floatingInput">Amount to Withdraw</label>
                                 </div>
@@ -132,7 +129,6 @@ include('controllers/logOut.php');
                 <!--End::row-1 -->
             </div>
         </div>
-
     </div>
     <div class="scrollToTop">
         <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>

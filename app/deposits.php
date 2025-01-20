@@ -1,14 +1,29 @@
 <?php
 session_start();
-include('./config/config.php');
+include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
-include('controllers/withCTR.php');
 //  FOR INVESTMENT MATURITY
 include('controllers/invMTR_CTR.php');
 // Log out the mother force;
 include('controllers/logOut.php');
+
+
+function formatNumber($number, $decimals = 2) {
+    // Check if the input is empty or not numeric
+    if (empty($number) || !is_numeric($number)) {
+        $number = 0;
+    }
+    
+    // Use number_format to format the number
+    return number_format((float)$number, $decimals, '.', ',');
+}
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +35,7 @@ include('controllers/logOut.php');
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>WITHDRAWAL</title>
+    <title>History</title>
     <!-- Favicon -->
     <link rel="icon" href="./assets/images/brand-logos/favicon.ico" type="image/x-icon" />
     <!-- Choices JS -->
@@ -61,13 +76,13 @@ include('controllers/logOut.php');
             <div class="container-fluid">
                 <!-- Page Header -->
                 <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-                    <h1 class="page-title fw-semibold fs-18 mb-0">DEPOSIT</h1>
+                    <h1 class="page-title fw-semibold fs-18 mb-0">DEPOSITS</h1>
                     <div class="ms-md-1 ms-0">
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Deposit
+                                    deposits
                                 </li>
                             </ol>
                         </nav>
@@ -76,59 +91,72 @@ include('controllers/logOut.php');
                 <!-- Page Header Close -->
                 <!-- Start::row-1 -->
                 <div class="row">
-                    <div class="col-xl-6">
-                        <div class="card custom-card">
-                            <div class="card-header justify-content-between">
-                                <div class="card-title"> Withdrawal Details </div>
-                                <div class="prism-toggle">
-                                </div>
-                                <div>
-                                    <div class="mb-1">
-                                        <!-- some emtpy word or text can be here -->
-                                        <span class="fs-10 badge bg-success-transparent text-success p-1 ms-2">
-                                            <i class="ri-arrow-up-s-line align-middle me-1"></i>
-                                            $<?php echo number_format($userDetails['ref_wallet']) ?>
-                                        </span>
-                                    </div>
-                                    <!-- <div class="fs-20 fw-semibold">$132,12933.000</div>
-                                            <small class="text-muted fw-semibold">12 BTC</small> -->
-                                </div>
-                            </div>
-                            <form method="POST" class="card-body">
+                    <div class="table-responsive">
+                        <table class="table text-nowrap table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col">S/N</th>
+                                    <th scope="col">ACCOUNT HOLDER</th>
+                                    <th scope="col">DEPOSITED</th>
+                                    <th scope="col">METHOD USED</th> 
+                                    <th scope="col">DEPOSITED ON</th>
+                                    <th scope="col">STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $sql = mysqli_query($connection, "SELECT * FROM `deposits` WHERE `user_id` = '$id'");
+                                if (mysqli_num_rows($sql)) {
+                                    $count = 1;
+                                    while ($details = mysqli_fetch_assoc($sql)) {
+                                ?>
+                                        <tr>
+                                            <td><?php echo $count ?></td>
+                                            <td>
+                                                <span class="avatar avatar-xs me-2 online avatar-rounded">
+                                                    <img src="./assets/images/faces/13.jpg" alt="img">
+                                                </span><?php echo $_SESSION['name'] ?>
+                                                <!-- <th scope="row">Harshrath</th> -->
+                                            </td>
+                                            <td><span class="badge bg-success-transparent">$<?php echo formatNumber($details['amount']) ?></span></td>
+                                            <td><?php echo $details['method'] ?></td> 
+                                            <td><?php echo $details['date_deposited'] ?></td>
 
-                                <select class="form-control py-3 mb-3" name="channel">
-                                    <option value="BNB" selected="">BNB</option>
-                                    <option value="Ethereum">Ethereum</option>
-                                    <option value="BTC(Bitcoin)">BTC(Bitcoin)</option>
-                                    <option value="Tether Trc20">Tether Trc20</option>
-                                    <option value="Litecoin">Litecoin</option>
-                                </select>
-
-                                <div class="form-floating mb-3">
-                                    <input type="hidden" name="from_wallet" value="3" class="form-control" id="floatingInput" placeholder="amount sent">
-                                    <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="amount sent">
-                                    <label for="floatingInput">Amount to Withdraw</label>
-                                </div>
-                                <div class="form-floating mt-3">
-                                    <input type="text" name="sender_addr" class="form-control" id="floatingInput" placeholder="Your Wallet Address" required>
-                                    <label for="floatingInput">withdrawal Wallet Address</label>
-                                </div>
-
-                                <div class="form-floating mt-3">
-                                    <button class="btn btn-secondary" name="make_withdrawal" type="submit" style="width: 100%">PLACE WITHDRAWAL</button>
-                                </div>
-                            </form>
-                        </div>
+                                            <td>
+                                                <?php
+                                                if ($details['status'] == 1) {
+                                                    echo '<span class="badge bg-success-transparent ms-2">APPROVED</span>';
+                                                } else if ($details['status'] == 2) {
+                                                    echo '<span class="badge bg-warning-transparent ms-2">DECLINED</span>';
+                                                } else {
+                                                    echo '<span class="badge bg-warning-transparent ms-2">PEDNING</span>';
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                <?php
+                                        $count++;
+                                    }
+                                } else {
+                                    echo "<tr> 
+                                    <td colspan='7'> 
+                                    <span class='badge bg-danger-transparent'> NO DATA </span>
+                                    </td>
+                                    </tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <?php
-                for ($br = 0; $br < 20; $br++) {
-                    echo "<br>";
-                }
-                ?>
                 <!--End::row-1 -->
             </div>
         </div>
+        <?php
+        for ($br = 0; $br < 20; $br++) {
+            echo "<br>";
+        }
+        ?>
     </div>
     <div class="scrollToTop">
         <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>

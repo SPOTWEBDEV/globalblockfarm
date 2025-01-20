@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 
 require "PHPMailer/PHPMailerAutoload.php";
-include('../config/config.php');
+include('.../server/connection.php');
 include('userDetails.php');
 
 $user_identity = $userDetails['id'];
