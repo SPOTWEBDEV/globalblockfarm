@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
@@ -221,7 +221,7 @@ $msgtype = '';
                       $id = $_POST['id'];
                       $new_wallet = $_POST['new_wallet'];
 
-                      $sql = mysqli_query($con,"UPDATE payment_method set wallet_address = '$new_wallet' where id = '$id'");
+                      $sql = mysqli_query($connection,"UPDATE payment_method set wallet_address = '$new_wallet' where id = '$id'");
 
                       if($sql){
                         $msg = 'You have successfully updated wallet';
@@ -230,7 +230,7 @@ $msgtype = '';
                     }
 
 
-                    $sql = mysqli_query($con, "SELECT * FROM `payment_method`");
+                    $sql = mysqli_query($connection, "SELECT * FROM `payment_method`");
                     if (mysqli_num_rows($sql) > 0) {
                       $count = 1;
                       while ($details = mysqli_fetch_array($sql)) {

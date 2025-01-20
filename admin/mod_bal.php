@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 
 if (!isset($_SESSION['moding']) && $_SESSION['moding'] != true) echo "<script> window.location.href = 'all.php' </script>"; 
 ?>
@@ -197,12 +197,12 @@ if (!isset($_SESSION['moding']) && $_SESSION['moding'] != true) echo "<script> w
                   <div class="card-body">
                     <?php
                       if (isset($_POST['proceed'])) {
-                        $newBalance = mysqli_real_escape_string($con, $_POST['newBalance']);
+                        $newBalance = mysqli_real_escape_string($connection, $_POST['newBalance']);
                         $mod_id = $_SESSION['bal_id'];
 
                         
                         if (!empty($newBalance)) { 
-                            $mod_it = mysqli_query($con, "UPDATE `clients` SET `wallet` = '$newBalance' WHERE `id` = '$mod_id'");
+                            $mod_it = mysqli_query($connection, "UPDATE `clients` SET `wallet` = '$newBalance' WHERE `id` = '$mod_id'");
                           
                             if ($mod_it) {
                               

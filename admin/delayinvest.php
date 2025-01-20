@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 ?>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed " dir="ltr" data-theme="theme-default" data-assets-path="assets/" data-template="vertical-menu-template-free">
@@ -206,7 +206,7 @@ include('config/config.php');
                       $id = $_GET['user_id'];
                       $add = $_GET['add'];
                       
-                      $suspend = mysqli_query($con, "SELECT * FROM `investments` WHERE `id` = '$id'");
+                      $suspend = mysqli_query($connection, "SELECT * FROM `investments` WHERE `id` = '$id'");
                       $details = mysqli_fetch_assoc($suspend);
 
                       // modifying the investment date
@@ -219,7 +219,7 @@ include('config/config.php');
                       $matured_delay = $matured_on->modify('+'.$add);
                       $mod_matured = $matured_delay->format('Y-m-d H:i:s');
 
-                      $modify_invest = mysqli_query($con, "UPDATE `investments` SET `date_invested` = '$mod_invested', `date_to_mature` = '$mod_matured' WHERE `id` = '$id'");
+                      $modify_invest = mysqli_query($connection, "UPDATE `investments` SET `date_invested` = '$mod_invested', `date_to_mature` = '$mod_matured' WHERE `id` = '$id'");
 
                       if ($modify_invest) {
                         echo "<script>
@@ -238,7 +238,7 @@ include('config/config.php');
                     }
 
 
-                    $sql = mysqli_query($con, "SELECT * FROM `investments` WHERE `status` = '0'");
+                    $sql = mysqli_query($connection, "SELECT * FROM `investments` WHERE `status` = '0'");
                     if (mysqli_num_rows($sql)) {
                       $count = 1;
                       while ($details = mysqli_fetch_assoc($sql)) {
@@ -248,7 +248,7 @@ include('config/config.php');
                           <td>
                             <?php 
                               $id = $details['user_id'];
-                              $get_user = mysqli_query($con, "SELECT * FROM `users` WHERE `id` = '$id'");
+                              $get_user = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$id'");
                               $user = mysqli_fetch_assoc($get_user);
                               echo $user['name'];                              
                             ?>

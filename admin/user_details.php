@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 
 
 
@@ -11,7 +11,7 @@ if(isset($_GET['user_id'])){
   $user_id = $_GET['user_id'];
 }
 
-$sql = mysqli_query($con, "SELECT * FROM users where id = '$user_id'");
+$sql = mysqli_query($connection, "SELECT * FROM users where id = '$user_id'");
 
 $fetch = mysqli_fetch_array($sql);
 
@@ -215,17 +215,17 @@ $fetch = mysqli_fetch_array($sql);
                   <div class="card-body">
                     <?php
                       if (isset($_POST['update_user'])) {
-                        $user_id = mysqli_real_escape_string($con, $_POST['user_id']);
-                        $user = mysqli_real_escape_string($con, $_POST['user']);
-                        $name = mysqli_real_escape_string($con, $_POST['name']);
-                        $email = mysqli_real_escape_string($con, $_POST['email']); 
-                        $country = mysqli_real_escape_string($con, $_POST['country']);
-                        $pass = mysqli_real_escape_string($con, $_POST['pass']); 
-                        $available_balance = mysqli_real_escape_string($con, $_POST['available_balance']);
-                        $trading_balance = mysqli_real_escape_string($con, $_POST['trading_balance']);
+                        $user_id = mysqli_real_escape_string($connection, $_POST['user_id']);
+                        $user = mysqli_real_escape_string($connection, $_POST['user']);
+                        $name = mysqli_real_escape_string($connection, $_POST['name']);
+                        $email = mysqli_real_escape_string($connection, $_POST['email']); 
+                        $country = mysqli_real_escape_string($connection, $_POST['country']);
+                        $pass = mysqli_real_escape_string($connection, $_POST['pass']); 
+                        $available_balance = mysqli_real_escape_string($connection, $_POST['available_balance']);
+                        $trading_balance = mysqli_real_escape_string($connection, $_POST['trading_balance']);
                         
                 
-                        $update = mysqli_query($con, "UPDATE users set country = '$country', password = '$pass', wallet = '$available_balance', gain_wallet = '$trading_balance', email = '$email' where id = '$user_id'");
+                        $update = mysqli_query($connection, "UPDATE users set country = '$country', password = '$pass', wallet = '$available_balance', gain_wallet = '$trading_balance', email = '$email' where id = '$user_id'");
 
                         if($update){
                           echo "<script>Swal.fire('Account Updated','This account have been successfully updated','success')</script>";

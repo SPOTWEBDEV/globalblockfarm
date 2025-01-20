@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
@@ -232,7 +232,7 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set wallet = wallet + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set wallet = wallet + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire('Done','You have successfully added available balance of this user','success') 
     setTimeout(()=>{
@@ -246,7 +246,7 @@ if(isset($_POST['add_trading_bal'])){
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set gain_wallet = gain_wallet + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set gain_wallet = gain_wallet + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire('Done','You have successfully added trading balance of this user','success')
     setTimeout(()=>{
@@ -259,7 +259,7 @@ if(isset($_POST['total_deposit'])){
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set total_deposit = total_deposit + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set total_deposit = total_deposit + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire('Done','You have successfully added total deposit of this user','success')
     setTimeout(()=>{
@@ -272,7 +272,7 @@ if(isset($_POST['total_withdrawal'])){
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set total_withdrawal = total_withdrawal + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set total_withdrawal = total_withdrawal + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire('Done','You have successfully added total withdrawal of this user','success') 
     setTimeout(()=>{
@@ -287,7 +287,7 @@ if(isset($_POST['ref_balance'])){
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set referral_balance = referral_balance + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set referral_balance = referral_balance + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire('Done','You have successfully added referral balance of this user','success')
     setTimeout(()=>{
@@ -299,7 +299,7 @@ if(isset($_POST['referral'])){
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set referral = referral + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set referral = referral + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire('Done','You have successfully added no of referral of this user','success')
     setTimeout(()=>{
@@ -312,7 +312,7 @@ if(isset($_POST['add_commission'])){
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set trading_commission = trading_commission + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set trading_commission = trading_commission + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire('Done','You have successfully added trading commission of this user','success')
     setTimeout(()=>{
@@ -326,7 +326,7 @@ if(isset($_POST['pend_investment'])){
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set pending_investment = pending_investment + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set pending_investment = pending_investment + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire('Done','You have successfully pended some investment for this user','success')
     setTimeout(()=>{
@@ -340,7 +340,7 @@ if(isset($_POST['promo_won'])){
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set promo_won = promo_won + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set promo_won = promo_won + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire
     setTimeout(()=>{
@@ -353,7 +353,7 @@ if(isset($_POST['promo_won'])){
 if(isset($_POST['add_warning'])){
   $id = $_POST['id'];
 
-  $sql = mysqli_query($con,"UPDATE users set account_warning = 'yes' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set account_warning = 'yes' where id = '$id'");
   if($sql){
     echo "<script> Swal.fire('Done','You have successfully added account warning to this user,','success')
     setTimeout(()=>{
@@ -366,7 +366,7 @@ if(isset($_POST['add_warning'])){
 if(isset($_POST['remove_warning'])){
   $id = $_POST['id'];
 
-  $sql = mysqli_query($con,"UPDATE users set account_warning = 'no' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set account_warning = 'no' where id = '$id'");
   if($sql){
     echo "<script> Swal.fire('Done','You have successfully removed account warning to this user','success') </script>";
   }
@@ -376,7 +376,7 @@ if(isset($_POST['restrict'])){
     $id = $_POST['id'];
 
     $sql = "UPDATE users set restriction = 'yes' where id = '$id'";
-    $exe = mysqli_query($con,$sql);
+    $exe = mysqli_query($connection,$sql);
     if($exe){
         echo "<script> Swal.fire('Done','You have successfully restricted this account from withdrawing','success')
         setTimeout(()=>{
@@ -389,7 +389,7 @@ if(isset($_POST['unrestrict'])){
     $id = $_POST['id'];
 
     $sql1 = "UPDATE users set restriction = 'no' where id = '$id'";
-    $exe1 = mysqli_query($con,$sql1);
+    $exe1 = mysqli_query($connection,$sql1);
     if($exe1){
         echo "<script> Swal.fire('Done','You have successfully removed restriction from this account, and the user can start withdrawing','success') </script>";
     }
@@ -398,7 +398,7 @@ if(isset($_POST['add_promo'])){
     $id = $_POST['id'];
 
     $sql = "UPDATE users set promo_won = 'yes' where id = '$id'";
-    $exe = mysqli_query($con,$sql);
+    $exe = mysqli_query($connection,$sql);
     if($exe){
         echo "<script> Swal.fire('Done','You have successfully added Promo for this user','success') </script>";
     }else{
@@ -409,7 +409,7 @@ if(isset($_POST['remove_promo'])){
     $id = $_POST['id'];
 
     $sql1 = "UPDATE users set promo_won = 'no' where id = '$id'";
-    $exe1 = mysqli_query($con,$sql1);
+    $exe1 = mysqli_query($connection,$sql1);
     if($exe1){
         echo "<script> Swal.fire('Done','You have successfully removed Promo for this user','success') </script>";
     }
@@ -417,7 +417,7 @@ if(isset($_POST['remove_promo'])){
                     
 
                     
-                    $sql = mysqli_query($con, "SELECT * FROM `users`");
+                    $sql = mysqli_query($connection, "SELECT * FROM `users`");
                     if (mysqli_num_rows($sql)) {
                       $count = 1;
                       while ($details = mysqli_fetch_assoc($sql)) {

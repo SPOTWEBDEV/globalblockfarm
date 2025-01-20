@@ -1,6 +1,6 @@
 <?php
-  session_start();
-include('config/config.php');
+  
+include('../server/connection.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
@@ -210,7 +210,7 @@ function formatNumber($number, $decimals = 2) {
                         <h5 class="card-title text-primary">Welcome to Your Dashboard</h5>
                         <p class="mb-4">You have <span class="fw-bold">
                           <?php  
-                            $get_all = mysqli_query($con, "SELECT * FROM `users`");
+                            $get_all = mysqli_query($connection, "SELECT * FROM `users`");
                             echo mysqli_num_rows($get_all)
                           ?>
                         </span> Registered Users And You can manage your website from
@@ -248,7 +248,7 @@ function formatNumber($number, $decimals = 2) {
                         <span class="fw-semibold d-block mb-1">Total Deposit</span>
                         <h3 class="card-title mb-2">
                           <?php
-                            $get_deps = mysqli_query($con, "SELECT * FROM `deposits` WHERE `status` = '1'");
+                            $get_deps = mysqli_query($connection, "SELECT * FROM `deposits` WHERE `status` = '1'");
                             $total_deps = mysqli_num_rows($get_deps);
                             echo $total_deps;
                           ?>
@@ -277,12 +277,12 @@ function formatNumber($number, $decimals = 2) {
                         <span>Deposit Amount(total)</span>
                         <h3 class="card-title text-nowrap mb-1">
                         $<?php
-                            $get_deps = mysqli_num_rows(mysqli_query($con, "SELECT * FROM `deposits` WHERE `status` = '1'"));
+                            $get_deps = mysqli_num_rows(mysqli_query($connection, "SELECT * FROM `deposits` WHERE `status` = '1'"));
                             
                             
                             
                             
-                            // $get_send = mysqli_query($con, "SELECT * FROM `transactions` WHERE `transaction_type` = 'international' AND `status` = '1'");
+                            // $get_send = mysqli_query($connection, "SELECT * FROM `transactions` WHERE `transaction_type` = 'international' AND `status` = '1'");
                             
                             // $send = 0;
                             // while ($all_send = mysqli_fetch_assoc($get_send)) {
@@ -374,7 +374,7 @@ function formatNumber($number, $decimals = 2) {
                         <span class="d-block mb-1">Total Withdrawals</span>
                         <h3 class="card-title text-nowrap mb-2">
                           <?php
-                            $get_all_trsf = mysqli_query($con, "SELECT * FROM `withdrawals` WHERE `status` = '1'");
+                            $get_all_trsf = mysqli_query($connection, "SELECT * FROM `withdrawals` WHERE `status` = '1'");
                             echo mysqli_num_rows($get_all_trsf);
                           ?>
                         </h3>

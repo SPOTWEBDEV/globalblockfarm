@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 
 if (!isset($_SESSION['mailing']) && $_SESSION['mailing'] != true) echo "<script> window.location.href = 'all.php' </script>"; 
 ?>
@@ -202,8 +202,8 @@ if (!isset($_SESSION['mailing']) && $_SESSION['mailing'] != true) echo "<script>
                   <div class="card-body">
                     <?php
                       if (isset($_POST['proceed'])) {
-                        $newMsg = mysqli_real_escape_string($con, $_POST['newMsg']);
-                        $email = mysqli_real_escape_string($con, $_POST['email']);
+                        $newMsg = mysqli_real_escape_string($connection, $_POST['newMsg']);
+                        $email = mysqli_real_escape_string($connection, $_POST['email']);
                         $mod_id = $_SESSION['msg_id'];
                         
                         if (!empty($newMsg)) { 

@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo "<script> window.location.href = 'login.php' </script>"; 
 ?>
@@ -202,19 +202,19 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo
                   <div class="card-body">
                     <?php
                       if (isset($_POST['createUser'])) {
-                        $user = mysqli_real_escape_string($con, $_POST['user']);
-                        $name = mysqli_real_escape_string($con, $_POST['name']);
-                        $email = mysqli_real_escape_string($con, $_POST['email']); 
-                        $country = mysqli_real_escape_string($con, $_POST['country']);
-                        $pass = mysqli_real_escape_string($con, $_POST['pass']); 
-                        $ref = mysqli_real_escape_string($con, $_POST['ref']);
+                        $user = mysqli_real_escape_string($connection, $_POST['user']);
+                        $name = mysqli_real_escape_string($connection, $_POST['name']);
+                        $email = mysqli_real_escape_string($connection, $_POST['email']); 
+                        $country = mysqli_real_escape_string($connection, $_POST['country']);
+                        $pass = mysqli_real_escape_string($connection, $_POST['pass']); 
+                        $ref = mysqli_real_escape_string($connection, $_POST['ref']);
                         $ref_id = rand();
                         $registered = date('Y-m-d H:i:s');
                 
-                        $checkUser = mysqli_query($con, "SELECT * FROM `users` WHERE  `email` = '$email' AND `password` = '$pass'");
+                        $checkUser = mysqli_query($connection, "SELECT * FROM `users` WHERE  `email` = '$email' AND `password` = '$pass'");
                         if (!mysqli_num_rows($checkUser) > 0) {
                             if (!empty($user)&& !empty($name) && !empty($email) && !empty($country) && !empty($pass)) {
-                                $createUser = mysqli_query($con, "INSERT INTO `users`(`id`, `user`, `name`, `email`, `phone`, `profile_image`, `password`, `country`, `wallet`, `ref_wallet`, `gain_wallet`, `ref_id`, `referree`, `date_registered`, `paid_ref`,`dn_with`, `status`) 
+                                $createUser = mysqli_query($connection, "INSERT INTO `users`(`id`, `user`, `name`, `email`, `phone`, `profile_image`, `password`, `country`, `wallet`, `ref_wallet`, `gain_wallet`, `ref_id`, `referree`, `date_registered`, `paid_ref`,`dn_with`, `status`) 
                                                                                  VALUES ('','$user','$name','$email','$phone','--','$pass','$country','0','0','0','$ref_id','$ref','$registered','0','0','0')");
                                 if ($createUser) {
                                     echo "<script>Swal.fire('Account Created','Your Account has been created successfully','success')</script>";

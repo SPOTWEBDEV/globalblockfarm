@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
@@ -217,7 +217,7 @@ $msgtype = '';
                   </thead>
                   <tbody class="table-border-bottom-0">
                     <?php
-                    $sql = mysqli_query($con, "SELECT * FROM `investments`");
+                    $sql = mysqli_query($connection, "SELECT * FROM `investments`");
                     if (mysqli_num_rows($sql) > 0) {
                       $count = 1;
                       while ($details = mysqli_fetch_array($sql)) {
@@ -232,7 +232,7 @@ $msgtype = '';
   $id = $_POST['id'];
 
   $sql = "UPDATE investments set amount = amount + '$amount' where id = '$id'";
-  $exe = mysqli_query($con,$sql);
+  $exe = mysqli_query($connection,$sql);
 
   
 
@@ -248,11 +248,11 @@ if(isset($_POST['stop'])){
   $user_id = $_POST['user_id'];
   
   $sql = "UPDATE users set wallet = wallet + '$amount' where id = '$user_id'";
-  $exe = mysqli_query($con,$sql);
+  $exe = mysqli_query($connection,$sql);
 
   if($exe == true){
     $sql1 = "UPDATE  investments SET `status`='1' where id = '$id'";
-    $exe1 = mysqli_query($con,$sql1);
+    $exe1 = mysqli_query($connection,$sql1);
 
     if($exe1){
       $msg = "You have successfully stoped this investment and the the user have received avaliable profit and invested amount, <a href='running_investment.php'>Click to go back</a>";

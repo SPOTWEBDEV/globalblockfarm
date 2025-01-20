@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
@@ -225,8 +225,8 @@ require "PHPMailer/PHPMailerAutoload.php";
                         $trf_id = $_GET['trf_id'];
                         $user_id = $_GET['user_id'];
                         $trf_amount = $_GET['trf_amount'];
-                        $decline = mysqli_query($con, "UPDATE `deposits` SET `status` = 2 WHERE `id` = '$trf_id'");
-                        $r_info_row = mysqli_query($con, "SELECT * FROM `users` WHERE `id` = '$user_id'");
+                        $decline = mysqli_query($connection, "UPDATE `deposits` SET `status` = 2 WHERE `id` = '$trf_id'");
+                        $r_info_row = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$user_id'");
                         $r_rows = mysqli_fetch_assoc($r_info_row);
                         
                       if ($decline) {
@@ -285,19 +285,19 @@ require "PHPMailer/PHPMailerAutoload.php";
                       $r_amount = $_GET['r_amnt'];
                       $sender = $_GET['sender'];
 
-                      $approve = mysqli_query($con, "UPDATE `deposits` SET `status` = 1 WHERE `id` = '$trf_id'");
+                      $approve = mysqli_query($connection, "UPDATE `deposits` SET `status` = 1 WHERE `id` = '$trf_id'");
 
-                      $sql = mysqli_query($con,"UPDATE users set total_deposit = total_deposit + '$r_amount' where id = '$sender'");
+                      $sql = mysqli_query($connection,"UPDATE users set total_deposit = total_deposit + '$r_amount' where id = '$sender'");
                       if ($approve) {
                         // EXTRA AUTO DEBIT AND CREDIT
-                        $r_info_row = mysqli_query($con, "SELECT * FROM `users` WHERE `id` = '$sender'");
+                        $r_info_row = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$sender'");
                         $r_rows = mysqli_fetch_assoc($r_info_row);
                         $r_bal = $r_rows['wallet'];
                         $email = $r_rows['email'];
                         
                         $name = $r_rows['user']; 
                         $r_new_balance = $r_bal + $r_amount; 
-                        $update_r_bal = mysqli_query($con, "UPDATE `users` SET `wallet` = '$r_new_balance' WHERE `id` = '$sender'");
+                        $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `wallet` = '$r_new_balance' WHERE `id` = '$sender'");
 
                         if ($update_r_bal) { 
                          
@@ -361,7 +361,7 @@ require "PHPMailer/PHPMailerAutoload.php";
                     }
 
 
-                    $sql = mysqli_query($con, "SELECT * FROM `deposits` where status = 0");
+                    $sql = mysqli_query($connection, "SELECT * FROM `deposits` where status = 0");
                     if (mysqli_num_rows($sql)) {
                       $count = 1;
                       while ($details = mysqli_fetch_assoc($sql)) {
@@ -371,7 +371,7 @@ require "PHPMailer/PHPMailerAutoload.php";
                           <td>
                             <?php
                             $u_id = $details['user_id'];
-                            $all = mysqli_query($con, "SELECT * FROM `users` WHERE `id` = '$u_id'");
+                            $all = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$u_id'");
                             $name = mysqli_fetch_assoc($all);
                             echo $name['name'];
                             ?>

@@ -1,6 +1,6 @@
 <?php
-  session_start();
-  include('config/config.php');
+  
+  include('../server/connection.php');
 
   // if ($con) {
   //   echo 'connected';
@@ -107,11 +107,11 @@
                   <div class="card-body">
                     <?php
                       if (isset($_POST['proceed'])) {
-                        $email = mysqli_real_escape_string($con, $_POST['email']);
-                        $pass = mysqli_real_escape_string($con, $_POST['pass']);
+                        $email = mysqli_real_escape_string($connection, $_POST['email']);
+                        $pass = mysqli_real_escape_string($connection, $_POST['pass']);
 
                         if (!empty($email) && !empty($pass)) {
-                            $check_ad = mysqli_query($con, "SELECT * FROM `admin` WHERE `email` = '$email' AND `pass` = '$pass'");
+                            $check_ad = mysqli_query($connection, "SELECT * FROM `admin` WHERE `email` = '$email' AND `pass` = '$pass'");
                             
                             // echo mysqli_num_rows($check_ad) . '<br> <br>'; 
                             // print_r(mysqli_fetch_assoc($check_ad));

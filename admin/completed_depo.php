@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
@@ -193,7 +193,7 @@ $mail = new PHPMailer(true);
                       $deposit_date = $_POST['deposit_date'];
 
 
-                      $sql = mysqli_query($con,"UPDATE deposits set date_deposited = '$deposit_date' where id = '$id'");
+                      $sql = mysqli_query($connection,"UPDATE deposits set date_deposited = '$deposit_date' where id = '$id'");
 
                       if($sql){
                         echo "<script>Swal.fire('success','Successfully updated date','success')</script>";
@@ -203,7 +203,7 @@ $mail = new PHPMailer(true);
 
                     
 
-                    $sql = mysqli_query($con, "SELECT * FROM `deposits` where status = 1 or status = 2");
+                    $sql = mysqli_query($connection, "SELECT * FROM `deposits` where status = 1 or status = 2");
                     if (mysqli_num_rows($sql)) {
                       $count = 1;
                       while ($details = mysqli_fetch_assoc($sql)) {
@@ -213,7 +213,7 @@ $mail = new PHPMailer(true);
                           <td>
                             <?php
                             $u_id = $details['user_id'];
-                            $all = mysqli_query($con, "SELECT * FROM `users` WHERE `id` = '$u_id'");
+                            $all = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$u_id'");
                             $name = mysqli_fetch_assoc($all);
                             echo $name['user'];
                             ?>

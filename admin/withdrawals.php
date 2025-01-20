@@ -1,7 +1,7 @@
 <?php
 
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
@@ -241,11 +241,11 @@ require "PHPMailer/PHPMailerAutoload.php";
                       $trf_id = $_GET['trf_id'];
                       $sender = $_GET['sender'];
                       $trf_amount = $_GET['trf_amount'];
-                      $decline = mysqli_query($con, "UPDATE `withdrawals` SET `status` = 2 WHERE `id` = '$trf_id'");
-                        $r_info_row = mysqli_query($con, "SELECT * FROM `users` WHERE `id` = '$sender'");
+                      $decline = mysqli_query($connection, "UPDATE `withdrawals` SET `status` = 2 WHERE `id` = '$trf_id'");
+                        $r_info_row = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$sender'");
                         $r_rows = mysqli_fetch_assoc($r_info_row);
 
-                        $sql = mysqli_query($con,"UPDATE users set wallet = wallet + $trf_amount where id = '$sender'");
+                        $sql = mysqli_query($connection,"UPDATE users set wallet = wallet + $trf_amount where id = '$sender'");
                       if ($decline) {
                         echo "<script> Swal.fire('Great Job','TRANSACTION DECLINED','success') </script>";
                         $email = $r_rows['email'];
@@ -326,31 +326,31 @@ require "PHPMailer/PHPMailerAutoload.php";
                       $method = $_GET['method'];
                       $wallet_addr = $_GET['wallet_addr'];
 
-                      // $sql = mysqli_query($con, "SELECT * FROM `clients` WHERE `id` = '$sender'");
+                      // $sql = mysqli_query($connection, "SELECT * FROM `clients` WHERE `id` = '$sender'");
                       // $dets = mysqli_fetch_assoc($sql);
 
 
-                      $approve = mysqli_query($con, "UPDATE `withdrawals` SET `status` = 1 WHERE `id` = '$trf_id'");
+                      $approve = mysqli_query($connection, "UPDATE `withdrawals` SET `status` = 1 WHERE `id` = '$trf_id'");
 
-                      $sql = mysqli_query($con, "UPDATE users set total_withdrawal = total_withdrawal + '$trf_amount' where id = '$sender'");
+                      $sql = mysqli_query($connection, "UPDATE users set total_withdrawal = total_withdrawal + '$trf_amount' where id = '$sender'");
 
                       if ($approve) {
                         // EXTRA AUTO DEBIT AND CREDIT
-                        $r_info_row = mysqli_query($con, "SELECT * FROM `users` WHERE `id` = '$sender'");
+                        $r_info_row = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$sender'");
                         $r_rows = mysqli_fetch_assoc($r_info_row);
                         $update_r_bal = '';
                         if ($from_account == '1') {
                             $r_bal = $r_rows['wallet']; 
                             $r_new_balance = $r_bal - $r_amount; 
-                            $update_r_bal = mysqli_query($con, "UPDATE `users` SET `wallet` = '$r_new_balance' WHERE `id` = '$sender'");
+                            $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `wallet` = '$r_new_balance' WHERE `id` = '$sender'");
                         } else if ($from_account == '2') {
                             $r_bal = $r_rows['gain_wallet']; 
                             $r_new_balance = $r_bal - $r_amount; 
-                            $update_r_bal = mysqli_query($con, "UPDATE `users` SET `gain_wallet` = '$r_new_balance' WHERE `id` = '$sender'");
+                            $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `gain_wallet` = '$r_new_balance' WHERE `id` = '$sender'");
                         } else if ($from_account == '3') {
                             $r_bal = $r_rows['ref_wallet']; 
                             $r_new_balance = $r_bal - $r_amount; 
-                            $update_r_bal = mysqli_query($con, "UPDATE `users` SET `ref_wallet` = '$r_new_balance' WHERE `id` = '$sender'");
+                            $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `ref_wallet` = '$r_new_balance' WHERE `id` = '$sender'");
                         }
 
                         if ($update_r_bal) {
@@ -411,7 +411,7 @@ require "PHPMailer/PHPMailerAutoload.php";
                       }
                     }
 
-                    $sql = mysqli_query($con, "SELECT * FROM `withdrawals` where status = 0");
+                    $sql = mysqli_query($connection, "SELECT * FROM `withdrawals` where status = 0");
                     if (mysqli_num_rows($sql)) {
                       $count = 1;
                       while ($details = mysqli_fetch_assoc($sql)) {

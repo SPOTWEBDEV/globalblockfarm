@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
@@ -214,8 +214,8 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                                 $user = $_GET['user'];
                                 $reject = $_GET['rejected'];
 
-                                $query = mysqli_query($con,"UPDATE `kyc` SET `status`='declined' WHERE `id`='$reject'");
-                                $query1 = mysqli_query($con,"UPDATE `users` SET `kycstatus`='declined' WHERE `id`='$user'");
+                                $query = mysqli_query($connection,"UPDATE `kyc` SET `status`='declined' WHERE `id`='$reject'");
+                                $query1 = mysqli_query($connection,"UPDATE `users` SET `kycstatus`='declined' WHERE `id`='$user'");
 
                                 
 
@@ -232,8 +232,8 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                             if(isset($_GET['approved']) && isset($_GET['user'])){
                                 $approved = $_GET['approved'];
                                 $user = $_GET['user'];
-                                $query = mysqli_query($con,"UPDATE `kyc` SET `status`='approved' WHERE `id`='$approved'");
-                                $query1 = mysqli_query($con,"UPDATE `users` SET `kycstatus`='approved' WHERE `id`='$user'");
+                                $query = mysqli_query($connection,"UPDATE `kyc` SET `status`='approved' WHERE `id`='$approved'");
+                                $query1 = mysqli_query($connection,"UPDATE `users` SET `kycstatus`='approved' WHERE `id`='$user'");
 
                                 if($query && $query1){
                                     echo "<script>
@@ -273,7 +273,7 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                                             $id = $_GET['user_id'];
                                             $add = $_GET['add'];
 
-                                            $suspend = mysqli_query($con, "SELECT * FROM `investments` WHERE `id` = '$id'");
+                                            $suspend = mysqli_query($connection, "SELECT * FROM `investments` WHERE `id` = '$id'");
                                             $details = mysqli_fetch_assoc($suspend);
 
                                             // modifying the investment date
@@ -286,7 +286,7 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                                             $matured_delay = $matured_on->modify('+' . $add);
                                             $mod_matured = $matured_delay->format('Y-m-d H:i:s');
 
-                                            $modify_invest = mysqli_query($con, "UPDATE `investments` SET `date_invested` = '$mod_invested', `date_to_mature` = '$mod_matured' WHERE `id` = '$id'");
+                                            $modify_invest = mysqli_query($connection, "UPDATE `investments` SET `date_invested` = '$mod_invested', `date_to_mature` = '$mod_matured' WHERE `id` = '$id'");
 
                                             if ($modify_invest) {
                                                 echo "<script>
@@ -305,7 +305,7 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                                         }
 
 
-                                        $sql = mysqli_query($con, "SELECT * FROM `kyc` ");
+                                        $sql = mysqli_query($connection, "SELECT * FROM `kyc` ");
                                         if (mysqli_num_rows($sql)) {
                                             $count = 1;
                                             while ($details = mysqli_fetch_assoc($sql)) {

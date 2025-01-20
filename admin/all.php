@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
@@ -210,7 +210,7 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set wallet = wallet + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set wallet = wallet + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire('Done','You have successfully added available balance of this user','success')
     
@@ -227,7 +227,7 @@ if(isset($_POST['add_trading_bal'])){
   $id = $_POST['id'];
   $amount = $_POST['amount'];
 
-  $sql = mysqli_query($con,"UPDATE users set gain_wallet = gain_wallet + '$amount' where id = '$id'");
+  $sql = mysqli_query($connection,"UPDATE users set gain_wallet = gain_wallet + '$amount' where id = '$id'");
    if($sql){
     echo "<script> Swal.fire('Done','You have successfully added trading balance of this user','success')
     
@@ -243,7 +243,7 @@ if(isset($_POST['add_trading_bal'])){
 
                     if (isset($_GET['suspend'])) {
                         $id = $_GET['user_id'];
-                        $suspend = mysqli_query($con, "UPDATE `users` SET `active` = '1' WHERE `id` = '$id'");
+                        $suspend = mysqli_query($connection, "UPDATE `users` SET `active` = '1' WHERE `id` = '$id'");
                         if ($suspend) {
                           echo "<script> Swal.fire('Great Job','You have suspended this account','success') </script>";
                           echo "<script> setTimeout( ()=> { window.open('suspends.php','_self') }, 2000) </script>";
@@ -253,7 +253,7 @@ if(isset($_POST['add_trading_bal'])){
                     }
                     if (isset($_GET['del'])) {
                         $id = $_GET['user_id'];
-                        $suspend = mysqli_query($con, "DELETE FROM `users` WHERE `id` = '$id'");
+                        $suspend = mysqli_query($connection, "DELETE FROM `users` WHERE `id` = '$id'");
                         if ($suspend) {
                           echo "<script> Swal.fire('Great Job','You have deleted this account','success') </script>";
                           echo "<script>  setTimeout( ()=> { window.open('all.php','_self') }, 2000) </script>";
@@ -288,7 +288,7 @@ if(isset($_POST['add_trading_bal'])){
                     
                     if (isset($_GET['stop'])) {
                       $user_top_stop_id = $_GET['user_id'];
-                      $stop_withdrawal = mysqli_query($con, "UPDATE `users` SET `dn_with` = '1' WHERE `id` = '$user_top_stop_id' ");
+                      $stop_withdrawal = mysqli_query($connection, "UPDATE `users` SET `dn_with` = '1' WHERE `id` = '$user_top_stop_id' ");
                       
                       if ($stop_withdrawal) {
                           echo "<script> Swal.fire('Done','This User Cant make withdrawals until enabled','success') </script>";
@@ -300,7 +300,7 @@ if(isset($_POST['add_trading_bal'])){
                     }
 
                     
-                    $sql = mysqli_query($con, "SELECT * FROM `users` WHERE `status` = '0'");
+                    $sql = mysqli_query($connection, "SELECT * FROM `users` WHERE `status` = '0'");
                     if (mysqli_num_rows($sql)) {
                       $count = 1;
                       while ($details = mysqli_fetch_assoc($sql)) {

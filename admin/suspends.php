@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 ?>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed " dir="ltr" data-theme="theme-default" data-assets-path="assets/" data-template="vertical-menu-template-free">
@@ -218,7 +218,7 @@ include('config/config.php');
 
                     if (isset($_GET['activate'])) {
                       $id = $_GET['user_id'];
-                      $suspend = mysqli_query($con, "UPDATE `users` SET `status` = '0' WHERE `id` = '$id'");
+                      $suspend = mysqli_query($connection, "UPDATE `users` SET `status` = '0' WHERE `id` = '$id'");
                       if ($suspend) {
                         echo "<script>
                           Swal.fire('Great Job','You have suspended this account','success')
@@ -236,7 +236,7 @@ include('config/config.php');
                     }
                     if (isset($_GET['del'])) {
                       $id = $_GET['user_id'];
-                      $suspend = mysqli_query($con, "DELETE FROM `users` WHERE `id` = '$id'");
+                      $suspend = mysqli_query($connection, "DELETE FROM `users` WHERE `id` = '$id'");
                       if ($suspend) {
                         echo "<script>
                               Swal.fire('Great Job','You have deleted this account','success')
@@ -254,7 +254,7 @@ include('config/config.php');
                     }
 
 
-                    $sql = mysqli_query($con, "SELECT * FROM `users` WHERE `status` = '1'");
+                    $sql = mysqli_query($connection, "SELECT * FROM `users` WHERE `status` = '1'");
                     if (mysqli_num_rows($sql)) {
                       $count = 1;
                       while ($details = mysqli_fetch_assoc($sql)) {

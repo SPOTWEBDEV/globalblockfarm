@@ -1,6 +1,6 @@
 <?php
-session_start();
-include('config/config.php');
+
+include('../server/connection.php');
 
 
 
@@ -11,7 +11,7 @@ if(isset($_GET['user_id'])){
   $user_id = $_GET['user_id'];
 }
 
-$sql = mysqli_query($con, "SELECT * FROM users where id = '$user_id'");
+$sql = mysqli_query($connection, "SELECT * FROM users where id = '$user_id'");
 
 $fetch = mysqli_fetch_array($sql);
 
@@ -221,10 +221,10 @@ $mail = new PHPMailer(true);
                     <?php
                       if (isset($_POST['send'])) {
                         
-                        $email = mysqli_real_escape_string($con, $_POST['email']); 
-                        $subject = mysqli_real_escape_string($con, $_POST['subject']);
+                        $email = mysqli_real_escape_string($connection, $_POST['email']); 
+                        $subject = mysqli_real_escape_string($connection, $_POST['subject']);
                         
-                        $email_body = mysqli_real_escape_string($con, $_POST['email_body']);
+                        $email_body = mysqli_real_escape_string($connection, $_POST['email_body']);
 
                         try {
                                 $mail->SMTPDebug = 2;                                   
