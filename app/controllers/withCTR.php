@@ -1,50 +1,15 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
-require "PHPMailer/PHPMailerAutoload.php";
-
+include('../../server/connection.php');
+include('../../mailer/index.php');
 include('controllers/userDetails.php');
 
 $user_identity = $userDetails['id'];
 
 
 
- function smtpmailer($to, $from, $from_name, $subject, $body)
-  {
-    $mail = new PHPMailer();
-    $mail->IsSMTP();
-    $mail->SMTPAuth = true;
 
-    $mail->SMTPSecure = 'ssl'; // Using 'ssl' with port 465 as per your original configuration
-    $mail->Host = 'mail.ravenassetlimited.com';
-    $mail->Port = 465; // Or 587 if using 'tls'
-    $mail->Username = 'support@ravenassetlimited.com';
-    $mail->Password = 'support@ravenassetlimited.com'; // Use your actual email password
 
-    $mail->IsHTML(true);
-    $mail->From = $from;
-    $mail->FromName = $from_name;
-    $mail->Sender = $from;
-    $mail->AddReplyTo($from, $from_name);
-    $mail->Subject = $subject;
-    $mail->Body = $body;
-    $mail->AddAddress($to);
 
-    // Enable SMTP debugging
-    // $mail->SMTPDebug = 2; // 0 = off, 1 = client messages, 2 = client and server messages
-    // $mail->Debugoutput = 'html'; // Output format for debugging
-
-    if (!$mail->Send()) {
-      // Log error or handle failure
-      error_log('Email sending failed: ' . $mail->ErrorInfo);
-      return false;
-    }
-
-    return true;
-  }
 
 ?>
 
@@ -64,7 +29,7 @@ if ($resultres) {
 <body>
 
     <!--<script src="jquery-3.6.0.min.js"></script>-->
-    
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.css">
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -97,15 +62,15 @@ if ($resultres) {
             }
 
             if ($userDetails['account_warning'] !== 'yes') {
-                
-                if($userDetails['kycstatus'] == 'approved'){
-                    if ($amount <= $userDetails['wallet'] && $amount > 9.9) {
-                    if (!empty($amount) && !empty($sender_addr)) {
-                        $deposit = mysqli_query($connection, "INSERT INTO `withdrawals`(`id`, `user_id`,`email`, `wallet_addr`, `from_wallet`, `amount`, `method`, `date_withdrawn`, `status`) VALUES ('','$id','$email','$sender_addr', '$spec_wallet', '$amount','$channel','$date','0')");
-                        $sql = mysqli_query($connection, "UPDATE users set wallet = wallet - $amount where id = '$id'");
 
-                        if ($restriction == "yes") {
-                            echo '<script>
+                if ($userDetails['kycstatus'] == 'approved') {
+                    if ($amount <= $userDetails['wallet'] && $amount > 9.9) {
+                        if (!empty($amount) && !empty($sender_addr)) {
+                            $deposit = mysqli_query($connection, "INSERT INTO `withdrawals`(`id`, `user_id`,`email`, `wallet_addr`, `from_wallet`, `amount`, `method`, `date_withdrawn`, `status`) VALUES ('','$id','$email','$sender_addr', '$spec_wallet', '$amount','$channel','$date','0')");
+                            $sql = mysqli_query($connection, "UPDATE users set wallet = wallet - $amount where id = '$id'");
+
+                            if ($restriction == "yes") {
+                                echo '<script>
                         const customToast = Toastify({
                                 text: "Withdrawal restricted, Kindle contact the Support",
                                 duration: 5000,
@@ -124,79 +89,77 @@ if ($resultres) {
                                 }
                             }).showToast();
                         </script>';
-                        } else {
-                            echo "none";
-                        };
+                            } else {
+                                echo "none";
+                            };
 
 
-                        if ($deposit) {
-                            $email = $userDetails['email'];
-                            $name = $userDetails['name'];
+                            if ($deposit) {
+                                $email = $userDetails['email'];
+                                $name = $userDetails['name'];
 
-                            
-                            
-                            $from = 'support@ravenassetlimited.com';
-                    $from_name = 'Raven Asset Limited';
-                    $subj = 'Withdrawal Request';
 
-                            
 
-                        $body = "<html>
+
+                                $subj = 'Withdrawal Request';
+
+
+
+                                $body = "<html>
                         <body style='margin: 0; padding: 0; font-family: Roboto, sans-serif; background: #131722;'>
                         <section style='width: 100%; background-color: #f1f2f3; color: #333;'>
                         <div style='width: 100%; max-width: 600px; margin: 0 auto;'>
                         <div style='padding: 20px; background-color: #131722; text-align: center;'>
-                        <img src='https://ravenassetlimited.com/assets/RALblack.png' alt='Raven Asset Limited' style='height: 80px; width: auto; max-width: 100%; margin-bottom: 20px;'>
+                        <img src='https://ravenassetlimited.com/assets/RALblack.png' alt='$sitename ' style='height: 80px; width: auto; max-width: 100%; margin-bottom: 20px;'>
                         <h2 style='color: #fff; font-size: 24px;'>Welcome aboard, $name!</h2>
                         </div>
                         <div style='padding: 20px; background: #fff; border-radius: 0 0 8px 8px;'>
                         <p>Dear $name,</p>
                         <p>Your withdrawal request of <span style='font-weight: 800; color:green;'> $$amount </span>is being processed...</p>
-                        <p>Thank you for joining Raven Asset Limited, your gateway to seamless investment exchange trading. We are delighted to have you as part of our community.</p>
-                        <p style='margin-top:20px'>For any inquiries or assistance, feel free to reach out to our support team at <a href='mailto:support@ravenassetlimited.com'>support@ravenassetlimited.com</a>.</p>
-                        <p>Welcome once again to Raven Asset Limited!</p>
+                        <p>Thank you for joining $sitename , your gateway to seamless investment exchange trading. We are delighted to have you as part of our community.</p>
+                        <p style='margin-top:20px'>For any inquiries or assistance, feel free to reach out to our support team at <a href='mailto:$siteemail'>$siteemail</a>.</p>
+                        <p>Welcome once again to $sitename !</p>
                         <p>Best regards,</p>
-                        <p>The Raven Asset Limited Team</p>
+                        <p>The $sitename  Team</p>
                         </div>
                         <div style='text-align: center; color: #666; margin-top: 20px; font-size: 12px;'>
-                        &copy; 2020 Raven Asset Limited. All rights reserved.
+                        &copy; 2020 $sitename . All rights reserved.
                         </div>
                         </div>
                         </section>
                         </body>
                         </html>";
-                            $result = smtpmailer($email, $from, $from_name, $subj, $body);
+                                $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);
 
 
-                            if ($result && $deposit &&  $sql) {
-                               
-                             
-                                echo "<script> 
+                                if ($result && $deposit &&  $sql) {
+
+
+                                    echo "<script> 
                                 Swal.fire('Withdrawal Request','Withdrawal request recieved and will be Processed','success')
                                 setTimeout(()=> { window.location.href = './index.php'},1300)
                                 </script>";
+                                }
+                            } else {
+                                echo "<script> Swal.fire('Withdrawal Failed','Error making deposit','error') </script>";
                             }
                         } else {
-                            echo "<script> Swal.fire('Withdrawal Failed','Error making deposit','error') </script>";
+
+                            echo "<script> Swal.fire('Withdrawal Failed','You have an input error','error') </script>";
                         }
                     } else {
-                        
-                        echo "<script> Swal.fire('Withdrawal Failed','You have an input error','error') </script>";
+
+                        echo "<script> Swal.fire('Withdrawal Failed','Amount Above Current Wallet Balance Or above quota or below minimum withdrawable amount($10)','error') </script>";
                     }
                 } else {
-                   
-                        echo "<script> Swal.fire('Withdrawal Failed','Amount Above Current Wallet Balance Or above quota or below minimum withdrawable amount($10)','error') </script>";
-                }
-                }else{
                     echo "<script> Swal.fire('Withdrawal Failed','Withdrawal failed because KYC verification status is not approved.','error') </script>";
                 }
-                
-            }else{
+            } else {
                 echo "<script> Swal.fire('Withdrawal Failed','Your account has been suspended from making withdrawals. Please contact support for assistance.','error') </script>";
             }
         } else {
-           
-                        echo "<script> Swal.fire('Withdrawal Failed','Faild To Complete Withrawal Due To Server Error.','error') </script>";
+
+            echo "<script> Swal.fire('Withdrawal Failed','Faild To Complete Withrawal Due To Server Error.','error') </script>";
         }
     }
 

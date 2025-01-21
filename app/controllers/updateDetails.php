@@ -1,5 +1,5 @@
 <?php
-session_start();
+;
 include('../../config/db-config.php');
 include('../controllers/userDetails.php');
  if (isset($_POST['update_user'])) {

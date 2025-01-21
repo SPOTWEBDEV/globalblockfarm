@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
@@ -122,7 +122,7 @@ while($row = mysqli_fetch_array($sql)){
                                                                     <p>Invite your friend to register with us and earn referral bonuses</p>
 
                                                                     <div>
-                                                                        <input type="text" name="" id="copyText" class="form-control" value="https://ravenassetlimited.com/profile/register.php?ref=<?php echo $userDetails['user'] ?>" readonly><br>
+                                                                        <input type="text" name="" id="copyText" class="form-control" value="<?php echo $domain ?>app/register.php?ref=<?php echo $userDetails['ref_id'] ?>" readonly><br>
 
                                                                         <button class="btn btn-primary w-100" onclick="copy_this()">Copy</button>
                                                                     </div>

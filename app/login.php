@@ -1,6 +1,6 @@
 <?php include('../server/connection.php');
 
-// session_start();
+
 
 
 
@@ -44,13 +44,7 @@
                 if($getDetails['restriction'] == 'no'){
                     $_SESSION['logged_in'] = 'true';
                 $_SESSION['id'] = $getDetails['id'];
-                $_SESSION['name'] = $getDetails['name'];
-                $_SESSION['email'] = $getDetails['email'];
-                $_SESSION['password'] = $getDetails['password'];
-                $_SESSION['wallet'] = $getDetails['wallet'];
-                $_SESSION['ref_id'] = $getDetails['ref_id'];
-                $_SESSION['referree'] = $getDetails['referree'];
-                $url = $domain .'/profile/index.php';
+                $url = $domain .'app/index.php';
                 
                 echo "<script> Swal.fire('Authenticated','Account Login Successfull' ,'success')</script>";
                 echo "<script>setTimeout( ()=> { window.open('$url','_self')}, 1000)</script>";
@@ -82,7 +76,7 @@
                 <div class="my-5 d-flex justify-content-center">
                     <a href="../index.php">
                         
-                        <img style="height:100px" src="<?php echo $domain ?>/assets/RALblack.png" alt="logo" class="desktop-logo">
+                        <!-- <img style="height:100px" src="<?php echo $domain ?>/assets/RALblack.png" alt="logo" class="desktop-logo"> -->
                         <!-- <img src="./assets/images/brand-logos/Aximtrade Pro logo b.png" alt="logo" class="desktop-dark">  -->
                    
                         <!-- <img src="../content/dam/onexp/global/icons/Coke-company-logo-black.svg" alt="logo" class="desktop-logo">

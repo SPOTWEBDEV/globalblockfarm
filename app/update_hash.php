@@ -1,14 +1,14 @@
 <?php
-session_start();
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
-include('controllers/withCTR.php');
-//  FOR INVESTMENT MATURITY
-include('controllers/invMTR_CTR.php');
+
 // Log out the mother force;
 include('controllers/logOut.php');
+
+
+
 
 
 ?>
@@ -47,6 +47,8 @@ include('controllers/logOut.php');
     <link rel="stylesheet" href="./assets/libs/@simonwep/pickr/themes/nano.min.css" />
     <!-- Choices Css -->
     <link rel="stylesheet" href="./assets/libs/choices.js/public/assets/styles/choices.min.css" />
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -59,6 +61,34 @@ include('controllers/logOut.php');
         <!-- /app-header -->
         <!-- Start::app-sidebar -->
         <?php include('./includes/sidebar.php') ?>
+
+        <?php
+
+if (isset($_POST['upd_hash'])) {
+    $old = $_POST['old'];
+    $new = $_POST['new'];
+    $new_rep = $_POST['new_rep'];
+
+    if ($old == $userDetails['password']) {
+        if (!empty($old) && !empty($new) && !empty($new_rep) && $new == $new_rep) {
+            $update_current_user = mysqli_query($connection, "UPDATE `users` SET `password`='$new' WHERE `id` =  $id");
+            if ($update_current_user) {
+                echo "<script> window.location.href = './profile.php' </script>";
+            } else {
+                echo "<script>Swal.fire('Edit Password Error','Smething went wrong on the server','error')</script>";
+                echo "<script>setTimeout( ()=> { window.location.href = './update_hash.php' }, 4000)</script>";
+            }
+        }
+    } else {
+        
+        echo "<script>Swal.fire('Edit Password Error','Password Mismatch','error')</script>";
+                echo "<script>setTimeout( ()=> { window.location.href = './update_hash.php' }, 4000)</script>";
+    }
+}
+
+
+
+        ?>
 
         <!-- End::app-sidebar -->
         <!-- Start::app-content -->
@@ -88,7 +118,7 @@ include('controllers/logOut.php');
                                 <div class="prism-toggle">
                                 </div>
                             </div>
-                            <form action="./controllers/updateSecurity.php" method="POST" class="card-body">
+                            <form method="POST" class="card-body">
 
                                 <div class="form-floating mb-3">
                                     <input type="text" name="old" class="form-control" id="floatingInput" placeholder="amount sent">

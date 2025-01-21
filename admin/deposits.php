@@ -16,8 +16,8 @@ require "PHPMailer/PHPMailerAutoload.php";
     $mail->SMTPSecure = 'ssl'; // Using 'ssl' with port 465 as per your original configuration
     $mail->Host = 'mail.ravenassetlimited.com';
     $mail->Port = 465; // Or 587 if using 'tls'
-    $mail->Username = 'support@ravenassetlimited.com';
-    $mail->Password = 'support@ravenassetlimited.com'; // Use your actual email password
+    $mail->Username = '$siteemail';
+    $mail->Password = '$siteemail'; // Use your actual email password
 
     $mail->IsHTML(true);
     $mail->From = $from;
@@ -239,20 +239,20 @@ require "PHPMailer/PHPMailerAutoload.php";
                         <section style='width: 100%; background-color: #f1f2f3; color: #333;'>
                         <div style='width: 100%; max-width: 600px; margin: 0 auto;'>
                         <div style='padding: 20px; background-color: #131722; text-align: center;'>
-                        <img src='https://ravenassetlimited.com/assets/RALblack.png' alt='Raven Asset Limited' style='height: 80px; width: auto; max-width: 100%; margin-bottom: 20px;'>
+                        <img src='https://ravenassetlimited.com/assets/RALblack.png' alt='$sitename ' style='height: 80px; width: auto; max-width: 100%; margin-bottom: 20px;'>
                         <h2 style='color: #fff; font-size: 24px;'>Welcome aboard, $name!</h2>
                         </div>
                         <div style='padding: 20px; background: #fff; border-radius: 0 0 8px 8px;'>
                         <p>Dear $name,</p>
                         <p>We are pleased to inform you that we have declined your deposit request of $trf_amount . Should you have any further inquiries or require assistance, please do not hesitate to contact our support team. Best regards.</p>
-                        <p>Thank you for joining Raven Asset Limited, your gateway to seamless forex exchange trading. We are delighted to have you as part of our community.</p>
-                        <p>For any inquiries or assistance, feel free to reach out to our support team at <a href='mailto:support@ravenassetlimited.com'>support@ravenassetlimited.com</a>.</p>
-                        <p>Welcome once again to Raven Asset Limited!</p>
+                        <p>Thank you for joining $sitename , your gateway to seamless forex exchange trading. We are delighted to have you as part of our community.</p>
+                        <p>For any inquiries or assistance, feel free to reach out to our support team at <a href='mailto:$siteemail'>$siteemail</a>.</p>
+                        <p>Welcome once again to $sitename !</p>
                         <p>Best regards,</p>
-                        <p>The Raven Asset Limited Team</p>
+                        <p>The $sitename  Team</p>
                         </div>
                         <div style='text-align: center; color: #666; margin-top: 20px; font-size: 12px;'>
-                        &copy; 2020 Raven Asset Limited. All rights reserved.
+                        &copy; 2020 $sitename . All rights reserved.
                         </div>
                         </div>
                         </section>
@@ -260,10 +260,10 @@ require "PHPMailer/PHPMailerAutoload.php";
                         </html>";
                 
                     $to = $email;
-                    $from = 'support@ravenassetlimited.com';
-                    $from_name = 'Raven Asset Limited';
+                    $from = '$siteemail';
+                    $from_name = '$sitename ';
                     $subj = 'Deposit Declination';
-                    $result = smtpmailer($to, $from, $from_name, $subj, $body);
+                    $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
                 
                     if ($result) {
                         echo "<script> Swal.fire('Success','You request to declined this deposit went through','success') </script>";
@@ -309,7 +309,7 @@ require "PHPMailer/PHPMailerAutoload.php";
                         <section style='width: 100%; background-color: #f1f2f3; color: #333;'>
                         <div style='width: 100%; max-width: 600px; margin: 0 auto;'>
                         <div style='padding: 20px; background-color: #131722; text-align: center;'>
-                        <img src='https://ravenassetlimited.com/assets/RALblack.png' alt='Raven Asset Limited' style='height: 80px; width: auto; max-width: 100%; margin-bottom: 20px;'>
+                        <img src='https://ravenassetlimited.com/assets/RALblack.png' alt='$sitename ' style='height: 80px; width: auto; max-width: 100%; margin-bottom: 20px;'>
                         <h2 style='color: #fff; font-size: 24px;'>Welcome aboard, $name!</h2>
                         </div>
                         <div style='padding: 20px; background: #fff; border-radius: 0 0 8px 8px;'>
@@ -320,14 +320,14 @@ require "PHPMailer/PHPMailerAutoload.php";
                                                             please do not hesitate to contact our customer support team. Thank you for choosing our services. <br><br>
                                                             
                                                             Best regards.</p>
-                        <p>Thank you for joining Raven Asset Limited, your gateway to seamless forex exchange trading. We are delighted to have you as part of our community.</p>
-                        <p>For any inquiries or assistance, feel free to reach out to our support team at <a href='mailto:support@ravenassetlimited.com'>support@ravenassetlimited.com</a>.</p>
-                        <p>Welcome once again to Raven Asset Limited!</p>
+                        <p>Thank you for joining $sitename , your gateway to seamless forex exchange trading. We are delighted to have you as part of our community.</p>
+                        <p>For any inquiries or assistance, feel free to reach out to our support team at <a href='mailto:$siteemail'>$siteemail</a>.</p>
+                        <p>Welcome once again to $sitename !</p>
                         <p>Best regards,</p>
-                        <p>The Raven Asset Limited Team</p>
+                        <p>The $sitename  Team</p>
                         </div>
                         <div style='text-align: center; color: #666; margin-top: 20px; font-size: 12px;'>
-                        &copy; 2020 Raven Asset Limited. All rights reserved.
+                        &copy; 2020 $sitename . All rights reserved.
                         </div>
                         </div>
                         </section>
@@ -335,10 +335,10 @@ require "PHPMailer/PHPMailerAutoload.php";
                         </html>";
                 
                     $to = $email;
-                    $from = 'support@ravenassetlimited.com';
-                    $from_name = 'Raven Asset Limited';
+                    $from = '$siteemail';
+                    $from_name = '$sitename ';
                     $subj = 'Deposit Declination';
-                    $result = smtpmailer($to, $from, $from_name, $subj, $body);
+                    $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
                 
                     if ($result) {
                          echo "<script>Swal.fire('Great Job','TRANSACTION APPROVED','success')</script>";

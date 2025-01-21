@@ -1,6 +1,6 @@
 <?php 
 
-include 'config/config.php';
+include('../server/connection.php');
 
 $ref = '';
 
@@ -38,7 +38,7 @@ if(isset($_GET['ref'])){
                 <div class="my-5 d-flex justify-content-center">
                     <a href="../index.php">
 
-                        <img style="height:100px" src="<?php echo $domain ?>/assets/RALblack.png" alt="logo" class="desktop-logo">
+                        <!-- <img style="height:100px" src="<?php echo $domain ?>/assets/RALblack.png" alt="logo" class="desktop-logo"> -->
 
                         <!-- <img src="../content/dam/onexp/global/icons/Coke-company-logo-black.svg" alt="logo" class="desktop-logo">
                         <img src="../content/dam/onexp/global/icons/Coke-company-logo-black.svg" alt="logo" class="desktop-dark"> -->

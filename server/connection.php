@@ -30,7 +30,7 @@ if ($request == 'https') {
     define("PASSWORD", "ocjrgyjg_jay");
     define("DATABASE", "ocjrgyjg_jay");
 } elseif ($request == 'http') {
-    $domain = "http://localhost/investment-website/investment_jay/";
+    $domain = "http://localhost/globalblockfarm/";
     define("USER", "root");
     define("PASSWORD", "");
     define("DATABASE", "jay");
@@ -45,9 +45,14 @@ if (!$connection) {
 
 // Site configurations
 $sitename = "Global Block Farm";
-$siteemail = "support@ravenassetlimited.com";
 
-// Start session and enable error reporting
+
+// email config 
+$siteemail = "support@globalblockfarm.com";
+$emailpassword  = "support@globalblockfarm.com";
+$host = 'mail.assetvest-shareholder.com';
+
+
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

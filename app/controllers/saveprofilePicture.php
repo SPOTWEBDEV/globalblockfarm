@@ -1,5 +1,5 @@
 <?php
-session_start();
+;
 include('.../server/connection.php');
 include('./userDetails.php');
 if (isset($_POST['save_profile'])) {

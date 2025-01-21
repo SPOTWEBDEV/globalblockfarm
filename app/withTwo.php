@@ -1,12 +1,10 @@
 <?php
-session_start();
+;
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
-include('controllers/withCTR.php');
-//  FOR INVESTMENT MATURITY
-include('controllers/invMTR_CTR.php');
+
 // Log out the mother force;
 include('controllers/logOut.php');
 ?>
@@ -99,7 +97,7 @@ include('controllers/logOut.php');
                                             <small class="text-muted fw-semibold">12 BTC</small> -->
                                 </div>
                             </div>
-                            <form method="POST" class="card-body">
+                            <form action="./controllers/withCTR.php" method="POST" class="card-body">
                                 <select class="form-control py-3 mb-3" name="channel">
                                     <option value="USDT(Trc20)" selected="">USDT(Trc20)</option>
                                     <option value="BNB" >BNB</option>

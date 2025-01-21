@@ -1,5 +1,5 @@
 <?php
-session_start();
+;
 include('../config/db-config.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;

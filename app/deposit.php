@@ -1,12 +1,12 @@
 <?php
-session_start();
+;
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
 
 //  FOR INVESTMENT MATURITY
-include('controllers/invMTR_CTR.php');
+// include('controllers/invMTR_CTR.php');
 // Log out the mother force;
 include('controllers/logOut.php');
 

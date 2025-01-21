@@ -1,5 +1,5 @@
 <?php
-session_start();
+;
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
@@ -115,7 +115,7 @@ function formatNumber($number, $decimals = 2) {
                                             <td>
                                                 <span class="avatar avatar-xs me-2 online avatar-rounded">
                                                     <img src="./assets/images/faces/13.jpg" alt="img">
-                                                </span><?php echo $_SESSION['name'] ?>
+                                                </span><?php echo $userDetails['name'] ?>
                                                 <!-- <th scope="row">Harshrath</th> -->
                                             </td>
                                             <td><span class="badge bg-success-transparent">$<?php echo formatNumber($details['amount']) ?></span></td>

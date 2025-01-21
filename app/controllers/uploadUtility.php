@@ -1,5 +1,5 @@
 <?php
-session_start();
+;
 include('../../config/db-config.php');
 include('./userDetails.php');
 if (isset($_POST['upload_util'])) {

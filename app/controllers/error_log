@@ -203,86 +203,86 @@ Stack trace:
 [31-May-2024 07:00:35 UTC] PHP Warning:  Undefined variable $filename in /home/aximwbkh/public_html/profile/controllers/depoCTR.php on line 48
 [01-Jun-2024 10:49:58 UTC] PHP Warning:  Undefined variable $filename in /home/aximwbkh/public_html/profile/controllers/depoCTR.php on line 48
 [03-Jun-2024 11:23:27 UTC] PHP Warning:  Undefined variable $filename in /home/aximwbkh/public_html/profile/controllers/depoCTR.php on line 48
-[30-Jun-2024 21:50:39 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
+[30-Jun-2024 21:50:39 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
 [30-Jun-2024 21:50:39 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [30-Jun-2024 21:50:39 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [30-Jun-2024 21:50:39 UTC] PHP Warning:  Undefined variable $filename in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 48
 [30-Jun-2024 21:50:39 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 53
 [30-Jun-2024 21:50:39 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 54
 [30-Jun-2024 21:50:39 UTC] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bumnupnm/public_html/profile/controllers/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1078
-[30-Jun-2024 21:50:44 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
+[30-Jun-2024 21:50:44 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
 [30-Jun-2024 21:50:44 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [30-Jun-2024 21:50:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [30-Jun-2024 21:50:44 UTC] PHP Warning:  Undefined variable $filename in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 48
 [30-Jun-2024 21:50:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 53
 [30-Jun-2024 21:50:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 54
 [30-Jun-2024 21:50:44 UTC] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bumnupnm/public_html/profile/controllers/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1078
-[30-Jun-2024 21:56:17 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
+[30-Jun-2024 21:56:17 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
 [30-Jun-2024 21:56:17 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [30-Jun-2024 21:56:17 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [30-Jun-2024 21:56:17 UTC] PHP Warning:  Undefined variable $filename in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 48
 [30-Jun-2024 21:56:17 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 53
 [30-Jun-2024 21:56:17 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 54
 [30-Jun-2024 21:56:17 UTC] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bumnupnm/public_html/profile/controllers/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1078
-[30-Jun-2024 21:59:22 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
+[30-Jun-2024 21:59:22 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
 [30-Jun-2024 21:59:22 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [30-Jun-2024 21:59:22 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [30-Jun-2024 21:59:22 UTC] PHP Warning:  Undefined variable $filename in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 49
 [30-Jun-2024 21:59:22 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 54
 [30-Jun-2024 21:59:22 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 55
 [30-Jun-2024 21:59:22 UTC] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bumnupnm/public_html/profile/controllers/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1078
-[30-Jun-2024 22:00:39 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
+[30-Jun-2024 22:00:39 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
 [30-Jun-2024 22:00:39 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [30-Jun-2024 22:00:39 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [30-Jun-2024 22:00:39 UTC] PHP Warning:  Undefined variable $filename in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 49
 [30-Jun-2024 22:00:39 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 54
 [30-Jun-2024 22:00:39 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 55
 [30-Jun-2024 22:00:39 UTC] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/bumnupnm/public_html/profile/controllers/vendor/phpmailer/phpmailer/src/PHPMailer.php on line 1078
-[30-Jun-2024 22:06:11 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 22:07:05 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 22:08:47 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 22:09:26 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:39:01 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:44:27 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:44:35 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:44:35 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:44:35 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:44:42 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:44:50 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:45:14 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:45:48 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:45:50 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:46:04 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:46:41 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:47:23 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:48:45 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:49:07 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
-[30-Jun-2024 23:52:34 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[30-Jun-2024 23:53:46 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[30-Jun-2024 23:54:29 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[30-Jun-2024 23:54:38 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[30-Jun-2024 23:56:32 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[30-Jun-2024 23:57:26 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[30-Jun-2024 23:58:15 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[01-Jul-2024 00:00:03 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[01-Jul-2024 00:00:54 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[01-Jul-2024 00:04:26 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[01-Jul-2024 00:04:26 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 20
-[01-Jul-2024 00:06:22 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
-[01-Jul-2024 00:06:22 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 20
-[01-Jul-2024 00:09:22 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
-[01-Jul-2024 00:11:30 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
-[01-Jul-2024 00:12:04 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
-[01-Jul-2024 00:12:22 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
-[01-Jul-2024 00:12:26 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
-[01-Jul-2024 00:12:35 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
-[01-Jul-2024 00:12:36 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
-[01-Jul-2024 00:14:25 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
-[01-Jul-2024 20:41:32 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
-[02-Jul-2024 10:55:38 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/createUser.php on line 20
-[02-Jul-2024 10:55:38 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
-[02-Jul-2024 11:29:59 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
-[02-Jul-2024 11:29:59 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[30-Jun-2024 22:06:11 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 22:07:05 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 22:08:47 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 22:09:26 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:39:01 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:44:27 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:44:35 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:44:35 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:44:35 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:44:42 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:44:50 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:45:14 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:45:48 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:45:50 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:46:04 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:46:41 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:47:23 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:48:45 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:49:07 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 14
+[30-Jun-2024 23:52:34 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[30-Jun-2024 23:53:46 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[30-Jun-2024 23:54:29 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[30-Jun-2024 23:54:38 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[30-Jun-2024 23:56:32 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[30-Jun-2024 23:57:26 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[30-Jun-2024 23:58:15 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[01-Jul-2024 00:00:03 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[01-Jul-2024 00:00:54 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[01-Jul-2024 00:04:26 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[01-Jul-2024 00:04:26 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 20
+[01-Jul-2024 00:06:22 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/authUser.php on line 13
+[01-Jul-2024 00:06:22 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 20
+[01-Jul-2024 00:09:22 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[01-Jul-2024 00:11:30 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[01-Jul-2024 00:12:04 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[01-Jul-2024 00:12:22 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[01-Jul-2024 00:12:26 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[01-Jul-2024 00:12:35 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[01-Jul-2024 00:12:36 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[01-Jul-2024 00:14:25 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[01-Jul-2024 20:41:32 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[02-Jul-2024 10:55:38 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/createUser.php on line 20
+[02-Jul-2024 10:55:38 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[02-Jul-2024 11:29:59 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 20
+[02-Jul-2024 11:29:59 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
 [02-Jul-2024 11:29:59 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [02-Jul-2024 11:29:59 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [02-Jul-2024 11:29:59 UTC] PHP Warning:  Undefined variable $filename in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 49
@@ -294,8 +294,8 @@ Stack trace:
 [02-Jul-2024 21:41:33 UTC] PHP Warning:  include(): Failed opening 'controllers/userDetails.php' for inclusion (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 8
 [02-Jul-2024 21:41:33 UTC] PHP Warning:  Undefined variable $userDetails in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 10
 [02-Jul-2024 21:41:33 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 10
-[02-Jul-2024 21:41:33 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 53
-[02-Jul-2024 21:41:33 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[02-Jul-2024 21:41:33 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 53
+[02-Jul-2024 21:41:33 UTC] PHP Warning:  : Session cannot be started after headers have already been sent in /home/bumnupnm/public_html/profile/config/config.php on line 15
 [02-Jul-2024 21:41:33 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [02-Jul-2024 21:41:33 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 2
 [02-Jul-2024 21:41:33 UTC] PHP Warning:  Undefined variable $filename in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 66
@@ -311,12 +311,12 @@ Stack trace:
 #1 /home/bumnupnm/public_html/profile/controllers/depoCTR.php(8): include('/home/bumnupnm/...')
 #2 {main}
   thrown in /home/bumnupnm/public_html/profile/controllers/userDetails.php on line 3
-[02-Jul-2024 21:47:03 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 53
+[02-Jul-2024 21:47:03 UTC] PHP Notice:  : Ignoring  because a session is already active in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 53
 [02-Jul-2024 21:47:03 UTC] PHP Warning:  Constant DB_HOST already defined in /home/bumnupnm/public_html/profile/config/config.php on line 3
 [02-Jul-2024 21:47:03 UTC] PHP Warning:  Constant DB_USER already defined in /home/bumnupnm/public_html/profile/config/config.php on line 4
 [02-Jul-2024 21:47:03 UTC] PHP Warning:  Constant DB_PASS already defined in /home/bumnupnm/public_html/profile/config/config.php on line 5
 [02-Jul-2024 21:47:03 UTC] PHP Warning:  Constant DB_NAME already defined in /home/bumnupnm/public_html/profile/config/config.php on line 6
-[02-Jul-2024 21:47:03 UTC] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in /home/bumnupnm/public_html/profile/config/config.php on line 15
+[02-Jul-2024 21:47:03 UTC] PHP Notice:  : Ignoring  because a session is already active in /home/bumnupnm/public_html/profile/config/config.php on line 15
 [02-Jul-2024 21:47:03 UTC] PHP Warning:  Undefined variable $filename in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 66
 [02-Jul-2024 21:48:55 UTC] PHP Warning:  Undefined variable $filename in /home/bumnupnm/public_html/profile/controllers/depoCTR.php on line 63
 [24-Jul-2024 21:03:15 UTC] PHP Warning:  Undefined variable $connection in /home/ocjrgyjg/public_html/profile/controllers/createUser.php on line 49

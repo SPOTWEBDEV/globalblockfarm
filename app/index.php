@@ -354,41 +354,35 @@ function formatNumber($number, $decimals = 2) {
                             </div>
                             
                             <!-- THIS ONE NOW NAH FOR WITHDRAWALS -->
-                            <!--<div class="col-xxl-4 col-xl-4 col-lg-12">-->
-                            <!--    <div class="card custom-card">-->
-                            <!--        <div class="card-body">-->
-                            <!--            <div class="d-flex align-items-center mb-4">-->
-                            <!--                <div class="d-flex align-items-center">-->
-                            <!--                    <div class="me-2">-->
-                            <!--                        <span class="avatar avatar-md avatar-rounded bg-light p-2">-->
-                                                        <!-- <img src="./assets/images/crypto-currencies/regular/Ethereum.svg" alt="" /> -->
-                            <!--                            <img src="https://img.icons8.com/?size=512&id=114497&format=png" alt="" />-->
-                            <!--                        </span>-->
-                            <!--                    </div>-->
-                            <!--                    <div class="mb-0 fw-semibold">REFERRAL BALANCE</div>-->
-                            <!--                </div>-->
-                            <!--                <div class="ms-auto">-->
-                            <!--                    <div id="eth-chart"></div>-->
-                            <!--                </div>-->
-                            <!--            </div>-->
-                            <!--            <div class="d-flex align-items-end">-->
-                            <!--                <div>-->
+                            <div class="col-xxl-4 col-xl-4 col-lg-12">
+                               <div class="card custom-card">
+                                   <div class="card-body">
+                                       <div class="d-flex align-items-center mb-4">
+                                           <div class="d-flex align-items-center">
+                                               <div class="me-2">
+                                                   <span class="avatar avatar-md avatar-rounded bg-light p-2">
+                                                        <img src="./assets/images/crypto-currencies/regular/Ethereum.svg" alt="" />
+                                                       <img src="https://img.icons8.com/?size=512&id=114497&format=png" alt="" />
+                                                   </span>
+                                               </div>
+                                               <div class="mb-0 fw-semibold">REFERRAL BALANCE</div>
+                                           </div>
+                                           <div class="ms-auto">
+                                               <div id="eth-chart"></div>
+                                           </div>
+                                       </div>
+                                       <div class="d-flex align-items-end">
+                                           <div>
                                                 <!-- <p class="mb-1">ETH / USD</p> -->
-                            <!--                    <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">-->
-                            <!--                        $<?php echo number_format($userDetails['referral_balance']) ?>-->
-                            <!--                    </p>-->
-                            <!--                </div>-->
-                            <!--                <div class="ms-auto text-end">-->
-                                                <!-- <p class="mb-0">$2.57</p> -->
-                            <!--                    <p class="mb-0 text-muted">-->
-                            <!--                        <span class="badge bg-success-transparent ms-2">CURRENT</span>-->
-                                                    <!-- <span class="text-muted">Vol:</span>(+13.45%) -->
-                            <!--                    </p>-->
-                            <!--                </div>-->
-                            <!--            </div>-->
-                            <!--        </div>-->
-                            <!--    </div>-->
-                            <!--</div>-->
+                                               <p class="fs-20 mb-0 fw-semibold lh-1 text-primary">
+                                                   $<?php echo number_format($userDetails['referral_balance']) ?>
+                                               </p>
+                                           </div>
+                                           
+                                       </div>
+                                   </div>
+                               </div>
+                            </div>
                             
                            
                            
@@ -429,7 +423,7 @@ function formatNumber($number, $decimals = 2) {
                                     </div>
                                 </div>
                             </div>
-                            
+                  
                         
                             
                             

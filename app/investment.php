@@ -1,12 +1,10 @@
 <?php
 
-session_start();
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
-//  FOR INVESTMENT MATURITY
-include('controllers/invMTR_CTR.php');
+
 // Log out the mother force;
 include('controllers/logOut.php');
 ?>
@@ -77,13 +75,10 @@ include('controllers/logOut.php');
                 </div>
                 <!-- Page Header Close -->
                 <!-- Start::row-1 -->
-                <?php
-                // INVESTMENT CONTROLER
-                include('controllers/investCTR.php');
-                ?>
+               
                 <div class="row">
 
-                    <form method="POST" class="col-xxl-3 col-sm-6">
+                    <form action="./controllers/investCTR.php" method="POST" class="col-xxl-3 col-sm-6">
                         <div class="card custom-card">
                             <div class="card-body">
                                 <div class="d-flex align-items-top justify-content-between mb-4">
