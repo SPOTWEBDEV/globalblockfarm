@@ -26,9 +26,9 @@ define("HOST", "localhost");
 // Set configurations based on protocol
 if ($request == 'https') {
     $domain = "https://globalblockfarm.com/";
-    define("USER", "ocjrgyjg_jay");
-    define("PASSWORD", "ocjrgyjg_jay");
-    define("DATABASE", "ocjrgyjg_jay");
+    define("USER", "aypvkhag_crypto");
+    define("PASSWORD", "aypvkhag_crypto");
+    define("DATABASE", "aypvkhag_crypto");
 } elseif ($request == 'http') {
     $domain = "http://localhost/globalblockfarm/";
     define("USER", "root");
