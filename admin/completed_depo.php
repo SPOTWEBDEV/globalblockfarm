@@ -244,7 +244,7 @@ $mail = new PHPMailer(true);
                     <?php $count++;
                       }
                     } else {
-                      echo "no Results";
+                      ?> <p style="color:red">Table is empty</p> <?php
                     } ?>
                   </tbody>
                 </table>

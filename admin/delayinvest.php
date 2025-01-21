@@ -285,7 +285,7 @@ include('../server/connection.php');
                     <?php $count++;
                       }
                     } else {
-                      echo "no Results";
+                      ?> <p style="color:red">Table is empty</p> <?php
                     } ?>
                   </tbody>
                 </table>

@@ -1,45 +1,13 @@
 <?php
 
 include('../server/connection.php');
+include('../mailer/index.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
 
-require "PHPMailer/PHPMailerAutoload.php";
 
- function smtpmailer($to, $from, $from_name, $subject, $body)
-  {
-    $mail = new PHPMailer();
-    $mail->IsSMTP();
-    $mail->SMTPAuth = true;
 
-    $mail->SMTPSecure = 'ssl'; // Using 'ssl' with port 465 as per your original configuration
-    $mail->Host = 'mail.ravenassetlimited.com';
-    $mail->Port = 465; // Or 587 if using 'tls'
-    $mail->Username = '$siteemail';
-    $mail->Password = '$siteemail'; // Use your actual email password
-
-    $mail->IsHTML(true);
-    $mail->From = $from;
-    $mail->FromName = $from_name;
-    $mail->Sender = $from;
-    $mail->AddReplyTo($from, $from_name);
-    $mail->Subject = $subject;
-    $mail->Body = $body;
-    $mail->AddAddress($to);
-
-    // Enable SMTP debugging
-    // $mail->SMTPDebug = 2; // 0 = off, 1 = client messages, 2 = client and server messages
-    // $mail->Debugoutput = 'html'; // Output format for debugging
-
-    if (!$mail->Send()) {
-      // Log error or handle failure
-      error_log('Email sending failed: ' . $mail->ErrorInfo);
-      return false;
-    }
-
-    return true;
-  }
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +18,7 @@ require "PHPMailer/PHPMailerAutoload.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
   <title>Deposits</title>
- 
+
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
 
@@ -212,7 +180,7 @@ require "PHPMailer/PHPMailerAutoload.php";
                       <th>S/N</th>
                       <th>Account of Owner</th>
                       <th>Amount</th>
-                       <th>File</th>
+                      <th>File</th>
                       <th>Method</th>
                       <th>Paid On</th>
                       <th>Status</th>
@@ -222,18 +190,18 @@ require "PHPMailer/PHPMailerAutoload.php";
                     <?php
                     // working on the DECLINE TRANSACTION
                     if (isset($_GET['decl'])) {
-                        $trf_id = $_GET['trf_id'];
-                        $user_id = $_GET['user_id'];
-                        $trf_amount = $_GET['trf_amount'];
-                        $decline = mysqli_query($connection, "UPDATE `deposits` SET `status` = 2 WHERE `id` = '$trf_id'");
-                        $r_info_row = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$user_id'");
-                        $r_rows = mysqli_fetch_assoc($r_info_row);
-                        
+                      $trf_id = $_GET['trf_id'];
+                      $user_id = $_GET['user_id'];
+                      $trf_amount = $_GET['trf_amount'];
+                      $decline = mysqli_query($connection, "UPDATE `deposits` SET `status` = 2 WHERE `id` = '$trf_id'");
+                      $r_info_row = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$user_id'");
+                      $r_rows = mysqli_fetch_assoc($r_info_row);
+
                       if ($decline) {
                         $email = $r_rows['email'];
                         $name = $r_rows['user'];
-                       
-                             $body = "
+
+                        $body = "
                         <html>
                         <body style='margin: 0; padding: 0; font-family: Roboto, sans-serif; background: #131722;'>
                         <section style='width: 100%; background-color: #f1f2f3; color: #333;'>
@@ -258,22 +226,17 @@ require "PHPMailer/PHPMailerAutoload.php";
                         </section>
                         </body>
                         </html>";
-                
-                    $to = $email;
-                    $from = '$siteemail';
-                    $from_name = '$sitename ';
-                    $subj = 'Deposit Declination';
-                    $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
-                
-                    if ($result) {
-                        echo "<script> Swal.fire('Success','You request to declined this deposit went through','success') </script>";
-                        echo "<script> setTimeout( ()=> { window.open('deposits.php','_self') }, 2000) </script>";
-                        
-                    } else {
-                        echo "<script>Swal.fire('Error', 'Something went wrong', 'error')</script>";
-                    }
-                         
-                       
+
+                        $to = $email;
+                        $subj = 'Deposit Declination';
+                        $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
+
+                        if ($result) {
+                          echo "<script> Swal.fire('Success','You request to declined this deposit went through','success') </script>";
+                          echo "<script> setTimeout( ()=> { window.open('deposits.php','_self') }, 2000) </script>";
+                        } else {
+                          echo "<script>Swal.fire('Error', 'Something went wrong', 'error')</script>";
+                        }
                       } else {
                         echo "<script> Swal.fire('Error','COULD NOT DECLINED','error') </script>";
                       }
@@ -287,23 +250,23 @@ require "PHPMailer/PHPMailerAutoload.php";
 
                       $approve = mysqli_query($connection, "UPDATE `deposits` SET `status` = 1 WHERE `id` = '$trf_id'");
 
-                      $sql = mysqli_query($connection,"UPDATE users set total_deposit = total_deposit + '$r_amount' where id = '$sender'");
+                      $sql = mysqli_query($connection, "UPDATE users set total_deposit = total_deposit + '$r_amount' where id = '$sender'");
                       if ($approve) {
                         // EXTRA AUTO DEBIT AND CREDIT
                         $r_info_row = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$sender'");
                         $r_rows = mysqli_fetch_assoc($r_info_row);
                         $r_bal = $r_rows['wallet'];
                         $email = $r_rows['email'];
-                        
-                        $name = $r_rows['user']; 
-                        $r_new_balance = $r_bal + $r_amount; 
+
+                        $name = $r_rows['user'];
+                        $r_new_balance = $r_bal + $r_amount;
                         $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `wallet` = '$r_new_balance' WHERE `id` = '$sender'");
 
-                        if ($update_r_bal) { 
-                         
-                            
-                            
-                             $body = "
+                        if ($update_r_bal) {
+
+
+
+                          $body = "
                         <html>
                         <body style='margin: 0; padding: 0; font-family: Roboto, sans-serif; background: #131722;'>
                         <section style='width: 100%; background-color: #f1f2f3; color: #333;'>
@@ -333,25 +296,17 @@ require "PHPMailer/PHPMailerAutoload.php";
                         </section>
                         </body>
                         </html>";
-                
-                    $to = $email;
-                    $from = '$siteemail';
-                    $from_name = '$sitename ';
-                    $subj = 'Deposit Declination';
-                    $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
-                
-                    if ($result) {
-                         echo "<script>Swal.fire('Great Job','TRANSACTION APPROVED','success')</script>";
-                                        echo "<script>setTimeout( ()=> {window.open('deposits.php','_self')}, 2000)</script>";
-                        
-                    } else {
-                        echo "<script>Swal.fire('Error', 'Something went wrong', 'error')</script>";
-                    }
-                            
-                            
-                            
-                            
-                            
+
+                          $to = $email;
+                          $subj = 'Deposit Declination';
+                          $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
+
+                          if ($result) {
+                            echo "<script>Swal.fire('Great Job','TRANSACTION APPROVED','success')</script>";
+                            echo "<script>setTimeout( ()=> {window.open('deposits.php','_self')}, 2000)</script>";
+                          } else {
+                            echo "<script>Swal.fire('Error', 'Something went wrong', 'error')</script>";
+                          }
                         } else {
                           echo "<script>Swal.fire('Error','FAILED TO APPROVE','error')</script>";
                         }
@@ -410,7 +365,7 @@ require "PHPMailer/PHPMailerAutoload.php";
                     <?php $count++;
                       }
                     } else {
-                      echo "no Results";
+                      ?> <p style="color:red">Table is empty</p> <?php
                     } ?>
                   </tbody>
                 </table>
@@ -423,29 +378,7 @@ require "PHPMailer/PHPMailerAutoload.php";
 
 
 
-          <!-- Footer -->
-          <!-- <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-              <div class="mb-2 mb-md-0">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>
-                , made with ❤️ by <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-              </div>
-              <div>
 
-                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Documentation</a>
-
-                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Support</a>
-
-
-              </div>
-            </div>
-          </footer> -->
-          <!-- / Footer -->
           <div class="content-backdrop fade"></div>
         </div>
         <!-- Content wrapper -->

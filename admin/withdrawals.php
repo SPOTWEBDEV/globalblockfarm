@@ -2,45 +2,14 @@
 
 
 include('../server/connection.php');
+include('../mailer/index.php');
 if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
   echo "<script> window.location.href = 'login.php'</script>";
 }
 
-require "PHPMailer/PHPMailerAutoload.php";
 
- function smtpmailer($to, $from, $from_name, $subject, $body)
-  {
-    $mail = new PHPMailer();
-    $mail->IsSMTP();
-    $mail->SMTPAuth = true;
 
-    $mail->SMTPSecure = 'ssl'; // Using 'ssl' with port 465 as per your original configuration
-    $mail->Host = 'mail.ravenassetlimited.com';
-    $mail->Port = 465; // Or 587 if using 'tls'
-    $mail->Username = '$siteemail';
-    $mail->Password = '$siteemail'; // Use your actual email password
 
-    $mail->IsHTML(true);
-    $mail->From = $from;
-    $mail->FromName = $from_name;
-    $mail->Sender = $from;
-    $mail->AddReplyTo($from, $from_name);
-    $mail->Subject = $subject;
-    $mail->Body = $body;
-    $mail->AddAddress($to);
-
-    // Enable SMTP debugging
-    // $mail->SMTPDebug = 2; // 0 = off, 1 = client messages, 2 = client and server messages
-    // $mail->Debugoutput = 'html'; // Output format for debugging
-
-    if (!$mail->Send()) {
-      // Log error or handle failure
-      error_log('Email sending failed: ' . $mail->ErrorInfo);
-      return false;
-    }
-
-    return true;
-  }
 
 
 ?>
@@ -52,7 +21,7 @@ require "PHPMailer/PHPMailerAutoload.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
   <title>Withdrawals</title>
- 
+
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
 
@@ -81,10 +50,10 @@ require "PHPMailer/PHPMailerAutoload.php";
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="assets/js/config.js"></script>
 
- 
+
   <!-- beautify ignore:end -->
   <script src="jquery-3.6.0.min.js"></script>
-    <script src="sweetalert2.all.min.js"></script>
+  <script src="sweetalert2.all.min.js"></script>
 
 </head>
 
@@ -219,7 +188,7 @@ require "PHPMailer/PHPMailerAutoload.php";
 
             <!-- Basic Bootstrap Table -->
             <div class="card">
-              <h5 class="card-header">All Registered users</h5>
+              <h5 class="card-header">All Withdrawals</h5>
               <div class="table-responsive text-nowrap">
                 <table class="table">
                   <thead>
@@ -242,18 +211,18 @@ require "PHPMailer/PHPMailerAutoload.php";
                       $sender = $_GET['sender'];
                       $trf_amount = $_GET['trf_amount'];
                       $decline = mysqli_query($connection, "UPDATE `withdrawals` SET `status` = 2 WHERE `id` = '$trf_id'");
-                        $r_info_row = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$sender'");
-                        $r_rows = mysqli_fetch_assoc($r_info_row);
+                      $r_info_row = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$sender'");
+                      $r_rows = mysqli_fetch_assoc($r_info_row);
 
-                        $sql = mysqli_query($connection,"UPDATE users set wallet = wallet + $trf_amount where id = '$sender'");
+                      $sql = mysqli_query($connection, "UPDATE users set wallet = wallet + $trf_amount where id = '$sender'");
                       if ($decline) {
                         echo "<script> Swal.fire('Great Job','TRANSACTION DECLINED','success') </script>";
                         $email = $r_rows['email'];
-                        
-                            $name = $r_rows['user'];
-                        
-                    
-                                $body = "
+
+                        $name = $r_rows['user'];
+
+
+                        $body = "
                         <html>
                         <body style='margin: 0; padding: 0; font-family: Roboto, sans-serif; background: #131722;'>
                         <section style='width: 100%; background-color: #f1f2f3; color: #333;'>
@@ -278,48 +247,26 @@ require "PHPMailer/PHPMailerAutoload.php";
                         </section>
                         </body>
                         </html>";
-                
-                    $to = $email;
-                    $from = '$siteemail';
-                    $from_name = '$sitename ';
-                    $subj = 'Withdrawal Declined';
-                    $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
-                
-                    if ($result) {
-                         echo "<script>setTimeout( ()=> {window.open('withdrawals.php','_self')}, 2000)</script>";
-                        
-                    } else {
-                         echo "<script> Swal.fire('Error','Failed to send email: " . $result . "','error') </script>";
-                    }
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                        
-                        
+
+                        $to = $email;
+                        $from = '$siteemail';
+                        $from_name = '$sitename ';
+                        $subj = 'Withdrawal Declined';
+                        $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
+
+                        if ($result) {
+                          echo "<script>setTimeout( ()=> {window.open('withdrawals.php','_self')}, 2000)</script>";
+                        } else {
+                          echo "<script> Swal.fire('Error','Failed to send email: " . $result . "','error') </script>";
+                        }
                       } else {
                         echo "<script> Swal.fire('Error','COULD NOT DECLINED','error') </script>";
                       }
-                    } 
+                    }
 
                     // working on the APPROVE TRANSACTION
                     if (isset($_GET['aprv'])) {
-                      $trf_id = $_GET['trf_id']; 
+                      $trf_id = $_GET['trf_id'];
                       $sender = $_GET['sender'];
                       $trf_amount = $_GET['trf_amount'];
                       $from_account = $_GET['from_account'];
@@ -340,26 +287,26 @@ require "PHPMailer/PHPMailerAutoload.php";
                         $r_rows = mysqli_fetch_assoc($r_info_row);
                         $update_r_bal = '';
                         if ($from_account == '1') {
-                            $r_bal = $r_rows['wallet']; 
-                            $r_new_balance = $r_bal - $r_amount; 
-                            $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `wallet` = '$r_new_balance' WHERE `id` = '$sender'");
+                          $r_bal = $r_rows['wallet'];
+                          $r_new_balance = $r_bal - $r_amount;
+                          $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `wallet` = '$r_new_balance' WHERE `id` = '$sender'");
                         } else if ($from_account == '2') {
-                            $r_bal = $r_rows['gain_wallet']; 
-                            $r_new_balance = $r_bal - $r_amount; 
-                            $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `gain_wallet` = '$r_new_balance' WHERE `id` = '$sender'");
+                          $r_bal = $r_rows['gain_wallet'];
+                          $r_new_balance = $r_bal - $r_amount;
+                          $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `gain_wallet` = '$r_new_balance' WHERE `id` = '$sender'");
                         } else if ($from_account == '3') {
-                            $r_bal = $r_rows['ref_wallet']; 
-                            $r_new_balance = $r_bal - $r_amount; 
-                            $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `ref_wallet` = '$r_new_balance' WHERE `id` = '$sender'");
+                          $r_bal = $r_rows['ref_wallet'];
+                          $r_new_balance = $r_bal - $r_amount;
+                          $update_r_bal = mysqli_query($connection, "UPDATE `users` SET `ref_wallet` = '$r_new_balance' WHERE `id` = '$sender'");
                         }
 
                         if ($update_r_bal) {
-                          
-                           
-                                                            $email = $r_rows['email'];
-                                                            $name = $r_rows['user'];
-                                                            
-                                                             $body = "
+
+
+                          $email = $r_rows['email'];
+                          $name = $r_rows['user'];
+
+                          $body = "
                                                         <html>
                                                         <body style='margin: 0; padding: 0; font-family: Roboto, sans-serif; background: #131722;'>
                                                         <section style='width: 100%; background-color: #f1f2f3; color: #333;'>
@@ -385,24 +332,21 @@ require "PHPMailer/PHPMailerAutoload.php";
                                                         </section>
                                                         </body>
                                                         </html>";
-                                                
-                                                    $to = $email;
-                                                    $from = '$siteemail';
-                                                    $from_name = '$sitename ';
-                                                    $subj = 'Approval Withdrawal';
-                                                    $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
-                            
-                            
-                            
-                       
-                                                        if ($result === true) {
-                                                            echo "<script>Swal.fire('Great Job','TRANSACTION APPROVED','success')</script>";
-                                                            // Additional logic or redirect if needed
-                                                            echo "<script>setTimeout( ()=> {window.open('withdrawals.php','_self')}, 2000)</script>";
-                                                        } else {
-                                                            echo "<script> Swal.fire('Error','Failed to approve withdrawal: " . $result . "','error') </script>";
-                                                        }
-                      
+
+                          $to = $email;
+                          $subj = 'Approval Withdrawal';
+                          $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
+
+
+
+
+                          if ($result === true) {
+                            echo "<script>Swal.fire('Great Job','TRANSACTION APPROVED','success')</script>";
+                            // Additional logic or redirect if needed
+                            echo "<script>setTimeout( ()=> {window.open('withdrawals.php','_self')}, 2000)</script>";
+                          } else {
+                            echo "<script> Swal.fire('Error','Failed to approve withdrawal: " . $result . "','error') </script>";
+                          }
                         } else {
                           echo "<script>Swal.fire('Error','FAILED TO APPROVE','error')</script>";
                         }
@@ -422,26 +366,26 @@ require "PHPMailer/PHPMailerAutoload.php";
                           <td>$<?php echo $details['amount'] ?></td>
                           <td><?php echo $details['method'] ?></td>
                           <td><?php echo $details['wallet_addr'] ?></td>
-                          
-                          <td><?php echo $details['date_withdrawn'] ?></td> 
+
+                          <td><?php echo $details['date_withdrawn'] ?></td>
                           <td>
-                            <?php 
-                              if ($details['status'] == 0) {
-                                echo "<span class=\"badge bg-label-primary me-1\">PENDING</span>";
-                              } else if ($details['status'] == 1) {
-                                echo "<span class=\"badge bg-label-success me-1\">APPROVED</span>"; 
-                              } else {
-                                echo "<span class=\"badge bg-label-warning me-1\">DECLINED</span>";
-                              }
+                            <?php
+                            if ($details['status'] == 0) {
+                              echo "<span class=\"badge bg-label-primary me-1\">PENDING</span>";
+                            } else if ($details['status'] == 1) {
+                              echo "<span class=\"badge bg-label-success me-1\">APPROVED</span>";
+                            } else {
+                              echo "<span class=\"badge bg-label-warning me-1\">DECLINED</span>";
+                            }
                             ?>
                           </td>
                           <td>
                             <div class="dropdown">
                               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                               <div class="dropdown-menu">
-                                <?php if ($details['status'] == 0) {?>
-                                <a onclick="return confirm('sure to decline')" class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF'] ?>?trf_id=<?php echo $details['id'] ?>&sender=<?php echo $details['user_id']?>&trf_amount=<?php echo $details['amount']?>&decl"><i class="bx bx-cog me-1"></i> DECLINE</a>
-                                <a onclick="return confirm('sure to approve')" class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF'] ?>?trf_id=<?php echo $details['id'] ?>&trf_amount=<?php echo $details['amount']?>&method=<?php echo $details['method'] ?>&wallet_addr=<?php echo $details['wallet_addr'] ?>&sender=<?php echo $details['user_id']?>&from_account=<?php echo $details['from_wallet'] ?>&aprv"><i class="bx bx-cog me-1"></i> APPROVE</a>
+                                <?php if ($details['status'] == 0) { ?>
+                                  <a onclick="return confirm('sure to decline')" class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF'] ?>?trf_id=<?php echo $details['id'] ?>&sender=<?php echo $details['user_id'] ?>&trf_amount=<?php echo $details['amount'] ?>&decl"><i class="bx bx-cog me-1"></i> DECLINE</a>
+                                  <a onclick="return confirm('sure to approve')" class="dropdown-item" href="<?php echo $_SERVER['PHP_SELF'] ?>?trf_id=<?php echo $details['id'] ?>&trf_amount=<?php echo $details['amount'] ?>&method=<?php echo $details['method'] ?>&wallet_addr=<?php echo $details['wallet_addr'] ?>&sender=<?php echo $details['user_id'] ?>&from_account=<?php echo $details['from_wallet'] ?>&aprv"><i class="bx bx-cog me-1"></i> APPROVE</a>
                                 <?php } ?>
                               </div>
                             </div>
@@ -450,7 +394,7 @@ require "PHPMailer/PHPMailerAutoload.php";
                     <?php $count++;
                       }
                     } else {
-                      echo "no Results";
+                      ?> <p style="color:red">Table is empty</p> <?php
                     } ?>
                   </tbody>
                 </table>

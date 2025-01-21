@@ -354,7 +354,7 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                                         <?php $count++;
                                             }
                                         } else {
-                                            echo "no Results";
+                                            ?> <p style="color:red">Table is empty</p> <?php
                                         } ?>
                                     </tbody>
                                 </table>
