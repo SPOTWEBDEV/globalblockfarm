@@ -1,7 +1,10 @@
-export DEPLOYPATH=/home/aypvkhag/globalblockfarm.com/
-/bin/cp -R .vscode $DEPLOYPATH
-/bin/cp -R assets $DEPLOYPATH
-/bin/cp -R admin $DEPLOYPATH
-/bin/cp -R app $DEPLOYPATH
-/bin/cp -R server $DEPLOYPATH
-/bin/cp index.html $DEPLOYPATH
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/aypvkhag/globalblockfarm.com/
+    - /bin/cp -R .vscode $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp -R admin $DEPLOYPATH
+    - /bin/cp -R app $DEPLOYPATH
+    - /bin/cp -R server $DEPLOYPATH
+    - /bin/cp index.html $DEPLOYPATH
