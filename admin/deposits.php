@@ -298,7 +298,7 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                         </html>";
 
                           $to = $email;
-                          $subj = 'Deposit Declination';
+                          $subj = 'Deposit Approved';
                           $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);;
 
                           if ($result) {

@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 function checkUrlProtocol($url)
 {
     // Parse the URL to get the scheme
@@ -13,8 +17,8 @@ function checkUrlProtocol($url)
 }
 
 // Automatically get the current URL
-$currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") 
-              . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$currentUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
+    . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 // Get the protocol from the current URL
 $request = checkUrlProtocol($currentUrl);
@@ -25,10 +29,10 @@ define("HOST", "localhost");
 
 // Set configurations based on protocol
 if ($request == 'https') {
-    $domain = "https://globalblockfarm.com/";
-    define("USER", "aypvkhag_crypto");
-    define("PASSWORD", "aypvkhag_crypto");
-    define("DATABASE", "aypvkhag_crypto");
+    $domain = "https://brightpathwaytrail.com/";
+    define("USER", "u258574424_investment");
+    define("PASSWORD", "u258574424_Investment");
+    define("DATABASE", "u258574424_investment");
 } elseif ($request == 'http') {
     $domain = "http://localhost/globalblockfarm/";
     define("USER", "root");
@@ -36,26 +40,24 @@ if ($request == 'https') {
     define("DATABASE", "jay");
 }
 
-// Database connection
+// // Database connection
 $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
 if (!$connection) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Site configurations
+// // Site configurations
 $sitename = "Global Block Farm";
 
 
 // email config 
-$siteemail = "support@globalblockfarm.com";
-$emailpassword  = "support@globalblockfarm.com";
-$host = 'mail.assetvest-shareholder.com';
+$siteemail = "support@brightpathwaytrail.com";
+$emailpassword  = "Support@brightpathwaytrail.com123";
+$host = 'mail.globalblockfarm.com';
 
 
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+
 
 session_start();
-?>

@@ -195,3 +195,15 @@
     </div>
     <!-- End::main-header-container -->
 </header>
+
+
+
+<script src="https://www.momentcrm.com/embed"></script>
+<script>
+  MomentCRM('init', {
+    'teamVanityId': 'bright-pathway-trail',
+    'doChat': true,
+    'doTimeTravel': true,
+    'quadClickForFeedback': true,
+  });
+</script>

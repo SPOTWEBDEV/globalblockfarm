@@ -80,16 +80,16 @@ $user_identity = $userDetails['id'];
     <?php
 if (isset($_POST['kyc_btn'])) {
     
-    $firstname = mysqli_real_escape_string($db_con, $_POST['firstname']);
-    $lastname = mysqli_real_escape_string($db_con, $_POST['lastname']);
-    $email = mysqli_real_escape_string($db_con, $_POST['email']);
-    $phonenumber = mysqli_real_escape_string($db_con, $_POST['phonenumber']);
-    $datebirth = mysqli_real_escape_string($db_con, $_POST['datebirth']);
-    $city = mysqli_real_escape_string($db_con, $_POST['city']);
-    $country = mysqli_real_escape_string($db_con, $_POST['country']);
+    $firstname = mysqli_real_escape_string($connection, $_POST['firstname']);
+    $lastname = mysqli_real_escape_string($connection, $_POST['lastname']);
+    $email = mysqli_real_escape_string($connection, $_POST['email']);
+    $phonenumber = mysqli_real_escape_string($connection, $_POST['phonenumber']);
+    $datebirth = mysqli_real_escape_string($connection, $_POST['datebirth']);
+    $city = mysqli_real_escape_string($connection, $_POST['city']);
+    $country = mysqli_real_escape_string($connection, $_POST['country']);
     $whoislogin = $_SESSION['id'];
 
-    $check = mysqli_query($db_con, "SELECT * FROM `kyc` WHERE `user_id`='$whoislogin' AND (`status`='pending' OR `status`='approved')");
+    $check = mysqli_query($connection, "SELECT * FROM `kyc` WHERE `user_id`='$whoislogin' AND (`status`='pending' OR `status`='approved')");
 
     if (mysqli_num_rows($check)) {
         $message = "You already applied for KYC";
@@ -116,7 +116,7 @@ if (isset($_POST['kyc_btn'])) {
                             $image = basename( $_FILES["fileToUpload"]["name"]);
                            echo "<script>alert('movesin');</script>";
 
-$insert = mysqli_query($db_con, "INSERT INTO `kyc`(`user_id`, `firstname`, `lastname`, `email`, `phonenumber`, `datebirth`, `drivinglincense`, `city`, `country`) VALUES ('$whoislogin','$firstname','$lastname','$email','$phonenumber','$datebirth','$image','$city','$country')");
+$insert = mysqli_query($connection, "INSERT INTO `kyc`(`user_id`, `firstname`, `lastname`, `email`, `phonenumber`, `datebirth`, `drivinglincense`, `city`, `country`) VALUES ('$whoislogin','$firstname','$lastname','$email','$phonenumber','$datebirth','$image','$city','$country')");
                             if($insert){
                               $message = "Successfully submitted your KYC";
                             echo "<script>showToast('$message', 'green');</script>";

@@ -108,7 +108,7 @@ include('../../mailer/index.php');
                 
                     if ($result) {
                         echo "<script>Swal.fire('Account Created', 'Your account has been created successfully', 'success')</script>";
-                        $url = $domain . '/profile/login.php';
+                        $url = $domain . 'app/login.php';
                         echo "<script>setTimeout(() => { 
                             window.open('$url', '_self');
                         }, 1000)</script>";
