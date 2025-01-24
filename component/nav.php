@@ -81,7 +81,7 @@
 										</style>
 
 										<select onchange="doGTranslate(this);" class="" id="language" language style="">
-											<option value="" style="color:#fffff">Select Language</option>
+											<option value="" style="">Select Language</option>
 											<option value="en|af" style="color:#222;">Afrikaans</option>
 											<option value="en|sq" style="color:#222;">Albanian</option>
 											<option value="en|ar" style="color:#222;">Arabic</option>
@@ -234,7 +234,7 @@
 										</style>
 
 										<select onchange="doGTranslate(this);" class="" id="language" style="">
-											<option value="" style="color:#fffff">Select Language</option>
+											<option value="" style="">Select Language</option>
 											<option value="en|af" style="color:#222;">Afrikaans</option>
 											<option value="en|sq" style="color:#222;">Albanian</option>
 											<option value="en|ar" style="color:#222;">Arabic</option>
@@ -347,7 +347,7 @@
 					<div class="elementor-element elementor-element-237b8c9 elementor-align-right elementor-tablet-align-center elementor-mobile-align-right elementor-widget elementor-widget-button" data-id="237b8c9" data-element_type="widget" data-widget_type="button.default">
 						<div class="elementor-widget-container">
 							<div class="elementor-button-wrapper">
-								<a class="elementor-button elementor-button-link elementor-size-sm" href="#">
+								<a class="elementor-button elementor-button-link elementor-size-sm" href="../app/login.php">
 									<span class="elementor-button-content-wrapper">
 										<span class="elementor-button-text">Open Account</span>
 									</span>

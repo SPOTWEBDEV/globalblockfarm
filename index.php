@@ -9,7 +9,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-	<title>Homepage &#8211; GetTrade</title>
+	<title>Homepage &#8211; Globalblockfarm</title>
 	<meta name='robots' content='max-image-preview:large' />
 	<style>
 		img:is([sizes="auto" i], [sizes^="auto," i]) {
@@ -626,7 +626,7 @@
 										<div class="elementor-element elementor-element-a7151e4 elementor-widget__width-auto elementor-widget-mobile__width-inherit elementor-invisible elementor-widget elementor-widget-button" data-id="a7151e4" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:1080}" data-widget_type="button.default">
 											<div class="elementor-widget-container">
 												<div class="elementor-button-wrapper">
-													<a class="elementor-button elementor-button-link elementor-size-md" href="#">
+													<a class="elementor-button elementor-button-link elementor-size-md" href="./app/login.php">
 														<span class="elementor-button-content-wrapper">
 															<span class="elementor-button-text">Get Started</span>
 														</span>
@@ -1059,7 +1059,7 @@
 										<div class="elementor-element elementor-element-5dea489 elementor-widget elementor-widget-button" data-id="5dea489" data-element_type="widget" data-widget_type="button.default">
 											<div class="elementor-widget-container">
 												<div class="elementor-button-wrapper">
-													<a class="elementor-button elementor-button-link elementor-size-sm" href="#">
+													<a class="elementor-button elementor-button-link elementor-size-sm" href="./app/login.php">
 														<span class="elementor-button-content-wrapper">
 															<span class="elementor-button-icon">
 																<i aria-hidden="true" class="fas fa-chevron-circle-right"></i> </span>
@@ -1575,7 +1575,7 @@
 						<div class="elementor-element elementor-element-0f96f60 elementor-align-justify elementor-widget elementor-widget-button" data-id="0f96f60" data-element_type="widget" data-widget_type="button.default">
 							<div class="elementor-widget-container">
 								<div class="elementor-button-wrapper">
-									<a class="elementor-button elementor-button-link elementor-size-lg" href="#">
+									<a class="elementor-button elementor-button-link elementor-size-lg" href="./app/login.php">
 										<span class="elementor-button-content-wrapper">
 											<span class="elementor-button-icon">
 												<i aria-hidden="true" class="fas fa-chevron-circle-right"></i> </span>
