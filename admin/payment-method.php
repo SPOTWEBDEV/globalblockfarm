@@ -17,7 +17,7 @@ $msgtype = '';
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>All Users</title>
+  <title><?php echo $sitename . ' --  Payment Method' ?></title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
@@ -198,79 +198,86 @@ $msgtype = '';
               <span class="text-muted fw-light">Admin /</span> Wallet address
             </h4>
 
-            <!-- Basic Bootstrap Table -->
-            <div class="card">
-              <h5 class="card-header">Deposit Wallet address</h5>
-              <div class="table-responsive text-nowrap">
-                <div class="alert alert-<?php echo $msgtype ?> text-center"><?php echo $msg ?></div>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>S/N</th> 
-                      <th>Network</th>
-                      <th>Wallet address</th>
-                      <th>Update wallet</th>
-                        
-                      
-                    </tr>
-                  </thead>
-                  <tbody class="table-border-bottom-0">
-                    <?php
+           <!-- Basic Bootstrap Table -->
+<div class="card">
+  <h5 class="card-header">Payment Accounts</h5>
+  <div class="table-responsive text-nowrap">
+    <div class="alert alert-<?php echo $msgtype ?> text-center"><?php echo $msg ?></div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S/N</th>
+          <th>Payment Type</th>
+          <th>Account Number</th>
+          <th>Details</th>
+          <th>Delete Account</th>
+        </tr>
+      </thead>
+      <tbody class="table-border-bottom-0">
+        <?php
+        // Handle Deletion of Payment Method
+        if(isset($_POST['delete_account'])){
+          $id = $_POST['id'];
 
-                    if(isset($_POST['update_wallet'])){
-                      $id = $_POST['id'];
-                      $new_wallet = $_POST['new_wallet'];
+          // Delete the payment method from the database
+          $sql = mysqli_query($connection, "DELETE FROM payment_accounts WHERE id = '$id'");
 
-                      $sql = mysqli_query($connection,"UPDATE payment_method set wallet_address = '$new_wallet' where id = '$id'");
+          if($sql){
+            $msg = 'Payment account successfully deleted';
+            $msgtype = 'success';
+          }
+        }
 
-                      if($sql){
-                        $msg = 'You have successfully updated wallet';
-                        $msgtype = 'success';
-                      }
-                    }
+        // Fetch all payment accounts from the database
+        $sql = mysqli_query($connection, "SELECT * FROM `payment_accounts`");
+        if (mysqli_num_rows($sql) > 0) {
+          $count = 1;
+          while ($details = mysqli_fetch_array($sql)) {
+            $id = $details['id'];
+            $payment_type = $details['payment_type'];
+            $account_number = $details['account_number'];
+            $account_name = ($payment_type == 'Bank') ? $details['account_name'] : '-';
+            $bank_name = ($payment_type == 'Bank') ? $details['bank_name'] : '-';
+            $routing_number = ($payment_type == 'Bank') ? $details['routing_number'] : '-';
+            $wallet_provider = ($payment_type == 'Wallet') ? $details['wallet_provider'] : '-';
+            $wu_name = ($payment_type == 'Western Union') ? $details['wu_name'] : '-';
+        ?>
+            <tr>
+              <td><?php echo $count ?></td>
+              <td><?php echo $payment_type ?></td>
+              <td><?php echo $account_number ?></td>
+              <td>
+                <?php 
+                  // Display details based on payment type
+                  if ($payment_type == 'Bank') {
+                    echo "Bank Name: $bank_name <br> Account Name: $account_name <br> Routing Number: $routing_number";
+                  } elseif ($payment_type == 'Wallet') {
+                    echo "Wallet Provider: $wallet_provider";
+                  } elseif ($payment_type == 'Western Union') {
+                    echo "WU Name: $wu_name";
+                  }
+                ?>
+              </td>
+              <td>
+                <form method="post" onsubmit="return confirm('Are you sure you want to delete this payment method?');">
+                  <input type="hidden" name="id" value="<?php echo $id ?>">
+                  <button name="delete_account" class="btn btn-danger">Delete</button>
+                </form>
+              </td>
+            </tr>
+        <?php 
+            $count++;
+          }
+        } else {
+          echo "<tr><td colspan='5' class='bg-danger text-white'>No payment accounts found</td></tr>";
+        }
+        ?>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!--/ Basic Bootstrap Table -->
 
-
-                    $sql = mysqli_query($connection, "SELECT * FROM `payment_method`");
-                    if (mysqli_num_rows($sql) > 0) {
-                      $count = 1;
-                      while ($details = mysqli_fetch_array($sql)) {
-                        $id = $details['id'];
-                        
-
-                       
-   
-
-   
-
-
-                 ?>
-                        <tr>
-                          <td><?php echo $count ?></td>
-                          <td><?php echo $details['network']?></td>
-                          <td>$<?php echo $details['wallet_address'] ?></td>
-                          
-                          
-                          
-                    <td>
-                      <form method="post">
-                        <input type="hidden" name="id" value="<?php echo $id ?>">
-                        <input type="text" placeholder="new wallet address" class="form-control" name="new_wallet">
-                        <button onclick="return confirm('Are you sure you want to change this wallet address?')" name="update_wallet" class="btn btn-danger">Update</button>
-                      </form>
-                    </td>
-                          
-                          
-                        </tr>
-                    <?php $count++;
-                      }
-                    } else {
-                      echo "<td class='bg-danger text-white' colspan='10'>wallet address</td>";
-                    } ?>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!--/ Basic Bootstrap Table -->
           </div>
           <!-- / Content -->
 

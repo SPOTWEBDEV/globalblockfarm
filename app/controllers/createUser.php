@@ -113,6 +113,8 @@ include('../../mailer/index.php');
                             window.open('$url', '_self');
                         }, 1000)</script>";
                     } else {
+
+                        $url = $domain . 'app/register.php';
                         echo "<script>Swal.fire('Mail Error', 'Failed to send confirmation email. You can still proceed to login.', 'error');</script>";
                         echo "<script>setTimeout(() => { 
                             window.open('$url', '_self');

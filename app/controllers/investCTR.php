@@ -2,13 +2,14 @@
 <script src="sweetalert2.all.min.js"></script>
 
 <?php
+include('../../server/connection.php');
+include('../../mailer/index.php');
 include('userDetails.php');
 
 
 
-require "PHPMailer/PHPMailerAutoload.php";
 
-include('controllers/userDetails.php');
+
 
 $user_identity = $userDetails['id'];
 

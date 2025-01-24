@@ -55,25 +55,6 @@
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="editables.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Editables</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="running_investment.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Running investment</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="wallet_address.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Wallet addresses</div>
-            </a>
-        </li>
-
         <!-- Layouts -->
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -81,7 +62,7 @@
                 <div data-i18n="Layouts">Managment</div>
             </a>
 
-            <ul class="menu-sub"> 
+            <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="all.php" class="menu-link">
                         <div data-i18n="Without menu">All users</div>
@@ -109,6 +90,22 @@
                 </li> -->
             </ul>
         </li>
+       
+
+        <li class="menu-item">
+            <a href="add-payment.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Add Payment Method</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="payment-method.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Payment Method</div>
+            </a>
+        </li>
+
+
 
         <!-- Layouts -->
         <li class="menu-item">
@@ -117,8 +114,8 @@
                 <div data-i18n="Layouts">Completed transaction</div>
             </a>
 
-            <ul class="menu-sub"> 
-                
+            <ul class="menu-sub">
+
                 <li class="menu-item">
                     <a href="completed_depo.php" class="menu-link">
                         <div data-i18n="Without navbar">Completed deposit</div>
@@ -129,7 +126,7 @@
                         <div data-i18n="Container">Completed withdrawals</div>
                     </a>
                 </li>
-                
+
             </ul>
         </li>
 
@@ -147,7 +144,7 @@
                         <div data-i18n="Account">Suspended Acounts</div>
                     </a>
                 </li>
-                 <li class="menu-item">
+                <li class="menu-item">
                     <a href="add-user.php" class="menu-link">
                         <div data-i18n="Notifications">Add Users</div>
                     </a>
@@ -168,16 +165,12 @@
                         <div data-i18n="Basic">Pending Investment</div>
                     </a>
                 </li>
-                <!-- <li class="menu-item">
-                    <a href="auth-register-basic.html" class="menu-link" target="_blank">
-                        <div data-i18n="Basic">Register</div>
+                <li class="menu-item">
+                    <a href="running_investment.php" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                        <div data-i18n="Analytics">Running investment</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
-                        <div data-i18n="Basic">Forgot Password</div>
-                    </a>
-                </li>  -->
             </ul>
         </li>
 

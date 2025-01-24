@@ -75,7 +75,7 @@ include('controllers/logOut.php');
                 </div>
                 <!-- Page Header Close -->
                 <!-- Start::row-1 -->
-
+               
                 <div class="row">
 
                     <form action="./controllers/investCTR.php" method="POST" class="col-xxl-3 col-sm-6">
@@ -88,7 +88,7 @@ include('controllers/logOut.php');
                                         </div>
                                         <div class="flex-fill">
                                             <p class="fw-semibold fs-14 mb-0"> BASIC PLAN / PACKAGE</p>
-                                            <p class="mb-0 text-muted fs-12 op-7">5 days</p>
+                                             <p class="mb-0 text-muted fs-12 op-7">5 days</p> 
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@ include('controllers/logOut.php');
                                 <div class="d-flex align-items-center mb-0">
                                     <p class="mb-0 fs-20 fw-semibold">$100</p>
                                     <span class="text-muted ms-2">
-                                        <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$499
+                                         <i class="ti ti-arrow-up align-middle text-success me-1 d-inline-block"></i>$499 
                                     </span>
                                 </div>
                                 <div class="d-flex align-items-center">
@@ -125,7 +125,7 @@ include('controllers/logOut.php');
 
                             function checkbasic(amount) {
 
-
+                                
                                 const error = amount.nextElementSibling;
                                 if (amount.value >= 100 && amount.value <= 499) {
                                     btnchild.removeAttribute("disabled");
@@ -137,7 +137,7 @@ include('controllers/logOut.php');
                             }
                         </script>
                     </form>
-                    <form action="./controllers/investCTR.php" method="POST" class="col-xxl-3 col-sm-6">
+                    <form method="POST" class="col-xxl-3 col-sm-6">
                         <div class="card custom-card">
                             <div class="card-body">
                                 <div class="d-flex align-items-top justify-content-between mb-4">
@@ -150,7 +150,7 @@ include('controllers/logOut.php');
                                             <p class="mb-0 text-muted fs-12 op-7">7 days</p>
                                         </div>
                                     </div>
-
+                                   
                                 </div>
 
                                 <input type="hidden" name="plan" value="Standard Plan">
@@ -196,7 +196,7 @@ include('controllers/logOut.php');
                             }
                         </script>
                     </form>
-                    <form action="./controllers/investCTR.php" method="POST" class="col-xxl-3 col-sm-6">
+                    <form method="POST" class="col-xxl-3 col-sm-6">
                         <div class="card custom-card">
                             <div class="card-body">
                                 <div class="d-flex align-items-top justify-content-between mb-4">
@@ -206,7 +206,7 @@ include('controllers/logOut.php');
                                         </div>
                                         <div class="flex-fill">
                                             <p class="fw-semibold fs-14 mb-0"> ADVANCE PLAN / PACKAGES</p>
-                                            <p class="mb-0 text-muted fs-12 op-7">7 days</p>
+                                             <p class="mb-0 text-muted fs-12 op-7">7 days</p> 
                                         </div>
                                     </div>
                                 </div>
@@ -253,7 +253,7 @@ include('controllers/logOut.php');
                             }
                         </script>
                     </form>
-                    <form action="./controllers/investCTR.php" method="POST" class="col-xxl-3 col-sm-6">
+                    <form method="POST" class="col-xxl-3 col-sm-6">
                         <div class="card custom-card">
                             <div class="card-body">
                                 <div class="d-flex align-items-top justify-content-between mb-4">
@@ -263,11 +263,11 @@ include('controllers/logOut.php');
                                         </div>
                                         <div class="flex-fill">
                                             <p class="fw-semibold fs-14 mb-0">SILVERS PLAN/PACKAGES
-                                            </p>
-                                            <p class="mb-0 text-muted fs-12 op-7">30 days</p>
+</p>
+                                             <p class="mb-0 text-muted fs-12 op-7">30 days</p> 
                                         </div>
                                     </div>
-
+                                    
                                 </div>
 
 
@@ -314,7 +314,7 @@ include('controllers/logOut.php');
                             }
                         </script>
                     </form>
-                    <form action="./controllers/investCTR.php" method="POST" class="col-xxl-3 col-sm-6">
+                    <form method="POST" class="col-xxl-3 col-sm-6">
                         <div class="card custom-card">
                             <div class="card-body">
                                 <div class="d-flex align-items-top justify-content-between mb-4">
@@ -324,10 +324,10 @@ include('controllers/logOut.php');
                                         </div>
                                         <div class="flex-fill">
                                             <p class="fw-semibold fs-14 mb-0"> GOLD PLAN/PACKAGES</p>
-                                            <p class="mb-0 text-muted fs-12 op-7">21 day</p>
+                                             <p class="mb-0 text-muted fs-12 op-7">21 day</p> 
                                         </div>
                                     </div>
-
+                                    
                                 </div>
 
 
@@ -361,10 +361,10 @@ include('controllers/logOut.php');
                             const btnpro = document.querySelector('#btnpro');
 
                             function Gold(amount) {
-
+                                
 
                                 const error = amount.nextElementSibling;
-                                if (amount.value >= 20000) {
+                                if (amount.value >= 20000 ) {
                                     btnpro.removeAttribute("disabled");
                                     error.innerHTML = '';
                                 } else {
