@@ -81,7 +81,7 @@
 										</style>
 
 										<select onchange="doGTranslate(this);" class="" id="language" language style="">
-											<option value="" style="color:#fffff">Select Language</option>
+											<option value="" style="">Select Language</option>
 											<option value="en|af" style="color:#222;">Afrikaans</option>
 											<option value="en|sq" style="color:#222;">Albanian</option>
 											<option value="en|ar" style="color:#222;">Arabic</option>
@@ -234,7 +234,7 @@
 										</style>
 
 										<select onchange="doGTranslate(this);" class="" id="language" style="">
-											<option value="" style="color:#fffff">Select Language</option>
+											<option value="" style="">Select Language</option>
 											<option value="en|af" style="color:#222;">Afrikaans</option>
 											<option value="en|sq" style="color:#222;">Albanian</option>
 											<option value="en|ar" style="color:#222;">Arabic</option>
