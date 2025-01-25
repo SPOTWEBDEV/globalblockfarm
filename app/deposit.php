@@ -90,145 +90,161 @@ include('controllers/logOut.php');
                 <!-- Page Header Close -->
                 <!-- Start::row-1 -->
                 <form action="controllers/depoCTR.php" method="POST" enctype="multipart/form-data" class="row">
-    <input type="hidden" name="user" value="<?php echo $id ?>">
+                    <input type="hidden" name="user" value="<?php echo $id ?>">
 
-    <div class="col-xl-6">
-        <div class="card custom-card">
-            <div class="card-header">
-                <div class="card-title">Select Deposit Method</div>
-            </div>
-            <div class="card-body">
-                <select id="deposit_method" name="method" class="js-example-placeholder-single js-states form-control">
-                    <?php
-                    $payment = mysqli_query($connection, "SELECT * FROM payment_accounts");
-                    while ($row_payment = mysqli_fetch_assoc($payment)) { ?>
-                        <option bankname="<?php echo $row_payment['bank_name'] ?>" account_name="<?php echo $row_payment['account_name'] ?>" value="<?php echo $row_payment['payment_type'] ?>" account_number="<?php echo $row_payment['account_number'] ?>">
-                            <?php echo $row_payment['payment_type'] ?>
-                        </option>
-                    <?php }
-                    ?>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-6">
-        <div class="card custom-card">
-            <div class="card-body">
-                <div class="d-flex align-items-top justify-content-between mb-4">
-                    <div class="flex-fill d-flex align-items-top">
-                        <div class="me-2">
-                            <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
-                        </div>
-                        <div class="flex-fill">
-                            <p class="fw-semibold fs-14 mb-0">Payment Address / Account Details</p>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Select Deposit Method</div>
+                            </div>
+                            <div class="card-body">
+                                <select id="deposit_method" name="method" class="js-example-placeholder-single js-states form-control">
+                                    <?php
+                                    $payment = mysqli_query($connection, "SELECT * FROM payment_accounts");
+                                    while ($row_payment = mysqli_fetch_assoc($payment)) { ?>
+                                        <option bankname="<?php echo $row_payment['bank_name'] ?>" account_name="<?php echo $row_payment['account_name'] ?>" value="<?php echo $row_payment['payment_type'] ?>" account_number="<?php echo $row_payment['account_number'] ?>">
+                                            <?php echo $row_payment['payment_type'] ?>
+                                        </option>
+                                    <?php }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div><a id="copyBtn" class="dropdown-item btn btn-primary">Copy</a></div>
-                </div>
 
-                <label for="input-label" class="form-label">Payment Details</label>
-                <div id="paymentDetails">
-                </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-top justify-content-between mb-4">
+                                    <div class="flex-fill d-flex align-items-top">
+                                        <div class="me-2">
+                                            <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="fw-semibold fs-14 mb-0">Payment Address / Account Details</p>
+                                        </div>
+                                    </div>
+                                    <div><a id="copyBtn" class="dropdown-item btn btn-primary">Copy</a></div>
+                                </div>
 
-                <input type="text" id="copyBoard" style="position: absolute; left: -9999px;">
-            </div>
-        </div>
-    </div>
+                                <label for="input-label" class="form-label">Payment Details</label>
+                                <div id="paymentDetails">
+                                </div>
 
-    <div class="col-xl-6">
-        <div class="card custom-card">
-            <div class="card-header justify-content-between">
-                <div class="card-title">Submit Payment</div>
-            </div>
-            <div class="card-body">
-                <div class="form-floating mb-2">
-                    <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="Amount Sent">
-                    <label for="floatingInput">Amount Sent</label>
-                </div>
-                <div class="form-floating mt-3">
-                    <button class="btn btn-secondary" name="make_depo" type="submit">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
+                                <input type="text" id="copyBoard" style="position: absolute; left: -9999px;">
+                            </div>
+                        </div>
+                    </div>
 
-<script>
-    const copyBoard = document.querySelector('#copyBoard');
-    const copyBtn = document.querySelector('#copyBtn');
-    let depositMethod = document.querySelector('#deposit_method');
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">Submit Payment</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-floating mb-2">
+                                    <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="Amount Sent">
+                                    <label for="floatingInput">Amount Sent</label>
+                                </div>
+                                <div id="giftCardFields" style="display: none;">
+                                    <div class="form-floating mt-2">
+                                        <input type="text" name="gift_card_code" class="form-control" id="giftCardCode" placeholder="Gift Card Code">
+                                        <label for="giftCardCode">Gift Card Code</label>
+                                    </div>
+                                    <div class="form-floating mt-2">
+                                        <input type="file" name="gift_card_image" class="form-control" id="giftCardImage" accept="image/*">
+                                        <label for="giftCardImage">Upload Gift Card Image</label>
+                                    </div>
+                                </div>
+                                <div class="form-floating mt-3">
+                                    <button class="btn btn-secondary" name="make_depo" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
 
-    // Function to display wallet details
-    function displayWallet(method, accountNumber, accountName, bankName) {
-        const detailsDiv = document.getElementById('paymentDetails');
-        switch (method) {
-            case "Wallet":
-                detailsDiv.innerHTML = `<p><strong>Wallet Address:</strong> ${accountNumber}</p>`;
-                copyBoard.value = `${accountNumber}`;
-                break;
-            case "Bank":
-                detailsDiv.innerHTML = `<p><strong>Bank Name:</strong> ${bankName}</p>`;
-                detailsDiv.innerHTML += `<p><strong>Bank Account Number:</strong> ${accountNumber}</p>`;
-                detailsDiv.innerHTML += `<p><strong>Bank Account Name:</strong> ${accountName}</p>`;
-                copyBoard.value = `${accountNumber}`;
-                break;
-            case "Western Union":
-                detailsDiv.innerHTML = `<p><strong>Wallet Address:</strong> ${accountNumber}</p>`;
-                detailsDiv.innerHTML += `<p><strong>Bank Account Name:</strong> ${accountName}</p>`;
-                copyBoard.value = `${accountNumber}`;
-                break;
-            default:
-                break;
-        }
-    }
+                <script>
+                    const copyBoard = document.querySelector('#copyBoard');
+                    const copyBtn = document.querySelector('#copyBtn');
+                    let depositMethod = document.querySelector('#deposit_method');
+                    let giftCardFields = document.getElementById('giftCardFields'); // Reference to gift card fields
 
-    // Event listener for when a user changes the deposit method
-    depositMethod.addEventListener('change', (e) => {
-        const selectedOption = e.target.selectedOptions[0];
-        const accountNumber = selectedOption.getAttribute('account_number');
-        const bankName = selectedOption.getAttribute('bankname');
-        const accountName = selectedOption.getAttribute('account_name');
-        const paymentMethod = e.target.value;
+                    // Function to display wallet details
+                    function displayWallet(method, accountNumber, accountName, bankName) {
+                        const detailsDiv = document.getElementById('paymentDetails');
+                        switch (method) {
+                            case "Wallet":
+                                detailsDiv.innerHTML = `<p><strong>Wallet Address:</strong> ${accountNumber}</p>`;
+                                copyBoard.value = `${accountNumber}`;
+                                break;
+                            case "Bank":
+                                detailsDiv.innerHTML = `<p><strong>Bank Name:</strong> ${bankName}</p>`;
+                                detailsDiv.innerHTML += `<p><strong>Bank Account Number:</strong> ${accountNumber}</p>`;
+                                detailsDiv.innerHTML += `<p><strong>Bank Account Name:</strong> ${accountName}</p>`;
+                                copyBoard.value = `${accountNumber}`;
+                                break;
+                            case "Western Union":
+                                detailsDiv.innerHTML = `<p><strong>Wallet Address:</strong> ${accountNumber}</p>`;
+                                detailsDiv.innerHTML += `<p><strong>Bank Account Name:</strong> ${accountName}</p>`;
+                                copyBoard.value = `${accountNumber}`;
+                                break;
+                            case "Gift card": // For Gift card payment type
+                                detailsDiv.innerHTML = `<p><strong>Gift Card</strong> selected. Please enter details below.</p>`;
+                                copyBoard.value = ''; // No default value for gift card
+                                giftCardFields.style.display = 'block'; // Show gift card fields
+                                break;
+                            default:
+                                break;
+                        }
+                    }
 
-        console.log(paymentMethod, accountNumber); // Debugging
+                    // Event listener for when a user changes the deposit method
+                    depositMethod.addEventListener('change', (e) => {
+                        const selectedOption = e.target.selectedOptions[0];
+                        const accountNumber = selectedOption.getAttribute('account_number');
+                        const bankName = selectedOption.getAttribute('bankname');
+                        const accountName = selectedOption.getAttribute('account_name');
+                        const paymentMethod = e.target.value;
 
-        displayWallet(paymentMethod, accountNumber, accountName, bankName);
-    });
+                        console.log(paymentMethod, accountNumber); // Debugging
 
-    // Automatically trigger change on page load for the selected option
-    window.addEventListener('load', () => {
-        const selectedOption = depositMethod.selectedOptions[0]; // Get the default selected option
-        const accountNumber = selectedOption.getAttribute('account_number');
-        const bankName = selectedOption.getAttribute('bankname');
-        const accountName = selectedOption.getAttribute('account_name');
-        const paymentMethod = depositMethod.value;
+                        displayWallet(paymentMethod, accountNumber, accountName, bankName);
+                    });
 
-        displayWallet(paymentMethod, accountNumber, accountName, bankName);
-    });
+                    // Automatically trigger change on page load for the selected option
+                    window.addEventListener('load', () => {
+                        const selectedOption = depositMethod.selectedOptions[0]; // Get the default selected option
+                        const accountNumber = selectedOption.getAttribute('account_number');
+                        const bankName = selectedOption.getAttribute('bankname');
+                        const accountName = selectedOption.getAttribute('account_name');
+                        const paymentMethod = depositMethod.value;
 
-    // Copy to clipboard functionality
-    (function() {
-        "use strict";
+                        displayWallet(paymentMethod, accountNumber, accountName, bankName);
+                    });
 
-        function copyToClipboard(elem) {
-            var target = elem;
-            target.focus();
-            target.setSelectionRange(0, target.value.length);
+                    // Copy to clipboard functionality
+                    (function() {
+                        "use strict";
 
-            try {
-                document.execCommand("copy");
-                alert('Successfully copied payment details');
-            } catch (e) {
-                console.warn(e);
-            }
-        }
+                        function copyToClipboard(elem) {
+                            var target = elem;
+                            target.focus();
+                            target.setSelectionRange(0, target.value.length);
 
-        copyBtn.onclick = function() {
-            copyToClipboard(copyBoard);
-        };
-    })();
-</script>
+                            try {
+                                document.execCommand("copy");
+                                alert('Successfully copied payment details');
+                            } catch (e) {
+                                console.warn(e);
+                            }
+                        }
+
+                        copyBtn.onclick = function() {
+                            copyToClipboard(copyBoard);
+                        };
+                    })();
+                </script>
 
 
 
