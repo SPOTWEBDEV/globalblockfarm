@@ -1,6 +1,3 @@
-<script src="jquery-3.6.0.min.js"></script>
-<script src="sweetalert2.all.min.js"></script>
-
 <?php
 include('../../server/connection.php');
 include('../../mailer/index.php');
@@ -19,68 +16,88 @@ $user_identity = $userDetails['id'];
 
 
 
-if (isset($_POST['makeInvestment'])) {
 
-    $plan = $_POST['plan'];
-    $amount = $_POST['amount'];
-    $percentage = $_POST['percent'];
-    $duration = $_POST['duration'];
-    $email = $_POST['email'];
-    $profit = (($amount / 100) * $percentage);
-    $referee = $userDetails['referree'];
 
-    $date = date('Y-m-d H:i:s');
-    $regD = new DateTime($date);
-    $add_maturity = $regD->modify('+1 days');
-    $maturity = $add_maturity->format('Y-m-d H:i:s');
+?>
 
-    // END DATE
-    $endD = new DateTime($date);
-    $add_end = $endD->modify("+ $duration");
-    $ends_on = $add_end->format('Y-m-d H:i:s');
-    if (!empty($amount)) {
 
-        $get_cur_user = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$id'");
-        $cur_details = mysqli_fetch_assoc($get_cur_user);
-        // var_dump($cur_details);
+<!DOCTYPE html>
+<html lang="en">
 
-        if ($amount <= $cur_details['wallet']) {
-            // die();
-            // echo $amount;
-            $new_cur_bal = $cur_details['wallet'] - $amount;
-            $deduct_invester = mysqli_query($connection, "UPDATE `users` SET `wallet` = '$new_cur_bal' WHERE `id` = '$id'");
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="sweetalert2.all.min.js"></script>
+</head>
 
-            if ($deduct_invester) {
-                // WE FORWARD HERE
-                $total_profit = $profit * (intval($duration));
-                $invested = mysqli_query($connection, "INSERT INTO `investments`(`id`, `user_id`,`plan`, `amount`,`total`,`email`, `profit`, `date_invested`, `date_to_mature`, `ends_on`, `status`) VALUES ('','$id','$plan','$amount','$total_profit','$email','$profit','$date','$maturity', '$ends_on','0')");
+<body>
 
-                // PAY THE REFERRE HIS PERCENTAGE
-                if ($invested) {
-                    if ($userDetails['paid_ref'] == '0') {
-                        $get_ref_user = mysqli_query($connection, "SELECT * FROM `users` WHERE `ref_id` = '$referee'");
-                        if (mysqli_num_rows($get_ref_user) > 0) {
-                            $ref_details = mysqli_fetch_assoc($get_ref_user);
-                            $new_ref_bal = $ref_details['wallet'] + ($amount / 100 * 5);
-                            $credit_ref = mysqli_query($connection, "UPDATE `users` SET `wallet` = '$new_ref_bal' WHERE `ref_id` = '$referee'");
-                            if ($credit_ref) {
+    <?php
+
+    if (isset($_POST['makeInvestment'])) {
+
+        $plan = $_POST['plan'];
+        $amount = $_POST['amount'];
+        $percentage = $_POST['percent'];
+        $duration = $_POST['duration'];
+        $email = $_POST['email'];
+        $profit = (($amount / 100) * $percentage);
+        $referee = $userDetails['referree'];
+
+        $date = date('Y-m-d H:i:s');
+        $regD = new DateTime($date);
+        $add_maturity = $regD->modify('+1 days');
+        $maturity = $add_maturity->format('Y-m-d H:i:s');
+
+        // END DATE
+        $endD = new DateTime($date);
+        $add_end = $endD->modify("+ $duration");
+        $ends_on = $add_end->format('Y-m-d H:i:s');
+        if (!empty($amount)) {
+
+            $get_cur_user = mysqli_query($connection, "SELECT * FROM `users` WHERE `id` = '$id'");
+            $cur_details = mysqli_fetch_assoc($get_cur_user);
+            // var_dump($cur_details);
+
+            if ($amount <= $cur_details['wallet']) {
+                // die();
+                // echo $amount;
+                $new_cur_bal = $cur_details['wallet'] - $amount;
+                $deduct_invester = mysqli_query($connection, "UPDATE `users` SET `wallet` = '$new_cur_bal' WHERE `id` = '$id'");
+
+                if ($deduct_invester) {
+                    // WE FORWARD HERE
+                    $total_profit = $profit * (intval($duration));
+                    $invested = mysqli_query($connection, "INSERT INTO `investments`(`id`, `user_id`,`plan`, `amount`,`total`,`email`, `profit`, `date_invested`, `date_to_mature`, `ends_on`, `status`) VALUES ('','$id','$plan','$amount','$total_profit','$email','$profit','$date','$maturity', '$ends_on','0')");
+
+                    // PAY THE REFERRE HIS PERCENTAGE
+                    if ($invested) {
+                        if ($userDetails['paid_ref'] == '0') {
+                            $get_ref_user = mysqli_query($connection, "SELECT * FROM `users` WHERE `ref_id` = '$referee'");
+                            if (mysqli_num_rows($get_ref_user) > 0) {
+                                $ref_details = mysqli_fetch_assoc($get_ref_user);
+                                $new_ref_bal = $ref_details['wallet'] + ($amount / 100 * 5);
+                                $credit_ref = mysqli_query($connection, "UPDATE `users` SET `wallet` = '$new_ref_bal' WHERE `ref_id` = '$referee'");
+                                if ($credit_ref) {
+                                    $deduct_invester = mysqli_query($connection, "UPDATE `users` SET `paid_ref` = '1' WHERE `id` = '$id'");
+                                }
+                            } else {
                                 $deduct_invester = mysqli_query($connection, "UPDATE `users` SET `paid_ref` = '1' WHERE `id` = '$id'");
                             }
-                        } else {
-                            $deduct_invester = mysqli_query($connection, "UPDATE `users` SET `paid_ref` = '1' WHERE `id` = '$id'");
                         }
                     }
-                }
 
 
-                $email = $userDetails['email'];
-                $name = $userDetails['name'];
-
-
+                    $email = $userDetails['email'];
+                    $name = $userDetails['name'];
 
 
 
-                $body = "
+
+
+                    $body = "
                         <html>
                         <body style='margin: 0; padding: 0; font-family: Roboto, sans-serif; background: #131722;'>
                         <section style='width: 100%; background-color: #f1f2f3; color: #333;'>
@@ -111,26 +128,30 @@ if (isset($_POST['makeInvestment'])) {
                         </body>
                         </html>";
 
-                $to = $email;
-                $subj = 'Investment Request';
+                    $to = $email;
+                    $subj = 'Investment Request';
 
-                $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);
+                    $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);
 
-                if ($result) {
-                    echo "<script>Swal.fire('Investment Made','Your investment have been added successfully','success')</script>";
-                    echo "<script>setTimeout( ()=> {window.location.href = '../app/investments.php' },1000)</script>";
+                    if ($result) {
+                        echo "<script>Swal.fire('Investment Made','Your investment have been added successfully','success')</script>";
+                        echo "<script>setTimeout( ()=> {window.location.href = '../app/investments.php' },1000)</script>";
+                    } else {
+                        echo "<script>Swal.fire('Investment Failed','Your investment requeest failed ','success')</script>";
+                    }
                 } else {
-                    echo "<script>Swal.fire('Investment Failed','Your investment requeest failed ','success')</script>";
+                    echo "<script> Swal.fire('Error','An Error was encountered','error')</script>";
                 }
             } else {
-                echo "<script> Swal.fire('Error','An Error was encountered','error')</script>";
+                echo "<script>Swal.fire('Error','Amount Above Wallet Balance','error')</script>";
             }
         } else {
-            echo "<script>Swal.fire('Error','Amount Above Wallet Balance','error')</script>";
+            echo "<script>Swal.fire('Error','Input Error','error')</script>";
         }
-    } else {
-        echo "<script>Swal.fire('Error','Input Error','error')</script>";
     }
-}
 
-?>
+    ?>
+
+</body>
+
+</html>
