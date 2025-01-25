@@ -27,7 +27,7 @@ $user_identity = $userDetails['id'];
         $gift_card_code = null;
         $gift_card_image_path = null;
 
-        $url = $domain . 'app/depost.php';
+        $url = $domain . 'app/deposit.php';
 
         if ($method === 'Gift Card') {
             $gift_card_code = mysqli_real_escape_string($connection, $_POST['gift_card_code']);
@@ -68,7 +68,7 @@ $user_identity = $userDetails['id'];
         $query = "INSERT INTO deposits (user_id, method, amount, gift_card_code, gift_card_image, date_deposited, status) 
               VALUES ('$user', '$method', '$amount', '$gift_card_code', '$gift_card_image_path', '$date', '0')";
         if (mysqli_query($connection, $query)) {
-            $url = $domain . 'app/deposts.php';
+            $url = $domain . 'app/deposits.php';
             echo "<script>
                 Swal.fire('Deposit Recorded', 'Your deposit has been successfully recorded.', 'success');
                 setTimeout(() => { 
