@@ -5,8 +5,7 @@ include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
 include('controllers/userDetails.php');
-//  FOR INVESTMENT MATURITY
-include('controllers/invMTR_CTR.php');
+
 // Log out the mother force;
 include('controllers/logOut.php');
 
@@ -96,7 +95,7 @@ if (isset($_POST['kyc_btn'])) {
         echo "<script>showToast('$message', 'red');</script>";
     } else {
        
-        $target_dir = "./uploads/";
+        $target_dir = "../uploads/kyc/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         
