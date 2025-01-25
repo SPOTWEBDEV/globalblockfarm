@@ -29,10 +29,10 @@ define("HOST", "localhost");
 
 // Set configurations based on protocol
 if ($request == 'https') {
-    $domain = "https://brightpathwaytrail.com/";
-    define("USER", "u258574424_investment");
-    define("PASSWORD", "u258574424_Investment");
-    define("DATABASE", "u258574424_investment");
+    $domain = "https://globalblockfarm/";
+    define("USER", "aypvkhag_crypto");
+    define("PASSWORD", "aypvkhag_crypto");
+    define("DATABASE", "aypvkhag_crypto");
 } elseif ($request == 'http') {
     $domain = "http://localhost/globalblockfarm/";
     define("USER", "root");
@@ -52,8 +52,8 @@ $sitename = "Global Block Farm";
 
 
 // email config 
-$siteemail = "support@brightpathwaytrail.com";
-$emailpassword  = "Support@brightpathwaytrail.com123";
+$siteemail = "support@globalblockfarm.com";
+$emailpassword  = "support@globalblockfarm.com";
 $host = 'mail.globalblockfarm.com';
 
 

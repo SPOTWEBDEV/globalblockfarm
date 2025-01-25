@@ -1,3 +1,12 @@
+<?php
+
+
+include('./server/connection.php');
+
+
+
+?>
+
 <!doctype html>
 <html lang="en-US">
 
@@ -1162,6 +1171,41 @@
             }
         };
     </script>
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6793ad153a842732607480e7/1iicdo79v';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+    	<script>
+		// Function to set the viewport to force desktop view
+		function forceDesktopView() {
+			var viewportMeta = document.querySelector('meta[name="viewport"]');
+			if (viewportMeta) {
+				// Change the content to force a desktop layout
+				viewportMeta.setAttribute('content', 'width=700'); // Or any value you prefer
+			}
+		}
+
+		// Check if the device is a tablet based on width and set to desktop view
+		if (window.innerWidth <= 768) {
+			forceDesktopView();
+		}
+
+		// Optional: Listen for window resize to reapply the setting on change
+		window.addEventListener('resize', function() {
+			if (window.innerWidth <= 768) {
+				forceDesktopView();
+			}
+		});
+	</script>
     <script src="https://kitnew.moxcreative.com/gettrade/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.25.9" id="elementor-frontend-js"></script>
     <script src="https://kitnew.moxcreative.com/gettrade/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.23.0" id="pro-elements-handlers-js"></script>
     <script src="https://kitnew.moxcreative.com/gettrade/wp-content/plugins/elementskit-lite/widgets/init/assets/js/animate-circle.min.js?ver=3.3.2" id="animate-circle-js"></script>

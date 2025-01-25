@@ -1,3 +1,13 @@
+<?php
+
+
+include('./server/connection.php');
+
+
+
+?>
+
+
 <!doctype html>
 <html lang="en-US">
 
@@ -626,7 +636,7 @@
 										<div class="elementor-element elementor-element-a7151e4 elementor-widget__width-auto elementor-widget-mobile__width-inherit elementor-invisible elementor-widget elementor-widget-button" data-id="a7151e4" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:1080}" data-widget_type="button.default">
 											<div class="elementor-widget-container">
 												<div class="elementor-button-wrapper">
-													<a class="elementor-button elementor-button-link elementor-size-md" href="./app/login.php">
+													<a class="elementor-button elementor-button-link elementor-size-md" href="https://globalblockfarm.com/app/login.php">
 														<span class="elementor-button-content-wrapper">
 															<span class="elementor-button-text">Get Started</span>
 														</span>
@@ -644,13 +654,18 @@
 															<div class="elementskit-box-header elementor-animation-">
 																<div class="elementskit-info-box-icon text-center">
 																	<i aria-hidden="true" class="elementkit-infobox-icon mdi mdi-play-circle-outline"></i>
+																	<h3 class="elementskit-info-box-title" style="margin-left:10px">
+																	    video description
+    																</h3>
 																</div>
+																
+																
 															</div>
-															<!-- <div class="box-body">
-																<h3 class="elementskit-info-box-title">
-																	video description
-																</h3>
-															</div> -->
+															<!-- <div class="box-body">-->
+															<!--	<h3 class="elementskit-info-box-title">-->
+															<!--		video description-->
+															<!--	</h3>-->
+															<!--</div> -->
 														</div>
 													</a>
 												</div>
@@ -1059,7 +1074,7 @@
 										<div class="elementor-element elementor-element-5dea489 elementor-widget elementor-widget-button" data-id="5dea489" data-element_type="widget" data-widget_type="button.default">
 											<div class="elementor-widget-container">
 												<div class="elementor-button-wrapper">
-													<a class="elementor-button elementor-button-link elementor-size-sm" href="./app/login.php">
+													<a class="elementor-button elementor-button-link elementor-size-sm" href="https://globalblockfarm.com/app/login.php">
 														<span class="elementor-button-content-wrapper">
 															<span class="elementor-button-icon">
 																<i aria-hidden="true" class="fas fa-chevron-circle-right"></i> </span>
@@ -1575,7 +1590,7 @@
 						<div class="elementor-element elementor-element-0f96f60 elementor-align-justify elementor-widget elementor-widget-button" data-id="0f96f60" data-element_type="widget" data-widget_type="button.default">
 							<div class="elementor-widget-container">
 								<div class="elementor-button-wrapper">
-									<a class="elementor-button elementor-button-link elementor-size-lg" href="./app/login.php">
+									<a class="elementor-button elementor-button-link elementor-size-lg" href="https://globalblockfarm.com/app/login.php">
 										<span class="elementor-button-content-wrapper">
 											<span class="elementor-button-icon">
 												<i aria-hidden="true" class="fas fa-chevron-circle-right"></i> </span>
@@ -1892,7 +1907,7 @@
 			var viewportMeta = document.querySelector('meta[name="viewport"]');
 			if (viewportMeta) {
 				// Change the content to force a desktop layout
-				viewportMeta.setAttribute('content', 'width=1024'); // Or any value you prefer
+				viewportMeta.setAttribute('content', 'width=700'); // Or any value you prefer
 			}
 		}
 
@@ -1918,7 +1933,19 @@
 			document.getElementsByTagName("head")[0].appendChild(s);
 		})();
 	</script>
-
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6793ad153a842732607480e7/1iicdo79v';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 	<script>
 		function openVideoPopup() {
 			// Replace 'your-video-url' with the actual URL of the video you want to play
