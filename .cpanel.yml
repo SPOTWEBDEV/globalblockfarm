@@ -6,4 +6,4 @@ deployment:
     - /bin/cp -R admin $DEPLOYPATH
     - /bin/cp -R app $DEPLOYPATH
     - /bin/cp -R server $DEPLOYPATH
-    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH

@@ -180,7 +180,6 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                       <th>S/N</th>
                       <th>Account of Owner</th>
                       <th>Amount</th>
-                      <th>File</th>
                       <th>Method</th>
                       <th>Paid On</th>
                       <th>Status</th>
@@ -332,11 +331,7 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                             ?>
                           </td>
                           <td><?php echo $details['amount'] ?></td>
-                          <td>
-                            <a href="../profile/snapshots/<?php echo $details['snapshot'] ?>">
-                              <img style="height: 80px; width: auto;" src="../profile/snapshots/<?php echo $details['snapshot'] ?>">
-                            </a>
-                          </td>
+                          
                           <td><?php echo $details['method'] ?></td>
                           <td><?php echo $details['date_deposited'] ?></td>
                           <td>

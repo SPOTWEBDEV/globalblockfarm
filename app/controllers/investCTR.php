@@ -118,7 +118,7 @@ if (isset($_POST['makeInvestment'])) {
 
                 if ($result) {
                     echo "<script>Swal.fire('Investment Made','Your investment have been added successfully','success')</script>";
-                    echo "<script>setTimeout( ()=> {window.location.href = '../profile/investments.php' },1000)</script>";
+                    echo "<script>setTimeout( ()=> {window.location.href = '../app/investments.php' },1000)</script>";
                 } else {
                     echo "<script>Swal.fire('Investment Failed','Your investment requeest failed ','success')</script>";
                 }
