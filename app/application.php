@@ -113,7 +113,7 @@ if (isset($_POST['kyc_btn'])) {
                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                        
                             $image = basename( $_FILES["fileToUpload"]["name"]);
-                           echo "<script>alert('movesin');</script>";
+                           
 
 $insert = mysqli_query($connection, "INSERT INTO `kyc`(`user_id`, `firstname`, `lastname`, `email`, `phonenumber`, `datebirth`, `drivinglincense`, `city`, `country`) VALUES ('$whoislogin','$firstname','$lastname','$email','$phonenumber','$datebirth','$image','$city','$country')");
                             if($insert){
