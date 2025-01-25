@@ -35,7 +35,7 @@ function smtpmailer($to, $from, $formName, $subject, $body)
                   return false;
          }
 
-         return true;
+         return 'success';
 }
 
 

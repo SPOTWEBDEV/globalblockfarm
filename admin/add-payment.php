@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
- 
+
     <title><?php echo $sitename ?> || Add Payment</title>
 
     <!-- Favicon -->
@@ -214,13 +214,13 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) echo
                                             } elseif ($payment_type == 'Wallet') {
                                                 $wallet_provider = mysqli_real_escape_string($connection, $_POST['wallet_provider']);
                                             } elseif ($payment_type == 'Western Union') {
-                                                $wu_name = mysqli_real_escape_string($connection, $_POST['wu_name']);
+                                                $account_name = mysqli_real_escape_string($connection, $_POST['wu_name']);
                                             }
 
                                             // Check if the required fields are filled based on payment type
                                             if (!empty($payment_type) && !empty($account_number)) {
-                                                $insertQuery = "INSERT INTO `payment_accounts` (`payment_type`, `account_number`, `bank_name`, `account_name`, `routing_number`, `wallet_provider`, `wu_name`)
-                                VALUES ('$payment_type', '$account_number', '$bank_name', '$account_name', '$routing_number', '$wallet_provider', '$wu_name')";
+                                                $insertQuery = "INSERT INTO `payment_accounts` (`payment_type`, `account_number`, `bank_name`, `account_name`, `routing_number`, `wallet_provider`)
+                                VALUES ('$payment_type', '$account_number', '$bank_name', '$account_name', '$routing_number', '$wallet_provider')";
 
                                                 if (mysqli_query($connection, $insertQuery)) {
                                                     echo "<script>Swal.fire('Success','Payment account added successfully','success')</script>";

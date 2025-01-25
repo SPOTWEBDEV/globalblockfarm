@@ -1,5 +1,4 @@
 <?php
-;
 include('../server/connection.php');
 include('controllers/authFy.php');
 // PREPARE USERS DETAILS;
@@ -13,34 +12,14 @@ include('controllers/logOut.php');
 // include('controllers/investCTR.php');
 
 
-$sql1 = mysqli_query($connection,"SELECT * FROM payment_method where network = 'Bitcoin'");
 
- $bitcoin_wallet = mysqli_fetch_array($sql1);
 
- $sql2 = mysqli_query($connection,"SELECT * FROM payment_method where network = 'Etheruem'");
 
- $etheruem_wallet = mysqli_fetch_array($sql2);
-
- $sql3 = mysqli_query($connection,"SELECT * FROM payment_method where network = 'BNB'");
-
- $BNB_wallet = mysqli_fetch_array($sql3);
-
- $sql4 = mysqli_query($connection,"SELECT * FROM payment_method where network = 'USDT(trc20)'");
-
- $usdt_trc20_wallet = mysqli_fetch_array($sql4);
-
- $sql5 = mysqli_query($connection,"SELECT * FROM payment_method where network = 'Dogecoin'");
-
- $usdt_erc20_wallet = mysqli_fetch_array($sql5);
-
- 
- 
 
 
 ?>
 
 <!DOCTYPE html>
-<!-- saved from url=(0014)about:internet -->
 <html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close">
 
 <head>
@@ -88,7 +67,7 @@ $sql1 = mysqli_query($connection,"SELECT * FROM payment_method where network = '
         <!-- /app-header -->
         <!-- Start::app-sidebar -->
         <?php include('./includes/sidebar.php') ?>
-        
+
         <!-- End::app-sidebar -->
         <!-- Start::app-content -->
 
@@ -110,160 +89,159 @@ $sql1 = mysqli_query($connection,"SELECT * FROM payment_method where network = '
                 </div>
                 <!-- Page Header Close -->
                 <!-- Start::row-1 -->
-                <form action="controllers/depoCTR.php" method="POST"  enctype="multipart/form-data" class="row">
-                    <input type="hidden" name="user" value="<?php echo $id ?>">
-                    <div class="col-xl-6">
-                        <div class="card custom-card">
-                            <div class="card-header">
-                                <div class="card-title">Select Deposit Method</div>
-                            </div>
-                            <div class="card-body">
-                                <select onchange="displayAddr(this)" name="method" class="js-example-placeholder-single js-states form-control">
-                                    <option value="USDT(Trc20)" selected="">USDT(Trc20)</option>
-                                    <option value="BNB" >BNB (Bep20)</option>
-                                    <option value="Ethereum">Ethereum (Erc20)</option>
-                                    <option value="BTC(Bitcoin)">BTC(Bitcoin)</option>
-                                    <option value="Litecoin">Litecoin</option>
-                                </select>
-                            </div>
+                <form action="controllers/depoCTR.php" method="POST" enctype="multipart/form-data" class="row">
+    <input type="hidden" name="user" value="<?php echo $id ?>">
+
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">Select Deposit Method</div>
+            </div>
+            <div class="card-body">
+                <select id="deposit_method" name="method" class="js-example-placeholder-single js-states form-control">
+                    <?php
+                    $payment = mysqli_query($connection, "SELECT * FROM payment_accounts");
+                    while ($row_payment = mysqli_fetch_assoc($payment)) { ?>
+                        <option bankname="<?php echo $row_payment['bank_name'] ?>" account_name="<?php echo $row_payment['account_name'] ?>" value="<?php echo $row_payment['payment_type'] ?>" account_number="<?php echo $row_payment['account_number'] ?>">
+                            <?php echo $row_payment['payment_type'] ?>
+                        </option>
+                    <?php }
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="card-body">
+                <div class="d-flex align-items-top justify-content-between mb-4">
+                    <div class="flex-fill d-flex align-items-top">
+                        <div class="me-2">
+                            <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
+                        </div>
+                        <div class="flex-fill">
+                            <p class="fw-semibold fs-14 mb-0">Payment Address / Account Details</p>
                         </div>
                     </div>
-                    <div class="col-xl-6">
-                        <div class="card custom-card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-top justify-content-between mb-4">
-                                    <div class="flex-fill d-flex align-items-top">
-                                        <div class="me-2">
-                                            <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
-                                        </div>
-                                        <div class="flex-fill">
-                                            <p class="fw-semibold fs-14 mb-0">Payment Address</p>
-                                            <!-- <p class="mb-0 text-muted fs-12 op-7">Elitr at gubergren sit sed.</p> -->
-                                        </div>
-                                    </div>
-                                    <div><a id="copyBtn" class="dropdown-item btn btn-primary">Copy</a>
-                                        <!-- <a href="javascript:void(0);" data-bs-toggle="dropdown" class="btn btn-icon btn-sm btn-light"><i class="ti ti-dots"></i></a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <button id="copyBtn" class="dropdown-item">COPY ADDRESS</button>
-                                            </li>
-                                        </ul> -->
-                                    </div>
-                                </div>
-                                <label for="input-label" class="form-label">Wallet Address</label>
-                                <input type="text" id="copyBoard" value="TD5MbRawgv3VfviELuAn92D9NgyKbWFwgi" class="form-control" id="input-label" placeholder="" readonly>
-                            </div>
-                        </div>
-                        <script>
-                            const copyBoard = document.querySelector('#copyBoard');
-                            const copyBtn = document.querySelector('#copyBtn');
+                    <div><a id="copyBtn" class="dropdown-item btn btn-primary">Copy</a></div>
+                </div>
 
-                            function displayAddr(addr) {
-                                console.log(addr.value)
-                                switch (addr.value) {
-                                    case "BNB":
-                                        copyBoard.value = '0xf2421f970Ed26c2aF52f90996c02c3FaaFBa1582'
-                                        break
-                                    case "Ethereum":
-                                        copyBoard.value = '0xf2421f970Ed26c2aF52f90996c02c3FaaFBa1582'
-                                        break
-                                    case "BTC(Bitcoin)":
-                                        copyBoard.value = 'bc1qx8xzpu8vwh4j2ktuyg8lacuxwf64d9haq4pqut'
-                                        break
-                                    case "USDT(Trc20)":
-                                        copyBoard.value = 'TD5MbRawgv3VfviELuAn92D9NgyKbWFwgi'
-                                        break
-                                    case "Litecoin":
-                                        copyBoard.value = 'ltc1qx60x8k4jgtq6a7dn3p2xcqtdaavg22mqla6n0v'
-                                        break
-                                    default:
-                                        break
-                                }
-                            }
+                <label for="input-label" class="form-label">Payment Details</label>
+                <div id="paymentDetails">
+                </div>
 
-                            (function() {
-                                "use strict";
+                <input type="text" id="copyBoard" style="position: absolute; left: -9999px;">
+            </div>
+        </div>
+    </div>
 
-                                function copyToClipboard(elem) {
-                                    var target = elem;
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="card-header justify-content-between">
+                <div class="card-title">Submit Payment</div>
+            </div>
+            <div class="card-body">
+                <div class="form-floating mb-2">
+                    <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="Amount Sent">
+                    <label for="floatingInput">Amount Sent</label>
+                </div>
+                <div class="form-floating mt-3">
+                    <button class="btn btn-secondary" name="make_depo" type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
-                                    // select the content
-                                    var currentFocus = document.activeElement;
+<script>
+    const copyBoard = document.querySelector('#copyBoard');
+    const copyBtn = document.querySelector('#copyBtn');
+    let depositMethod = document.querySelector('#deposit_method');
 
-                                    target.focus();
-                                    target.setSelectionRange(0, target.value.length);
+    // Function to display wallet details
+    function displayWallet(method, accountNumber, accountName, bankName) {
+        const detailsDiv = document.getElementById('paymentDetails');
+        switch (method) {
+            case "Wallet":
+                detailsDiv.innerHTML = `<p><strong>Wallet Address:</strong> ${accountNumber}</p>`;
+                copyBoard.value = `${accountNumber}`;
+                break;
+            case "Bank":
+                detailsDiv.innerHTML = `<p><strong>Bank Name:</strong> ${bankName}</p>`;
+                detailsDiv.innerHTML += `<p><strong>Bank Account Number:</strong> ${accountNumber}</p>`;
+                detailsDiv.innerHTML += `<p><strong>Bank Account Name:</strong> ${accountName}</p>`;
+                copyBoard.value = `${accountNumber}`;
+                break;
+            case "Western Union":
+                detailsDiv.innerHTML = `<p><strong>Wallet Address:</strong> ${accountNumber}</p>`;
+                detailsDiv.innerHTML += `<p><strong>Bank Account Name:</strong> ${accountName}</p>`;
+                copyBoard.value = `${accountNumber}`;
+                break;
+            default:
+                break;
+        }
+    }
 
-                                    // copy the selection
-                                    var succeed;
+    // Event listener for when a user changes the deposit method
+    depositMethod.addEventListener('change', (e) => {
+        const selectedOption = e.target.selectedOptions[0];
+        const accountNumber = selectedOption.getAttribute('account_number');
+        const bankName = selectedOption.getAttribute('bankname');
+        const accountName = selectedOption.getAttribute('account_name');
+        const paymentMethod = e.target.value;
 
-                                    try {
-                                        succeed = document.execCommand("copy");
-                                        alert('Successfully copied wallet address');
-                                    } catch (e) {
-                                        console.warn(e);
+        console.log(paymentMethod, accountNumber); // Debugging
 
-                                        succeed = false;
-                                    }
+        displayWallet(paymentMethod, accountNumber, accountName, bankName);
+    });
 
-                                    // Restore original focus
-                                    if (currentFocus && typeof currentFocus.focus === "function") {
-                                        currentFocus.focus();
-                                    }
+    // Automatically trigger change on page load for the selected option
+    window.addEventListener('load', () => {
+        const selectedOption = depositMethod.selectedOptions[0]; // Get the default selected option
+        const accountNumber = selectedOption.getAttribute('account_number');
+        const bankName = selectedOption.getAttribute('bankname');
+        const accountName = selectedOption.getAttribute('account_name');
+        const paymentMethod = depositMethod.value;
 
-                                    if (succeed) {
-                                        // $(".copied").animate({ top: -25, opacity: 0 }, 700, function () {
-                                        // $(this).css({ top: 0, opacity: 1 });
-                                        // });
+        displayWallet(paymentMethod, accountNumber, accountName, bankName);
+    });
 
-                                        // document.querySelector('#copyButton i').innerHTML = 'copied';
-                                        setTimeout(() => {
-                                            document.querySelector('#copyBtn').innerHTML = 'Copy';
-                                        }, 800)
-                                    }
+    // Copy to clipboard functionality
+    (function() {
+        "use strict";
 
-                                    return succeed;
-                                }
+        function copyToClipboard(elem) {
+            var target = elem;
+            target.focus();
+            target.setSelectionRange(0, target.value.length);
 
-                                copyBtn.onclick = function() {
-                                    copyToClipboard(copyBoard);
-                                };
-                            })();
-                        </script>
-                    </div>
-                      
-                    <div class="col-xl-6">
-                        <div class="card custom-card">
-                            <div class="card-header justify-content-between">
-                                <div class="card-title"> Submit Payment</div>
-                                <div class="prism-toggle">
-                                </div>
-                            </div>
-                            <div  class="card-body">
-                                <div class="form-floating mb-2">
-                                    <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="amount sent">
-                                    <label for="floatingInput">Amount Sent</label>
-                                </div>
-                                <!--<div class="form-floating mb-3">-->
-                                <!--    <input type="file" name="snapshot" class="form-control" id="floatingInput" placeholder="amount sent">-->
-                                <!--    <label for="floatingInput">Upload Snapshot</label>-->
-                                <!--</div>-->
-                                <div class="form-floating mt-3">
-                                    <button class="btn btn-secondary" name="make_depo" type="submit">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <!--End::row-1 -->
+            try {
+                document.execCommand("copy");
+                alert('Successfully copied payment details');
+            } catch (e) {
+                console.warn(e);
+            }
+        }
+
+        copyBtn.onclick = function() {
+            copyToClipboard(copyBoard);
+        };
+    })();
+</script>
+
+
+
+
             </div>
         </div>
 
-        <?php 
-            $brs = 0;
-            while ($brs < 17) {
-                echo '<br>';
-                $brs++;
-            }
+        <?php
+        $brs = 0;
+        while ($brs < 17) {
+            echo '<br>';
+            $brs++;
+        }
         ?>
 
 
@@ -334,12 +312,12 @@ $sql1 = mysqli_query($connection,"SELECT * FROM payment_method where network = '
                 </div>
             </div>
         </div>
-         
+
     </div>
     <div class="scrollToTop">
         <span class="arrow"><i class="ri-arrow-up-s-fill fs-20"></i></span>
     </div>
-    <div id="responsive-overlay"></div>    
+    <div id="responsive-overlay"></div>
 
     <script src="./assets/libs/@popperjs/core/umd/popper.min.js"></script>
     <!-- Bootstrap JS -->

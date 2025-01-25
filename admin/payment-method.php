@@ -236,11 +236,11 @@ $msgtype = '';
             $id = $details['id'];
             $payment_type = $details['payment_type'];
             $account_number = $details['account_number'];
-            $account_name = ($payment_type == 'Bank') ? $details['account_name'] : '-';
+            $account_name = ($details['account_name'] != '' ) ? $details['account_name'] : '-';
             $bank_name = ($payment_type == 'Bank') ? $details['bank_name'] : '-';
             $routing_number = ($payment_type == 'Bank') ? $details['routing_number'] : '-';
             $wallet_provider = ($payment_type == 'Wallet') ? $details['wallet_provider'] : '-';
-            $wu_name = ($payment_type == 'Western Union') ? $details['wu_name'] : '-';
+            
         ?>
             <tr>
               <td><?php echo $count ?></td>
@@ -254,7 +254,7 @@ $msgtype = '';
                   } elseif ($payment_type == 'Wallet') {
                     echo "Wallet Provider: $wallet_provider";
                   } elseif ($payment_type == 'Western Union') {
-                    echo "WU Name: $wu_name";
+                    echo "WU Name: $account_name";
                   }
                 ?>
               </td>
