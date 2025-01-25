@@ -89,35 +89,105 @@ include('controllers/logOut.php');
                 </div>
                 <!-- Page Header Close -->
                 <!-- Start::row-1 -->
-                <div class="col-xl-6">
-                    <div class="card custom-card">
-                        <div class="card-header justify-content-between">
-                            <div class="card-title">Submit Payment</div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-floating mb-2">
-                                <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="Amount Sent">
-                                <label for="floatingInput">Amount Sent</label>
+                <form action="controllers/depoCTR.php" method="POST" enctype="multipart/form-data" class="row">
+                    <input type="hidden" name="user" value="<?php echo $id ?>">
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Select Deposit Method</div>
                             </div>
-
-                            <!-- Hidden fields for gift card -->
-                            <div id="giftCardFields" style="display: none;">
-                                <div class="form-floating mt-2">
-                                    <input type="text" name="gift_card_code" class="form-control" id="giftCardCode" placeholder="Gift Card Code">
-                                    <label for="giftCardCode">Gift Card Code</label>
-                                </div>
-                                <div class="form-floating mt-2">
-                                    <input type="file" name="gift_card_image" class="form-control" id="giftCardImage" accept="image/*">
-                                    <label for="giftCardImage">Upload Gift Card Image</label>
-                                </div>
-                            </div>
-
-                            <div class="form-floating mt-3">
-                                <button class="btn btn-secondary" name="make_depo" type="submit">Submit</button>
+                            <div class="card-body">
+                                <select onchange="displayAddr(this)" name="method" class="js-example-placeholder-single js-states form-control">
+                                    <option value="USDT(Trc20)" selected="">USDT(Trc20)</option>
+                                    <option value="BNB">BNB (Bep20)</option>
+                                    <option value="Ethereum">Ethereum (Erc20)</option>
+                                    <option value="BTC(Bitcoin)">BTC(Bitcoin)</option>
+                                    <option value="Litecoin">Litecoin</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-top justify-content-between mb-4">
+                                    <div class="flex-fill d-flex align-items-top">
+                                        <div class="me-2">
+                                            <span class="avatar avatar-md text-secondary border bg-light"><i class="ti ti-user-circle fs-18"></i></span>
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="fw-semibold fs-14 mb-0">Payment Address</p>
+                                            <!-- <p class="mb-0 text-muted fs-12 op-7">Elitr at gubergren sit sed.</p> -->
+                                        </div>
+                                    </div>
+                                    <div><a id="copyBtn" class="dropdown-item btn btn-primary">Copy</a>
+                                        <!-- <a href="javascript:void(0);" data-bs-toggle="dropdown" class="btn btn-icon btn-sm btn-light"><i class="ti ti-dots"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <button id="copyBtn" class="dropdown-item">COPY ADDRESS</button>
+                                            </li>
+                                        </ul> -->
+                                    </div>
+                                </div>
+                                <label for="input-label" class="form-label">Wallet Address</label>
+                                <input type="text" id="copyBoard" value="TD5MbRawgv3VfviELuAn92D9NgyKbWFwgi" class="form-control" id="input-label" placeholder="" readonly>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title"> Submit Payment</div>
+                                <div class="prism-toggle">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-floating mb-2">
+                                    <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="amount sent">
+                                    <label for="floatingInput">Amount Sent</label>
+                                </div>
+                                
+                                <div class="form-floating mt-3">
+                                    <button class="btn btn-secondary" name="make_depo" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-xl-6">
+                        <div class="card custom-card">
+                            <div class="card-header justify-content-between">
+                                <div class="card-title">Submit Payment</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-floating mb-2">
+                                    <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="Amount Sent">
+                                    <label for="floatingInput">Amount Sent</label>
+                                </div>
+
+
+                                <div id="giftCardFields" style="display: none;">
+                                    <div class="form-floating mt-2">
+                                        <input type="text" name="gift_card_code" class="form-control" id="giftCardCode" placeholder="Gift Card Code">
+                                        <label for="giftCardCode">Gift Card Code</label>
+                                    </div>
+                                    <div class="form-floating mt-2">
+                                        <input type="file" name="gift_card_image" class="form-control" id="giftCardImage" accept="image/*">
+                                        <label for="giftCardImage">Upload Gift Card Image</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-floating mt-3">
+                                    <button class="btn btn-secondary" name="make_depo" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
 
 
                 <script>
