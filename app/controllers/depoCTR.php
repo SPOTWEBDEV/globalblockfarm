@@ -4,11 +4,6 @@ include('../../mailer/index.php');
 include('userDetails.php');
 
 $user_identity = $userDetails['id'];
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -25,76 +20,70 @@ $user_identity = $userDetails['id'];
 
     <?php
     if (isset($_POST['make_depo'])) {
-        $amount = mysqli_real_escape_string($connection, $_POST['amount']);
-        $method = mysqli_real_escape_string($connection, $_POST['method']);
         $user = mysqli_real_escape_string($connection, $_POST['user']);
+        $method = mysqli_real_escape_string($connection, $_POST['method']);
+        $amount = mysqli_real_escape_string($connection, $_POST['amount']);
 
+        $gift_card_code = null;
+        $gift_card_image_path = null;
 
-        if (!empty($amount)) {
-            $date = date('Y-m-d H:i:s');
+        $url = $domain . 'app/depost.php';
 
-            $deposit = mysqli_query($connection, "INSERT INTO `deposits`(`id`, `user_id`, `wallet_addr`, `amount`, `snapshot`, `method`, `date_deposited`, `status`) 
-                                                                     VALUES ('','$user','--','$amount', '--', '$method','$date','0')");
+        if ($method === 'Gift Card') {
+            $gift_card_code = mysqli_real_escape_string($connection, $_POST['gift_card_code']);
 
+            // Handle gift card image upload
+            if (!empty($_FILES['gift_card_image']['name'])) {
+                $target_dir = "../../uploads/gift_cards/";
+                $target_file = $target_dir . basename($_FILES["gift_card_image"]["name"]);
 
-            if ($deposit) {
-                // echo "<script> Swal.fire('Deposit Succesful','Deposit recieved and will be validated','success') </script>";
-                $email = $userDetails['email'];
-                $name = $userDetails['name'];
-
-
-
-
-
-
-                $body = "
-                        <html>
-                        <body style='margin: 0; padding: 0; font-family: Roboto, sans-serif; background: #131722;'>
-                        <section style='width: 100%; background-color: #f1f2f3; color: #333;'>
-                        <div style='width: 100%; max-width: 600px; margin: 0 auto;'>
-                        <div style='padding: 20px; background-color: #131722; text-align: center;'>
-                        <img src='https://ravenassetlimited.com/assets/RALblack.png' alt='$sitename ' style='height: 80px; width: auto; max-width: 100%; margin-bottom: 20px;'>
-                        <h2 style='color: #fff; font-size: 24px;'>Welcome aboard, $name!</h2> 
-                        </div>
-                        <div style='padding: 20px; background: #fff; border-radius: 0 0 8px 8px;'>
-                        <p>Dear $name,</p>
-                        <p>You have successfully made a deposit request of <span style='font-weight: 800; color:green;'> $$amount </span> in usdt. Kindly deposit the equivalent amount requested earlier into the selected address.</p>
-                        <p>Thank you for joining $sitename , your gateway to seamless investment exchange trading. We are delighted to have you as part of our community.</p>
-                        <p style='margin-top:20px'>For any inquiries or assistance, feel free to reach out to our support team at <a href='mailto:$siteemail'>$siteemail</a>.</p>
-                        <p>Welcome once again to $sitename !</p>
-                        <p>Best regards,</p>
-                        <p>The $sitename  Team</p>
-                        </div>
-                        <div style='text-align: center; color: #666; margin-top: 20px; font-size: 12px;'>
-                        &copy; 2020 $sitename . All rights reserved.
-                        </div>
-                        </div>
-                        </section>
-                        </body>
-                        </html>";
-
-                $to = $email;
-                $subj = 'Deposit Request';
-                $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);
-
-                if ($result) {
-                    echo "<script> 
-                         Swal.fire('Depsoit Request', 'You have successfully place a depsoit request', 'success')
-                         setTimeout(()=>{  window.location.href = '../deposits.php' },1000) </script>";
+                // Check if image file is a valid image
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+                $valid_extensions = ["jpg", "png", "jpeg"];
+                if (in_array($imageFileType, $valid_extensions)) {
+                    if (move_uploaded_file($_FILES["gift_card_image"]["tmp_name"], $target_file)) {
+                        $gift_card_image_path = $target_file;
+                    } else {
+                        echo "<script>
+                            Swal.fire('Error', 'Error uploading gift card image.', 'error');
+                            setTimeout(() => { 
+                                window.open('$url', '_self');
+                            }, 2000);
+                        </script>";
+                        exit;
+                    }
                 } else {
                     echo "<script>
-                           Swal.fire('Depsoit Error', 'Failed to send  deposit request email', 'error')
-                         setTimeout(()=>{  window.location.href = '../deposits.php' },1000);
-                        </script>";
+                        Swal.fire('Invalid Format', 'Only JPG, PNG, and JPEG formats are allowed.', 'error');
+                        setTimeout(() => { 
+                            window.open('$url', '_self');
+                        }, 2000);
+                    </script>";
+                    exit;
                 }
-            } else {
-                echo "<script> Swal.fire('Deposit Error','Error making deposit','error') </script>";
             }
+        }
+
+        $date = date('Y-m-d H:i:s');
+        $query = "INSERT INTO deposits (user_id, method, amount, gift_card_code, gift_card_image, date_deposited, status) 
+              VALUES ('$user', '$method', '$amount', '$gift_card_code', '$gift_card_image_path', '$date', '0')";
+        if (mysqli_query($connection, $query)) {
+            $url = $domain . 'app/deposts.php';
+            echo "<script>
+                Swal.fire('Deposit Recorded', 'Your deposit has been successfully recorded.', 'success');
+                setTimeout(() => { 
+                    window.open('$url', '_self');
+                }, 2000);
+            </script>";
         } else {
-            echo "<script> Swal.fire('Error','You have an input error','error') </script>";
+            echo "<script>
+                Swal.fire('Error', 'An error occurred: " . mysqli_real_escape_string($connection, mysqli_error($connection)) . "', 'error');
+                setTimeout(() => { 
+                    window.open('$url', '_self');
+                }, 2000);
+            </script>";
         }
     }
-
     ?>
 
 </body>
