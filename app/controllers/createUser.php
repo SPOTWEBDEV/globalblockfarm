@@ -39,6 +39,8 @@ include('../../mailer/index.php');
         $checkUserQuery->execute();
         $checkUser = $checkUserQuery->get_result();
 
+        
+
         if ($checkUser->num_rows == 0) {
             if (!empty($user) && !empty($name) && !empty($email) && !empty($phone) && !empty($country) && !empty($pass)) {
 
