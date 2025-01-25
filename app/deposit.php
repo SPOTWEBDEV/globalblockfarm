@@ -97,11 +97,7 @@ include('controllers/logOut.php');
                                 <div class="card-title">Select Deposit Method</div>
                             </div>
                             <div class="card-body">
-                                <select onchange="displayAddr(this)" name="method" class="js-example-placeholder-single js-states form-control">
-                                    <option value="USDT(Trc20)" selected="">USDT(Trc20)</option>
-                                    <option value="BNB">BNB (Bep20)</option>
-                                    <option value="Ethereum">Ethereum (Erc20)</option>
-                                    <option value="BTC(Bitcoin)">BTC(Bitcoin)</option>
+                                <select  name="method" class="js-example-placeholder-single js-states form-control">                                    
                                     <option value="Litecoin">Litecoin</option>
                                 </select>
                             </div>
