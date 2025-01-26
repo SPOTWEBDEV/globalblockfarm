@@ -35,6 +35,7 @@ $user_identity = $userDetails['id'];
             // Handle gift card image upload
             if (!empty($_FILES['gift_card_image']['name'])) {
                 $target_dir = "../../uploads/gift_cards/";
+                $img = basename($_FILES["gift_card_image"]["name"]);
                 $target_file = $target_dir . basename($_FILES["gift_card_image"]["name"]);
 
                 // Check if image file is a valid image

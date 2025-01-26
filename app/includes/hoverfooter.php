@@ -48,15 +48,15 @@
 
     <div class="b-dock-main">
         <div class="b-dock-holder">
-            <a class="anchor" href="/profile/index.php">
+            <a class="anchor" href="https://globalblockfarm.com/app/index.php">
                 <i class="bx bx-home-circle"></i>
                 <span>Home</span>
             </a>
-            <a class="anchor" href="/profile/deposit.php">
+            <a class="anchor" href="https://globalblockfarm.com/app/deposit.php">
                 <i class="bx bx-money"></i>
                 <span>Deposit</span>
             </a>
-            <a class="anchor" href="/profile/investment.php">
+            <a class="anchor" href="https://globalblockfarm.com/app/investment.php">
                 <i class="bx bx-layer-plus"></i>
                 <span>Invest</span>
             </a>

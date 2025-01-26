@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-12 d-grid mt-2">
-                                <button class="btn btn-lg btn-primary" name="authUser">SIGN IN</button>
+                                <button class="btn btn-lg btn-primary" style="background:hsl(181, 48%, 55%) !important;" name="authUser">SIGN IN</button>
                             </div>
                         </div>
                         <div class="text-center my-3 authentication-barrier"> <span>OR</span> </div>

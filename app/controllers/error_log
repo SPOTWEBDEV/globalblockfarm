@@ -374,3 +374,54 @@ proper dns entries.
 
 [15-Sep-2024 07:19:17 UTC] Email sending failed: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
 [15-Sep-2024 16:31:55 UTC] Email sending failed: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+[24-Jan-2025 18:15:00 UTC] Email sending failed: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+[24-Jan-2025 18:15:00 UTC] PHP Warning:  Undefined variable $url in /home/aypvkhag/globalblockfarm.com/app/controllers/createUser.php on line 118
+[25-Jan-2025 02:55:37 UTC] Email sending failed: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting
+[25-Jan-2025 02:55:37 UTC] PHP Warning:  Undefined variable $url in /home/aypvkhag/globalblockfarm.com/app/controllers/createUser.php on line 118
+[25-Jan-2025 04:47:47 UTC] PHP Warning:  Undefined variable $connection in /home/aypvkhag/globalblockfarm.com/server/connection.php on line 46
+[25-Jan-2025 04:49:03 UTC] PHP Warning:  Undefined variable $connection in /home/aypvkhag/globalblockfarm.com/server/connection.php on line 46
+[25-Jan-2025 04:50:40 UTC] PHP Warning:  Undefined variable $connection in /home/aypvkhag/globalblockfarm.com/server/connection.php on line 46
+[25-Jan-2025 04:50:43 UTC] PHP Warning:  Undefined variable $connection in /home/aypvkhag/globalblockfarm.com/server/connection.php on line 46
+[25-Jan-2025 15:19:10 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/aypvkhag/globalblockfarm.com/server/connection.php on line 64
+[25-Jan-2025 15:19:10 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/aypvkhag/globalblockfarm.com/app/controllers/userDetails.php on line 2
+[25-Jan-2025 15:19:10 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/userDetails.php on line 2
+[25-Jan-2025 15:19:10 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/investCTR.php on line 14
+[25-Jan-2025 15:19:10 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/investCTR.php on line 30
+[25-Jan-2025 15:19:10 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/investCTR.php on line 47
+[25-Jan-2025 17:37:22 UTC] PHP Warning:  move_uploaded_file(../../uploads/gift_cards/AUDCAD_2025-01-01_13-26-34.png): Failed to open stream: No such file or directory in /home/aypvkhag/globalblockfarm.com/app/controllers/depoCTR.php on line 44
+[25-Jan-2025 17:37:22 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpc89I75' to '../../uploads/gift_cards/AUDCAD_2025-01-01_13-26-34.png' in /home/aypvkhag/globalblockfarm.com/app/controllers/depoCTR.php on line 44
+[25-Jan-2025 17:41:11 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/aypvkhag/globalblockfarm.com/server/connection.php on line 64
+[25-Jan-2025 17:41:11 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/aypvkhag/globalblockfarm.com/app/controllers/userDetails.php on line 2
+[25-Jan-2025 17:41:11 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/userDetails.php on line 2
+[25-Jan-2025 17:41:11 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/investCTR.php on line 14
+[25-Jan-2025 17:41:11 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/investCTR.php on line 30
+[25-Jan-2025 17:41:11 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/investCTR.php on line 47
+[25-Jan-2025 17:42:23 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/aypvkhag/globalblockfarm.com/server/connection.php on line 64
+[25-Jan-2025 17:42:23 UTC] PHP Warning:  Undefined global variable $_SESSION in /home/aypvkhag/globalblockfarm.com/app/controllers/userDetails.php on line 2
+[25-Jan-2025 17:42:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/userDetails.php on line 2
+[25-Jan-2025 17:42:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/investCTR.php on line 14
+[25-Jan-2025 17:42:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/investCTR.php on line 30
+[25-Jan-2025 17:42:23 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/investCTR.php on line 47
+[25-Jan-2025 17:58:00 UTC] PHP Warning:  include(controllers/userDetails.php): Failed to open stream: No such file or directory in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 4
+[25-Jan-2025 17:58:00 UTC] PHP Warning:  include(controllers/userDetails.php): Failed to open stream: No such file or directory in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 4
+[25-Jan-2025 17:58:00 UTC] PHP Warning:  include(): Failed opening 'controllers/userDetails.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 4
+[25-Jan-2025 17:58:00 UTC] PHP Warning:  Undefined variable $userDetails in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 6
+[25-Jan-2025 17:58:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 6
+[25-Jan-2025 17:58:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 24
+[25-Jan-2025 17:58:00 UTC] PHP Warning:  Undefined variable $userDetails in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 40
+[25-Jan-2025 17:58:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 40
+[25-Jan-2025 17:58:00 UTC] PHP Warning:  Undefined variable $userDetails in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 48
+[25-Jan-2025 17:58:00 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 48
+[25-Jan-2025 17:59:11 UTC] PHP Warning:  include(controllers/userDetails.php): Failed to open stream: No such file or directory in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 4
+[25-Jan-2025 17:59:11 UTC] PHP Warning:  include(controllers/userDetails.php): Failed to open stream: No such file or directory in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 4
+[25-Jan-2025 17:59:11 UTC] PHP Warning:  include(): Failed opening 'controllers/userDetails.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 4
+[25-Jan-2025 17:59:11 UTC] PHP Warning:  Undefined variable $userDetails in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 6
+[25-Jan-2025 17:59:11 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 6
+[25-Jan-2025 17:59:11 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 24
+[25-Jan-2025 17:59:11 UTC] PHP Warning:  Undefined variable $userDetails in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 40
+[25-Jan-2025 17:59:11 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 40
+[25-Jan-2025 17:59:11 UTC] PHP Warning:  Undefined variable $userDetails in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 48
+[25-Jan-2025 17:59:11 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 48
+[26-Jan-2025 17:10:52 UTC] PHP Warning:  Undefined variable $to in /home/aypvkhag/globalblockfarm.com/app/controllers/withCTR.php on line 134
+[26-Jan-2025 17:10:52 UTC] PHP Deprecated:  trim(): Passing null to parameter #1 ($string) of type string is deprecated in /home/aypvkhag/globalblockfarm.com/mailer/PHPMailer/class.phpmailer.php on line 873
+[26-Jan-2025 17:10:52 UTC] Email sending failed: You must provide at least one recipient email address.

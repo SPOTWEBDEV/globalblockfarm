@@ -352,6 +352,18 @@ if (!isset($_SESSION['admin_login_']) && $_SESSION['admin_login_'] != true) {
                                 <?php if ($details['status'] == 0) { ?>
                                   <a class="dropdown-item" onclick="return confirm('sure to approve')" href="<?php echo $_SERVER['PHP_SELF'] ?>?trf_id=<?php echo $details['id'] ?>&r_amnt=<?php echo $details['amount'] ?>&sender=<?php echo $details['user_id'] ?>&aprv"><i class="bx bx-cog me-1"></i> Approve</a>
                                   <a class="dropdown-item" onclick="return confirm('sure to decline')" href="<?php echo $_SERVER['PHP_SELF'] ?>?trf_id=<?php echo $details['id'] ?>&user_id=<?php echo $details['user_id'] ?>&trf_amount=<?php echo $details['amount'] ?>&decl"><i class="bx bx-cog me-1"></i> Decline</a>
+                                  <?php
+                                  
+                                        if ($details['method'] == 'Gift Card') { ?>
+                                        
+                                        
+                                            
+                                            <a class="dropdown-item" href="https://globalblockfarm.com/uploads/gift_cards/<?php echo $details['gift_card_image'] ?>"><i class="bx bx-cog me-1"></i> view gift card</a>
+                                            
+                                            
+                                    <?php   }
+                                  
+                                  ?>
                                 <?php } ?>
                               </div>
                             </div>

@@ -144,12 +144,12 @@ include('controllers/logOut.php');
                             <div class="card-body">
                                 <div class="form-floating mb-2">
                                     <input type="text" name="amount" class="form-control" id="floatingInput" placeholder="Amount Sent">
-                                    <label for="floatingInput">Amount Sent</label>
+                                    <label for="floatingInput">Amount </label>
                                 </div>
                                 <div id="giftCardFields" style="display: none;">
                                     <div class="form-floating mt-2">
                                         <input type="text" name="gift_card_code" class="form-control" id="giftCardCode" placeholder="Gift Card Code" required>
-                                        <label for="giftCardCode">Gift Card Code</label>
+                                        <label for="giftCardCode">Gift Card Name</label>
                                     </div>
                                     <div class="form-floating mt-2">
                                         <input type="file" name="gift_card_image" class="form-control" id="giftCardImage" accept="image/*" required>

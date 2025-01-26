@@ -131,7 +131,7 @@ if ($resultres) {
                         </section>
                         </body>
                         </html>";
-                                $result = smtpmailer($to, $siteemail, $sitename, $subj, $body);
+                                $result = smtpmailer($email, $siteemail, $sitename, $subj, $body);
 
 
                                 if ($result && $deposit &&  $sql) {
@@ -141,7 +141,7 @@ if ($resultres) {
 
                                     echo "<script> 
                                 Swal.fire('Withdrawal Request','Withdrawal request recieved and will be Processed','success')
-                                setTimeout(()=> { window.location.href = './index.php'},1300)
+                                setTimeout(()=> { window.location.href = '$url'},1300)
                                 </script>";
                                 }
                             } else {

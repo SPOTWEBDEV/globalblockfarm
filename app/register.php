@@ -1,6 +1,6 @@
 <?php 
 
-include('../server/connection.php');
+// include('../server/connection.php');
 
 $ref = '';
 
@@ -339,7 +339,7 @@ if(isset($_GET['ref'])){
                                 <input type="text" name="ref" class="form-control form-control-lg" id="signin-username" placeholder="REF-647366" value="<?php echo $ref ?>">
                             </div>
                             <div class="col-xl-12 d-grid mt-2">
-                                <button class="btn btn-lg btn-primary" name="createUser">REGISTER</button>
+                                <button class="btn btn-lg btn-primary" style="background:hsl(181, 48%, 55%) !important" name="createUser">REGISTER</button>
                             </div>
                         </div>
                         <div class="text-center my-3 authentication-barrier"><span>OR</span> </div>

@@ -106,7 +106,7 @@ function formatNumber($number, $decimals = 2) {
                             </thead>
                             <tbody>
                                 <?php
-                                $sql = mysqli_query($connection, "SELECT * FROM `withdrawals` WHERE `user_id` = '$id'");
+                                $sql = mysqli_query($connection, "SELECT withdrawals.*, users.name FROM withdrawals , users WHERE withdrawals.user_id  = '$id' AND users.id = '$id'");
                                 if (mysqli_num_rows($sql)) {
                                     $count = 1;
                                     while ($details = mysqli_fetch_assoc($sql)) {
@@ -116,7 +116,7 @@ function formatNumber($number, $decimals = 2) {
                                             <td>
                                                 <span class="avatar avatar-xs me-2 online avatar-rounded">
                                                     <img src="./assets/images/faces/13.jpg" alt="img">
-                                                </span><?php echo $_SESSION['name'] ?>
+                                                </span><?php echo $details['name'] ?>
                                                 <!-- <th scope="row">Harshrath</th> -->
                                             </td>
                                             <td><span class="badge bg-success-transparent">$<?php echo formatNumber($details['amount']) ?></span></td>
