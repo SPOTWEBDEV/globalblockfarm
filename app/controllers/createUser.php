@@ -91,7 +91,7 @@ include('../../mailer/index.php');
                         <p>Thank you for joining $sitename , your gateway to seamless investment exchange trading. We are delighted to have you as part of our community.</p>
                         <p>Thank you for choosing to invest with us. Our team of experts is committed to helping you achieve your investment goals, and we are here to support you every step of the way.</p>
                         <p>To begin your journey with us, please make a deposit into your preferred investment plan and start enjoying daily profits with ease.</p>
-                        <p>For any inquiries or assistance, feel free to reach out to our support team at <a href='mailto:$siteemail'>$siteemail</a>.</p>
+                        <p>For any inquiries or assistance, feel free to reach out to our support team at $siteemail.</p>
                         <p>Best regards,</p>
                         <p>The $sitename  Team</p>
                         
